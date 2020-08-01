@@ -494,13 +494,13 @@ const DashBoard = (props) => {
     if (compareAsc(today, predictedStart.toDate()) >= 0) {
       if (compareAsc(calDate, today) >= 1) {
         //log period
-        return "linear-gradient(147deg, #00ffed 0%, #00888a 74%)";
+        return "linear-gradient(147deg, #bdc3c7 0%, #2c3e50 74%)";
       } else if (
         compareAsc(calDate, predictedStart.toDate()) >= 1 &&
         compareAsc(calDate, today) < 1
       ) {
         //late
-        return "linear-gradient(147deg, #f00b51 0%, #73005c 74%)";
+        return "linear-gradient(147deg, #FF416C 0%, #FF4B2B 74%)";
       } else if (compareAsc(calDate, predictedStart.toDate()) < 1) {
         //before
         return "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)";
@@ -511,7 +511,7 @@ const DashBoard = (props) => {
       } else if (checkwithStart >= 0 && checkwithEnd <= 0) {
         return "linear-gradient(147deg, #f869d5 0%, #5650de 74%)";
       } else if (checkwithEnd == 1) {
-        return "linear-gradient(147deg, #00ffed 0%, #00888a 74%)";
+        return "linear-gradient(147deg, #bdc3c7 0%, #2c3e50 74%)";
       }
     } else {
       return "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)";
