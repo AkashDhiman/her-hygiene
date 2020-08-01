@@ -1,12 +1,12 @@
 import firebase from "firebase/app";
 import React, { useState, useContext } from "react";
 import { useSwipeable } from "react-swipeable";
-import { UserContext } from "../providers/UserProvider";
+import { UserContext } from "../../providers/UserProvider";
 import {
   addPeriodRegister,
   getUserLogDocument,
   updateCurrentUseDocument,
-} from "../utils/firebase";
+} from "../../utils/firebase";
 import formatDistance from "date-fns/formatDistance";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
@@ -14,7 +14,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { Link } from "@reach/router";
-import Bar from "./Bar";
+import Bar from "../Bar";
 import pad from "../img/pad.jpg";
 import axios from "axios";
 import { useSpring, animated } from "react-spring";

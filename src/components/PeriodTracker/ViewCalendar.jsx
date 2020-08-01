@@ -1,20 +1,14 @@
-import React,{useEffect,useState,useContext} from 'react'
+import React, { useEffect, useState, useContext } from "react";
 import { DateRange } from "react-date-range";
-import {UserContext} from '../../providers/UserProvider'
+import { UserContext } from "../../providers/UserProvider";
 import {
   updateLogPeriod2,
   getUserLogDocument,
   updateCurrentUseDocument,
 } from "../../utils/firebase";
-import {
-  addDays,
-  startOfMonth,
-  compareAsc,
-  toDate
-} from "date-fns";
+import { addDays, startOfMonth, compareAsc, toDate } from "date-fns";
 
-
- const ViewCalendar = () => {
+const ViewCalendar = () => {
   const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(true);
   const [state, setState] = useState([]);
@@ -28,7 +22,7 @@ import {
       const currDate = Date.now();
       s.forEach((doc) => {
         let selection = {
-          key: `selection${startOfMonth(doc.data().endDate.toDate() )}`,
+          key: `selection${startOfMonth(doc.data().endDate.toDate())}`,
           num: id,
           startDate: doc.data().startDate.toDate(),
           endDate: doc.data().endDate.toDate(),
@@ -53,16 +47,16 @@ import {
     }
     fetchData();
   }, []);
-    return (
-      <>
-        <DateRange
-                rangeColors={["pink"]}
-                moveRangeOnFirstSelection={false}
-                showDateDisplay={true}
-                ranges={state}
-              />
-      </>
-    )
-}
+  return (
+    <>
+      <DateRange
+        rangeColors={["pink"]}
+        moveRangeOnFirstSelection={false}
+        showDateDisplay={true}
+        ranges={state}
+      />
+    </>
+  );
+};
 
-export default ViewCalendar
+export default ViewCalendar;

@@ -2,6 +2,7 @@ import { UserContext } from "../../providers/UserProvider";
 import {
   addPeriodRegister,
   getUserLogDocument,
+  updateLogPeriod2,
   updateCurrentUseDocument,
 } from "../../utils/firebase";
 import Dashboard from "./Dashboard2";
@@ -195,6 +196,13 @@ const RegForm = ({ user, handleRegister }) => {
       predictedEndDate,
     });
     // CREATE FIRST LOG ELSE APP BREAKS
+    const selection={
+      startDate:subDays(lastDate,cycleLength),
+      endDate:lastDate,
+      key:"selection"
+    }
+    await updateLogPeriod2(user,{selection})
+
 
     handleRegister(predictedStartDate, predictedEndDate);
   };
