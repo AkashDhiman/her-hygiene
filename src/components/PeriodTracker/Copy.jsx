@@ -7,12 +7,11 @@ import {
 import Dashboard from "./Dashboard2";
 
 
-
 import firebase from "firebase/app";
 import React, { useState, useContext } from "react";
 import { useSwipeable } from "react-swipeable";
 import { Calendar } from "react-date-range";
-
+import ViewCalendar from './ViewCalendar.jsx'
 import formatDistance from "date-fns/formatDistance";
 import Paper from "@material-ui/core/Paper";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
@@ -575,8 +574,8 @@ const DashBoard = (props) => {
                         ) : (
                           <></>
                         )}
-                        {compareAsc(calDate, predictedStart.toDate()) >= 1 &&
-                        compareAsc(calDate, today) < 1 ? (
+                        {/* when app is disabled */}
+                        {compareAsc(calDate, predictedStart.toDate()) >= 1 &&compareAsc(calDate, today) < 1 ? (
                           <>
                             <h1>Late for </h1>
                             <h1>
@@ -589,7 +588,8 @@ const DashBoard = (props) => {
                           </>
                         ) : (
                           <></>
-                        )}
+                        )} 
+                        {/* when period are late */}
                         {compareAsc(calDate, predictedStart.toDate()) < 1 ? (
                           <>
                             <h1>before late periods</h1>
@@ -763,7 +763,8 @@ const DashBoard = (props) => {
           <Grid item xs={12} sm={12} md={5} lg={5} square>
             <Paper>
               <Paper>
-                <Calendar />
+                {/* <Calendar /> */}
+                <ViewCalendar/>
               </Paper>
               <Paper>
                 {/* <form  className={classes.form} noValidate autoComplete="off"> */}
