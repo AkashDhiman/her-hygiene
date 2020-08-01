@@ -1,49 +1,69 @@
 import firebase from "firebase/app";
-import React, { useState, useContext } from "react";
-import { useSwipeable } from "react-swipeable";
-import { UserContext } from "../../providers/UserProvider";
+import React, { useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+
 import {
   addPeriodRegister,
-  getUserLogDocument,
   updateCurrentUseDocument,
 } from "../../utils/firebase";
-import formatDistance from "date-fns/formatDistance";
-import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import { Link } from "@reach/router";
-import Bar from "../Bar";
-import pad from "../img/pad.jpg";
 import axios from "axios";
-import { useSpring, animated } from "react-spring";
-import { useDrag } from "react-use-gesture";
-import Container from '@material-ui/core/Container';
-
 import {
   addDays,
-  eachDayOfInterval,
-  startOfWeek,
-  getDay,
-  subWeeks,
-  addWeeks,
-  compareAsc,
-  subDays,
-  format,
-  endOfWeek,
-  differenceInDays,
-  isSameDay,
-  toDate,
-  differenceInCalendarMonths,
 } from "date-fns";
-import { Box, TextField } from "@material-ui/core";
-import img from '../img/icon.svg'
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: 50,
+    fontSize: 3
+  },
+
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  button: {
+    backgroundImage: "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)",
+    margin: theme.spacing(3, 0, 2),
+    color: "#ffffff",
+  },
+  inputRoot: {
+    fontSize: 20
+  },
+  labelRoot: {
+    fontSize: 20,
+    color: "black",
+    "&$labelFocused": {
+      color: "purple"
+    }
+  },
+  labelFocused: {}
+}));
 
 const Registration = ({ user, handleRegister }) => {
+    const classes = useStyles();
     const [fields, setFields] = useState({
       cycleTotal: 0,
-      age: 0,
+      dob: Date.now(),
       weight: 0,
       cycleLength: 0,
       height: 0,
@@ -51,10 +71,6 @@ const Registration = ({ user, handleRegister }) => {
       // lastStart:new Date(),
       // lastEnd:new Date()
     });
-    const [placeHolderText, setPlaceHolderText] = useState(
-      "What is your height? (in cms)"
-    );
-    const [step, setStep] = useState(1);
     const handleChange = (event) => {
       const { name, value } = event.target;
       const date = new Date(value);
@@ -69,12 +85,13 @@ const Registration = ({ user, handleRegister }) => {
       event.preventDefault();
       console.log(fields);
   
-      const { cycleTotal, age, weight, cycleLength, height, lastDate } = fields;
+      const { cycleTotal, dob, weight, cycleLength, height, lastDate } = fields;
       const config = {
         headers: {
           "Content-Type": "application/json",
         },
       };
+      const age=dob
       const send = {
         id: user.data.uid,
       };
@@ -99,185 +116,209 @@ const Registration = ({ user, handleRegister }) => {
   
       handleRegister(predictedStartDate, predictedEndDate);
     };
-    const changePlaceHolder = (currstep) => {
-      if (currstep === 1) setPlaceHolderText("What is your height? (in cms)");
-      if (currstep === 2) setPlaceHolderText("What is your Weight? (in kg) ");
-      if (currstep === 3)
-        setPlaceHolderText("What is your average period cycle length? (in days)");
-      if (currstep === 4) setPlaceHolderText("What is your age?");
-      if (currstep === 5)
-        setPlaceHolderText("What is your average total cycle ?(in days)");
-      if (currstep === 6)
-        setPlaceHolderText("Please log your first day of last period");
-      if (currstep === 7)
-        setPlaceHolderText("Please Submit with the following details");
-    };
-    const goPrev = () => {
-      changePlaceHolder(step - 1);
-  
-      setStep(step - 1);
-    };
-    const goNext = () => {
-      changePlaceHolder(step + 1);
-      setStep(step + 1);
-    };
+    // const changePlaceHolder = (currstep) => {
+    //   if (currstep === 1) setPlaceHolderText("What is your height? (in cms)");
+    //   if (currstep === 2) setPlaceHolderText("What is your Weight? (in kg) ");
+    //   if (currstep === 3)
+    //     setPlaceHolderText("What is your average period cycle length? (in days)");
+    //   if (currstep === 4) setPlaceHolderText("What is your age?");
+    //   if (currstep === 5)
+    //     setPlaceHolderText("What is your average total cycle ?(in days)");
+    //   if (currstep === 6)
+    //     setPlaceHolderText("Please log your first day of last period");
+    //   if (currstep === 7)
+    //     setPlaceHolderText("Please Submit with the following details");
+    // };
+   
 
-    const useStyles = makeStyles({
-       form:{
 
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        boxAlign: 'center',
-        alignItems: 'center',
-        BoxPack: 'center',
-       justifyContent: 'center',
-       backgroundColor: '#f8c8d4',
-       },
-       heading:{
-        fontSize: '3rem',
-        fontWeight: 'bold',
-        margin: '5% 0 5%',
-        color: '#ef5579',
-        textAlign: "center",
-       },
-       question:{
-        fontSize: '2.5rem',
-        fontWeight: 'bold',
-        margin: '5% 0 5%',
-    },
-    image: {
-        height: '50px',
-    },
-    input: {
-        marginTop: '5%',
-        width: '100%',
-        color: 'rgb(58, 58, 58)',
-        fontSize: '1rem',
-        marginBottom: '5%',
-        padding: '20px 15px',
-        background: 'rgb(255, 255, 255)',
-        borderRadius: '5px',
-        outline: 'none',
-        borderWidth: '1px',
-        borderStyle: 'solid',
-        borderColor: 'rgb(214, 214, 214)',
-    },
-    button :{
-        color: 'rgb(255, 255, 255)',
-    fontWeight: '700',
-    lineHeight: '32px',
-    textTransform: 'uppercase',
-    outline: 'none',
-    backgroundColor : 'black',
-    borderWidth: '0px',
-    borderStyle: 'initial',
-    borderColor: 'initial',
-    borderImage: 'initial',
-    borderRadius: '5px',
-    padding: '0px 16px',
-    transition: 'all 0.5s ease-in-out 0s',
-    marginBottom: '5%',
-    }
-      });
-
-      const classes = useStyles();
     return (
       <>
-      {/* <div> */}
-      <section className={classes.form}>
-        <form
-          className="login-box"
-          style={{width: '400px', height: '400px', backgroundColor: "#ffffff"}}
-          onKeyPress={(event) => {
-            if (event.which === 13 /* Enter */) {
-              event.preventDefault();
-            }
-          }}
-          onSubmit={handleSubmit}
-        >
+       <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
+          <TextField
+            // variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            type="number"
+            id="cycleTotal"
+            label="cycleTotal"
+            name="cycleTotal"
+            InputProps={{ classes: { root: classes.inputRoot } }}
+        InputLabelProps={{
+          classes: {
+            root: classes.labelRoot,
+            focused: classes.labelFocused
+          }
+        }}
+            value={fields.cycleTotal}
+            onChange={handleChange}
+            autoComplete="cycleTotal"
+            autoFocus
+          />
+          <TextField
+            // variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="cycleLength"
+            onChange={handleChange}
+            InputProps={{ classes: { root: classes.inputRoot } }}
+        InputLabelProps={{
+          classes: {
+            root: classes.labelRoot,
+            focused: classes.labelFocused
+          }
+        }}
+            value={fields.cycleLength}
+            label="cycleLength"
+            type="number"
+            id="cycleLength"
+          />       
+          <TextField
+            // variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="height"
+            onChange={handleChange}
+            InputProps={{ classes: { root: classes.inputRoot } }}
+        InputLabelProps={{
+          classes: {
+            root: classes.labelRoot,
+            focused: classes.labelFocused
+          }
+        }}
+            value={fields.height}
+            label="height"
+            type="number"
+            id="height"
+          />      
+          <TextField
+            // variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="weight"
+            InputProps={{ classes: { root: classes.inputRoot } }}
+        InputLabelProps={{
+          classes: {
+            root: classes.labelRoot,
+            focused: classes.labelFocused
+          }
+        }}
+            onChange={handleChange}
+            value={fields.weight}
+            label="weight"
+            type="number"
+            id="weight"
+          />       
 
-                <img className= {classes.image} height={100} src={img}/>
-                <h1 className= {classes.heading}>Her Hygiene</h1>
-            
-            
-          <h2 className={classes.question}>{placeHolderText}</h2>
-  
-          {step === 1 ? (
-            <input
-              type="number"
-              name="height"
-              placeholder="Height"
-              value={fields.height}
-              onChange={handleChange}
-              className= {classes.input}
-            />
-          ) : (
-            <></>
-          )}
-  
-          {step === 2 ? (
-            <input
-              type="number"
-              name="weight"
-              placeholder="weight"
-              value={fields.weight}
-              onChange={handleChange}
-              className= {classes.input}
-            />
-          ) : (
-            <></>
-          )}
-          {step === 3 ? (
-            <input
-              type="number"
-              name="cycleLength"
-              placeholder="cycle Length"
-              value={fields.cycleLength}
-              onChange={handleChange}
-              className= {classes.input}
-            />
-          ) : (
-            <></>
-          )}
-          {step === 4 ? (
-            <input
-              name="age"
-              placeholder="age"
-              value={fields.age}
-              onChange={handleChange}
-              className= {classes.input}
-            />
-          ) : (
-            <></>
-          )}
-  
-          {step === 5 ? (
-            <input
-              name="cycleTotal"
-              placeholder="cycle Total"
-              value={fields.cycleTotal}
-              onChange={handleChange}
-              className={classes.input}
-            />
-          ) : (
-            <></>
-          )}
-          {step === 6 ? (
-            <input className={classes.input} name="lastDate" type="date" onChange={handleChange} />
-          ) : (
-            <></>
-          )}
-          {step === 7 ? <input type="submit" value="Signup" /> : <></>}
-          {step > 1 ? <button onClick={goPrev} className={classes.button}>Prev</button> : <></>}
-        {step < 7 ? <button className={classes.button} onClick={goNext}>Next</button> : <></>}
-        {/* <text style={{marginTop: '7%'}}>{step}</text>  */}
+          <Button
+            type="submit"
+            fullWidth
+            size="large"
+            variant="contained"
+            color="primary"
+            className={classes.button}
+          >
+            Register Now!
+          </Button>
+       
         </form>
-        </section>
-        {/* </div> */}
+      </div>
+      {/* <Box mt={8}>
+        <Copyright />
+      </Box> */}
+    </Container>
         
       </>
     );
   };
 
   export default Registration;
+
+
+    //  {/* <div> */}
+    //  <section className={classes.form}>
+    //  <form
+    //    className="login-box"
+    //    style={{width: '400px', height: '400px', backgroundColor: "#ffffff"}}
+    //    onKeyPress={(event) => {
+    //      if (event.which === 13 /* Enter */) {
+    //        event.preventDefault();
+    //      }
+    //    }}
+    //    onSubmit={handleSubmit}
+    //  >
+
+    //          {/* <img className= {classes.image} height={100} src={img}/> */}
+    //          <h1 className= {classes.heading}>Her Hygiene</h1>
+         
+         
+    //    <h2 className={classes.question}>{placeHolderText}</h2>
+
+    //      <input
+    //        type="number"
+    //        name="height"
+    //        placeholder="Height"
+    //        value={fields.height}
+    //        onChange={handleChange}
+    //        className= {classes.input}
+    //      />
+     
+
+     
+    //      <input
+    //        type="number"
+    //        name="weight"
+    //        placeholder="weight"
+    //        value={fields.weight}
+    //        onChange={handleChange}
+    //        className= {classes.input}
+    //      />
+     
+       
+    //      <input
+    //        type="number"
+    //        name="cycleLength"
+    //        placeholder="cycle Length"
+    //        value={fields.cycleLength}
+    //        onChange={handleChange}
+    //        className= {classes.input}
+    //      />
+   
+      
+    //      <input
+    //        name="age"
+    //        placeholder="age"
+    //        value={fields.age}
+    //        onChange={handleChange}
+    //        className= {classes.input}
+    //   />
+
+    //      <input
+    //        name="cycleTotal"
+    //        placeholder="cycle Total"
+    //        value={fields.cycleTotal}
+    //        onChange={handleChange}
+    //        className={classes.input}
+    //      />
+    
+    //      <input className={classes.input} name="lastDate" type="date" onChange={handleChange} />
+     
+    //   <input type="submit" value="Signup" /> 
+      
+    //  {/* <text style={{marginTop: '7%'}}>{step}</text>  */}
+    //  </form>
+    //  </section>
+    //  {/* </div> */}

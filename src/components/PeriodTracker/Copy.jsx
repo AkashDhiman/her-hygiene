@@ -7,6 +7,7 @@ import {
   updateLogData
 } from "../../utils/firebase";
 import Dashboard from "./Dashboard2";
+import Registration from './Registration'
 
 import firebase from "firebase/app";
 import React, { useState, useContext } from "react";
@@ -1272,7 +1273,8 @@ const Period = () => {
   } else {
     return (
       <>
-        <RegForm user={user} handleRegister={handleRegister} />
+      <Registration user={user} handleRegister={handleRegister}/>
+        {/* <RegForm  /> */}
       </>
     );
   }

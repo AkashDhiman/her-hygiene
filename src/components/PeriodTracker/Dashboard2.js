@@ -172,13 +172,8 @@ export default function Dashboard() {
             <Periods />
           </Paper>
         </Grid>
-<<<<<<< HEAD
-        <Grid item xs={12}>
-          <Paper className={fixedHeightPaper}>
-=======
         <Grid item lg={9}>
           <Paper className={fixedHeightPaper} elevation={3}>
->>>>>>> e3e3a9881debf2e6042cb441a6912c87dfa65430
             <Chart />
           </Paper>
         </Grid>
