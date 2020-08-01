@@ -34,9 +34,9 @@ export default function MediaCard2() {
           <Typography gutterBottom variant="h5" component="h2">
             Anita Narre
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+          <Typography variant="body2" color="textSecondary" component="p" style={{fontSize: '1.25rem'}}>
+          Anita Narre inspired women all over India when she left her husband's home because of the absence of a toilet
+           and returned only after it was constructed. She set an example and inspired to take action on driving forward sanitation.
           </Typography>
         </CardContent>
       </CardActionArea>

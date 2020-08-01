@@ -13,6 +13,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Typography from '@material-ui/core/Typography';
+import flo from './flo.svg';
+import './styles.css'
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   root: {
@@ -46,6 +49,11 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
     marginTop: 24,
     textTransform: 'initial',
   },
+  heading: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    marginTop: '2%'
+  }
 }));
 
 export const BlogCardDemo2 = React.memo(function BlogCard() {
@@ -85,32 +93,26 @@ export const BlogCardDemo2 = React.memo(function BlogCard() {
       <CardMedia
         className={styles.media}
         image={
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png'
-        //   
+          // 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png'
+        flo  
         }
       />
       <CardContent>
         <TextInfoContent
-          classes={contentStyles}
+          /*classes={contentStyles}*/
           overline={'28 MAR 2019'}
-          heading={'Did You Know?'}
-          body={
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}
-            // 'Enim tortor at auctor urna. Tortor posuere ac ut consequat semper'
-            // viverra nam. Dolor sed viverra ipsum nunc aliquet. Rhoncus aenean vel elit scelerisque mauris pellentesque. 
-            // Dui faucibus in ornare quam viverra orci sagittis eu volutpat. 
-            // Ipsum faucibus vitae alique sit amet risus nullam.Purus gravida quis blandit turpis cursus. 
-            // Netus et malesuada fames ac turpis. Gravida quis blandit turpis cursus in.'
-        //   }
         />
-        <TextInfoContent
-        classes={contentStyles}
-         body={
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}
-            />
-        {/* <Button >Read more</Button> */}
+        <Typography gutterBottom variant="h5" component="h2" className= {styles.heading}>
+          Did You Know ?
+           </Typography>
+           <Typography variant="body2" color="textSecondary" component="p" style={{fontSize: '1.5rem'}}>
+           Roughly 120 million menstruating adolescents in India experience menstrual dysfunctions, affecting their normal daily chores.
+            Nearly 60,000 cases of cervical cancer deaths are reported every year from India, 
+           two-third of which are due to poor menstrual hygiene
+          </Typography>
+
         <div>
-      <Button className={buttonStyles} onClick={handleClickOpen('paper')}>Read More</Button>
+      <Button className={buttonStyles} onClick={handleClickOpen('paper')} style={{marginTop: '5%', padding : '10px 25px',fontSize: '1rem',backgroundColor: 'linear-gradient(147deg, #ff9897 0%, #f650a0 74%'}}>Read More</Button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -118,29 +120,25 @@ export const BlogCardDemo2 = React.memo(function BlogCard() {
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="scroll-dialog-title">Did You Know</DialogTitle>
         <DialogContent dividers={scroll === 'paper'}>
           <DialogContentText
             id="scroll-dialog-description"
             ref={descriptionElementRef}
             tabIndex={-1}
+            style={{fontSize: '1.5rem'}}
           >
-            {[...new Array(50)]
-              .map(
-                () => `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
-              )
-              .join('\n')}
+          A 2014 report by the NGO Dasra informed that almost 23 million girls in India drop out of school annually, because of lack of menstrual hygiene management facilities, including the availability of sanitary napkins and awareness about menstruation. 
+                The report further suggests that the girls, who don’t drop out, usually miss up to 5 days of school every month
+                Menstruation is such a taboo subject that many women are ashamed even to seek medical advice if they face any health problems due to menstruation. Unhygienic menstrual conditions often result in women developing health problems which are further aggravated due to their inability to seek medical help on time
+                Conditions for menstruating women in India can only improve when awareness of menstrual hygiene is spread. IEC on menstrual hygiene, under Swachh Bharat Abhiyan or any other state scheme, must educate women across all ages on what menstruation is and why the taboos surrounding it do tremendous harm. Simultaneously, sanitary napkins must be provided to menstruating women to ensure that they do not fall prey to age old unhygienic traditions of using cloth, soil or sand. It must be remembered that 88% of India’s menstruating women do not use sanitary napkins. Making sanitary napkins available to over 300 million women and ensuring that they do use these will be a herculean task, and can only be achieved with due cooperation 
+                all stakeholders and proper coordination between them to improve the status menstrual hygiene in India.
+              
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Subscribe
+          <Button onClick={handleClose} color="primary" >
+            Close
           </Button>
         </DialogActions>
       </Dialog>

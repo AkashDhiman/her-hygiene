@@ -15,6 +15,7 @@ function preventDefault(event) {
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   depositContext: {
     flex: 1,
+    textTransform: 'capitalize',
   },
   image:{
     height: '75px',
@@ -32,19 +33,19 @@ export default function Welcome({user}) {
   return (
     <React.Fragment>
               <Grid container>
-<Grid item xs={12} lg={6}>  <Title>Welcome</Title>
-      <Typography component="p" variant="h4">
+<Grid item xs={12} lg={6}>  
+<Typography component="h2" variant="h4" style={{fontSize: '3rem', color: 'black', marginBottom: '2%'}}>Welcome</Typography>
+      <Typography component="p" variant="h4" style={{textTransform: 'capitalize', marginBottom: '2%'}}>
          {user.data.name}
       </Typography>
-      <Typography color="textSecondary" className={classes.depositContext}>
+      <Typography color="textSecondary" className={classes.depositContext} >
         account created on {" "}
         { format (user.data.createdAt.toDate(),"dd MMMM yyyy")}
       </Typography>
       <div>
-        <Link color="primary" href="#" onClick={preventDefault}>
+        {/* <Link color="primary" href="#" onClick={preventDefault}>
           View Profile
-        </Link>
-
+        </Link> */}
       </div>
       </Grid>
 <Grid item xs={false}lg={6}><img className= {classes.image}  src={natureOnScreen}/></Grid>

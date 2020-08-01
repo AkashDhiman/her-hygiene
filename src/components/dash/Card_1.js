@@ -34,9 +34,10 @@ export default function MediaCard1() {
           <Typography gutterBottom variant="h5" component="h2">
             Arunachalam Muruganatham
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+          <Typography variant="body2" color="textSecondary" component="p" style={{fontSize: '1.25rem'}}>
+          Padma Shri Arunachalam Muruganantham is a social entrepreneur credited for developing and distributing low cost sanitary napkins 
+          manufacturing machines and creating 
+          awareness in rural India. 
           </Typography>
         </CardContent>
       </CardActionArea>
