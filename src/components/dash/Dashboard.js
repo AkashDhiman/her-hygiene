@@ -25,10 +25,11 @@ import Welcome from "./Welcome";
 import Regular from "./Regular";
 import Exercise from "./Exercise";
 import Periods from "./Periods";
+import Opp from "./Opp";
 import Button from '@material-ui/core/Button'
 import{ UserContext }from '../../providers/UserProvider'
-// import Mens1 from "./Mens1";
-// import Mens2 from "./Mens2";
+import work from './images/work.svg'
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -121,6 +122,14 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  heading:{
+    maxWidth: '700px',
+    fontSize: '2.5rem',
+    /* margin-left: 15%; */
+    textAlign: 'center',
+    display :'inline-block'
+    // marginBottom: '7%',
+  }
 }));
 
 export default function Dashboard() {
@@ -145,38 +154,12 @@ const logout = async () => {
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)} style={{backgroundColor:'#ef5779', width:'100%'}}>
         <Toolbar className={classes.toolbar}>
-          {/* <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton> */}
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Dashboard
           </Typography>
-          <Button onClick={logout} >LogOut</Button>
+          <Button onClick={logout} style={{fontSize: '1.25rem', color: 'white'}} >LogOut</Button>
         </Toolbar>
       </AppBar>
-      {/* <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
-        <List>{secondaryListItems}</List>
-      </Drawer> */}
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
@@ -209,6 +192,22 @@ const logout = async () => {
                 <Map />
               </Paper>
             </Grid>
+
+            <Grid item xs={12} md={8} lg={9}>
+              <Paper className={fixedHeightPaper}>
+              <div className= {classes.heading}>
+                  <h2>Start Building Your Own Career Now</h2>
+                </div>
+            <img src={work} style={{height: 150, float: 'right'}}/>
+
+              </Paper>
+            </Grid>
+
+            <Grid item xs={12} md={4} lg={3}>
+                <Opp />
+            </Grid>
+
+
             
             <Grid item xs={12} md={6}>
               <BlogCardDemo/>

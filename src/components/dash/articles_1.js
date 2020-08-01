@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import TextInfoContent from '@mui-treasury/components/content/textInfo';
 import { useBlogTextInfoContentStyles } from '@mui-treasury/styles/textInfoContent/blog';
 import { useOverShadowStyles } from '@mui-treasury/styles/shadow/over';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   root: {
@@ -65,6 +66,11 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
     marginTop: 24,
     textTransform: 'initial',
   },
+  heading: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    marginTop: '2%'
+  }
 }));
 
 export const BlogCardDemo = React.memo(function BlogCard() {
@@ -76,28 +82,20 @@ export const BlogCardDemo = React.memo(function BlogCard() {
   const shadowStyles = useOverShadowStyles();
   return (
     <Card className={cx(styles.root, shadowStyles.root)}>
-      {/* <CardMedia
-        className={styles.media}
-        image={
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png'
-        //   
-        }
-      /> */}
       <CardContent>
         <TextInfoContent
-          classes={contentStyles}
           overline={'28 MAR 2019'}
-          heading={'Periods still a Taboo'}
-          body={
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim tortor at auctor urna . Tortor posuere ac ut consequat semper Dolor sed viverra ipsum nunc aliquet.  Rhoncus aenean vel elit scelerisque mauris pellentesque. Dui faucibus in ornare quam viverra orci sagittis eu volutpat. Ipsum faucibus vitae alique sit amet risus nullam.Purus gravida quis blandit turpis cursus. Netus et malesuada fames ac turpis. Gravida quis blandit turpis cursus in. Demo12345 qwerty ketr tyuoip poi asd sdfg dfghj ghjk hjkl jvdfhgiwkemwdpow oritojwlqw igg,dsMpwsojk q, feiwrp;3e,dqw euieuoqkwlmd,w ;prtiorkmf '} />
+          />
+          <Typography gutterBottom variant="h5" component="h2" className= {styles.heading}>
+           Periods Still A Taboo
+           </Typography>
+           <Typography variant="body2" color="textSecondary" component="p" style={{fontSize: '1.5rem'}}>
+           Nearly 70 female students at an institute in Gujarat’s Bhuj were pressured to remove their undergarments by their principal to 
+           prove that they were not menstruating. This incident happened in the year 2020, in an era of strong dialogues on the empowerment of women and smashing patriarchy. And yet, this is where some parts of our society are stuck at. Move over equality, women still have to fight for being treated with dignity. In India, even mere mention of the topic has been a taboo in the past 
+           and even to this date the cultural and social influences appear to be a hurdle for the advancement of knowledge on the subject
+          </Typography>
  
- 
-        {/* <TextInfoContent
-        classes={contentStyles}
-         body={
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}
-            /> */}
-        {/* <Button className={buttonStyles}>Read more</Button> */}
+        
       </CardContent>
     </Card>
   );

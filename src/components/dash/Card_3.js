@@ -34,9 +34,9 @@ export default function MediaCard2() {
           <Typography gutterBottom variant="h5" component="h2">
             Sonal Jain
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+          <Typography variant="body2" color="textSecondary" component="p" style={{fontSize: '1.25rem'}}>
+          Sonal Jain took action and founded Boondh which promoted sustainable menstruation using menstrual
+           cups and spreads awareness about the issue.Boondh works in menstrual literacy, de-stigmatization and sustainable menstrual products.
           </Typography>
         </CardContent>
       </CardActionArea>
