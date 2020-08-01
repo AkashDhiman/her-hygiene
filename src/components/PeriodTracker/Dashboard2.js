@@ -12,7 +12,11 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
-
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Cardy from "./cards";
+import Button from "@material-ui/core/Button";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -90,12 +94,14 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   fixedHeight: {
-    height: 240,
+    height: 260,
+  },
+  fixedHeight2: {
+    height: 220,
   },
 
   Cardy: {
     width: "100%",
-    height: 200,
     // marginTop: '5%',
     transition: "0.3s",
     boxShadow: "0px 14px 80px rgba(34, 35, 58, 0.2)",
@@ -109,6 +115,18 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     // alignItems: 'center',
     color: "#ffffff",
+  },
+  ugh: {
+    maxWidth: 500,
+    height: 170,
+  },
+  Button: {
+    height: 100,
+    boxShadow: "0px 14px 80px rgba(34, 35, 58, 0.2)",
+    backgroundImage: "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)",
+    color: "#ffffff",
+    margin: 10,
+    fontSize: 30,
   },
 }));
 
@@ -128,7 +146,7 @@ export default function Dashboard() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
+  const fixedHeightPaper2 = clsx(classes.paper, classes.fixedHeight2);
   const cardyboi = clsx(classes.paper, classes.Cardy);
   return (
     <>
@@ -140,59 +158,70 @@ export default function Dashboard() {
       <Grid container spacing={3}>
         {/* Chart */}
         <Grid item xs={12}>
-          <Paper className={fixedHeightPaper}>
+          <Paper className={fixedHeightPaper} elevation={3}>
             <Welcome user={user} />
           </Paper>
         </Grid>
         <Grid item xs={12} md={4} lg={3}>
-          {/* <Paper className={fixedHeightPaper} style= {{backgroundColor: '#ef5579'}}> */}
+          {/* <Paper className={fixedHeightPaper} elevation={3} style= {{backgroundColor: '#ef5579'}}> */}
           <Deposits />
           {/* </Paper> */}
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
-          <Paper className={fixedHeightPaper}>
+          <Paper className={fixedHeightPaper} elevation={3}>
             <Periods />
           </Paper>
         </Grid>
+<<<<<<< HEAD
         <Grid item xs={12}>
           <Paper className={fixedHeightPaper}>
+=======
+        <Grid item lg={9}>
+          <Paper className={fixedHeightPaper} elevation={3}>
+>>>>>>> e3e3a9881debf2e6042cb441a6912c87dfa65430
             <Chart />
+          </Paper>
+        </Grid>
+        <Grid item lg={3}>
+          <Paper className={fixedHeightPaper} elevation={3}>
+            <Button className={classes.Button}>Retrain</Button>
+            <Button className={classes.Button}>Caliberate</Button>
           </Paper>
         </Grid>
         {/* Recent Deposits */}
 
-        <Grid item xs={12} md={4} lg={3}>
-          {/* <Paper className={fixedHeightPaper} style= {{backgroundColor: '#ef5579'}}> */}
-          {/* <Map1 /> */}
-          {/* </Paper> */}
-        </Grid>
         {/* Do you knowww */}
-        <Grid item xs={12}>
-          <Paper className={fixedHeightPaper}>
-            <Grid container spacing="4" j>
+        <Grid item xs="12">
+          <Paper className={fixedHeightPaper} elevation={3}>
+            <Grid container spacing="2" xs="12">
               <Grid item xs={12} lg={4}>
-                <Paper className={cardyboi}>
-                  <Typography variant="h1">Fact 1</Typography>
-                  <Typography variant="h5">
+                <Paper elevation={3} className={fixedHeightPaper2}>
+                  <Paper className={cardyboi}>
+                    <Typography variant="h1">Fact 1</Typography>
+                  </Paper>
+                  <Typography variant="h4">
                     {" "}
                     A rare period disorder can cause bleeding of the eyes.
                   </Typography>
                 </Paper>
               </Grid>
               <Grid item xs={12} lg={4}>
-                <Paper className={cardyboi}>
-                  <Typography variant="h1">Fact 2</Typography>
-
-                  <Typography variant="h5">
+                <Paper elevation={3} className={fixedHeightPaper2}>
+                  <Paper className={cardyboi}>
+                    <Typography variant="h1">Fact 2</Typography>
+                  </Paper>
+                  <Typography variant="h4">
                     {" "}
                     Getting your period can worsen asthma symptoms.
                   </Typography>
                 </Paper>
               </Grid>
               <Grid item xs={12} lg={4}>
-                <Paper className={cardyboi}>
-                  <Typography variant="h1">Fact 3</Typography>
-                  <Typography variant="h5">
+                <Paper elevation={3} className={fixedHeightPaper2}>
+                  <Paper className={cardyboi}>
+                    <Typography variant="h1">Fact 3</Typography>
+                  </Paper>
+                  <Typography variant="h4">
                     {" "}
                     Sleeping with a nightlight can help regulate your cycle.
                   </Typography>
@@ -201,6 +230,35 @@ export default function Dashboard() {
             </Grid>
           </Paper>
         </Grid>
+        {/* <Grid container spacing={4}>
+          <Grid item xs={4}>
+            <Paper className={cardyboi}>
+              <Typography variant="h1">Fact 1</Typography>
+              <Typography variant="h4">
+                {" "}
+                A rare period disorder can cause bleeding of the eyes.
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={4}>
+            <Paper className={cardyboi}>
+              <Typography variant="h1">Fact 1</Typography>
+              <Typography variant="h4">
+                {" "}
+                A rare period disorder can cause bleeding of the eyes.
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={4}>
+            <Paper className={cardyboi}>
+              <Typography variant="h1">Fact 1</Typography>
+              <Typography variant="h4">
+                {" "}
+                A rare period disorder can cause bleeding of the eyes.
+              </Typography>
+            </Paper>
+          </Grid>
+        </Grid> */}
 
         {/* <Grid item xs={12} md={12} lg={9}>
               <BlogCardDemo2/>
