@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -9,9 +9,8 @@ import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import SaveIcon from '@material-ui/icons/Save';
-import Google from '../utils/sign-in-with-google.png'
-
+import SaveIcon from "@material-ui/icons/Save";
+import Google from "../utils/sign-in-with-google.png";
 
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -19,7 +18,6 @@ import Container from "@material-ui/core/Container";
 
 import { signInWithGoogle, auth } from "../utils/firebase";
 import { redirectTo } from "@reach/router";
-
 
 function Copyright() {
   return (
@@ -52,11 +50,16 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  button: {
+    backgroundImage: "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)",
+    margin: theme.spacing(3, 0, 2),
+    color: "#ffffff",
+  },
 }));
 
 export default function SignIn1() {
   const classes = useStyles();
-    const [fields, setFields] = useState({ email: "", password: "" });
+  const [fields, setFields] = useState({ email: "", password: "" });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -81,7 +84,7 @@ export default function SignIn1() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form}  onSubmit={handleSubmit} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -102,7 +105,6 @@ export default function SignIn1() {
             fullWidth
             name="password"
             onChange={handleChange}
-
             value={fields.password}
             label="Password"
             type="password"
@@ -113,7 +115,7 @@ export default function SignIn1() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           /> */}
-          
+
           {/* <Button
             variant="contained"
             color="primary"
@@ -129,8 +131,7 @@ export default function SignIn1() {
             fullWidth
             size="large"
             variant="contained"
-            color="primary"
-            className={classes.submit}
+            className={classes.button}
           >
             Sign In
           </Button>
@@ -149,17 +150,15 @@ export default function SignIn1() {
         </form>
       </div>
 
-      
-
-      <button
-         className="icon"
-         onClick={() => {
-           signInWithGoogle();
-         }}
-       ></button>
-      {/* <Box mt={8}>
+      <Button
+        className="icon"
+        onClick={() => {
+          signInWithGoogle();
+        }}
+      ></Button>
+      <Box mt={8}>
         <Copyright />
-      </Box> */}
+      </Box>
     </Container>
   );
 }

@@ -6,12 +6,11 @@ import {
 } from "../../utils/firebase";
 import Dashboard from "./Dashboard2";
 
-
 import firebase from "firebase/app";
 import React, { useState, useContext } from "react";
 import { useSwipeable } from "react-swipeable";
 import { Calendar } from "react-date-range";
-import ViewCalendar from './ViewCalendar.jsx'
+import ViewCalendar from "./ViewCalendar.jsx";
 import formatDistance from "date-fns/formatDistance";
 import Paper from "@material-ui/core/Paper";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
@@ -419,7 +418,7 @@ const DashBoard = (props) => {
     root: {
       padding: "20px",
     },
-    
+
     paper: {
       // margin: theme.spacing(8, 4),
       display: "flex",
@@ -492,29 +491,21 @@ const DashBoard = (props) => {
   const shadowStyles = useOverShadowStyles();
 
   const whichBackgroundColor = () => {
-    if(compareAsc(today, predictedStart.toDate()) >= 0 )
-    {
-      if(compareAsc(calDate, today) >= 1)
-      {
+    if (compareAsc(today, predictedStart.toDate()) >= 0) {
+      if (compareAsc(calDate, today) >= 1) {
         //log period
         return "linear-gradient(147deg, #00ffed 0%, #00888a 74%)";
-
-
-      }
-      else if(compareAsc(calDate, predictedStart.toDate()) >= 1 &&compareAsc(calDate, today) < 1 )
-      {
+      } else if (
+        compareAsc(calDate, predictedStart.toDate()) >= 1 &&
+        compareAsc(calDate, today) < 1
+      ) {
         //late
-        return "linear-gradient(147deg, #f869d5 0%, #5650de 74%)";
-
-      }
-      else if(compareAsc(calDate, predictedStart.toDate()) < 1)
-      {
+        return "linear-gradient(147deg, #f00b51 0%, #73005c 74%)";
+      } else if (compareAsc(calDate, predictedStart.toDate()) < 1) {
         //before
         return "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)";
-
       }
-    }
-    else if (compareAsc(today, predictedStart.toDate()) == -1) {
+    } else if (compareAsc(today, predictedStart.toDate()) == -1) {
       if (checkwithStart == -1) {
         return "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)";
       } else if (checkwithStart >= 0 && checkwithEnd <= 0) {
@@ -522,8 +513,7 @@ const DashBoard = (props) => {
       } else if (checkwithEnd == 1) {
         return "linear-gradient(147deg, #00ffed 0%, #00888a 74%)";
       }
-    }
-    else{
+    } else {
       return "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)";
     }
   };
@@ -582,7 +572,8 @@ const DashBoard = (props) => {
                           <></>
                         )}
                         {/* when app is disabled */}
-                        {compareAsc(calDate, predictedStart.toDate()) >= 1 &&compareAsc(calDate, today) < 1 ? (
+                        {compareAsc(calDate, predictedStart.toDate()) >= 1 &&
+                        compareAsc(calDate, today) < 1 ? (
                           <>
                             <h1>Late for </h1>
                             <h1>
@@ -595,17 +586,19 @@ const DashBoard = (props) => {
                           </>
                         ) : (
                           <></>
-                        )} 
+                        )}
                         {/* when period are late */}
                         {compareAsc(calDate, predictedStart.toDate()) < 1 ? (
                           <>
                             <h1>Period</h1>
-                           <h2> {formatDistance(
-                              predictedStart.toDate(), //this will be the date of next period, which will come from the user variable
-                              calDate,
-                              { addSuffix: true }
-                            )}</h2>
-                            
+                            <h2>
+                              {" "}
+                              {formatDistance(
+                                predictedStart.toDate(), //this will be the date of next period, which will come from the user variable
+                                calDate,
+                                { addSuffix: true }
+                              )}
+                            </h2>
                           </>
                         ) : (
                           <></>
@@ -761,9 +754,6 @@ const DashBoard = (props) => {
                     </div>
                   </CardContent>
                 </Card>
-              
-              
-              
               </div>
             </Paper>
 
@@ -778,7 +768,7 @@ const DashBoard = (props) => {
             <Paper>
               <Paper>
                 {/* <Calendar /> */}
-                <ViewCalendar/>
+                <ViewCalendar />
               </Paper>
               <Paper>
                 {/* <form  className={classes.form} noValidate autoComplete="off"> */}

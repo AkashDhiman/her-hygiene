@@ -1,59 +1,63 @@
-import React,{useState} from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import React, { useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
 import { createUserProfileDocument, auth } from "../utils/firebase";
+import { isWithinInterval } from "date-fns";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    marginTop: theme.spacing(20),
+
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
-  submit: {
+  submit: {},
+  button: {
+    backgroundImage: "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)",
     margin: theme.spacing(3, 0, 2),
+    color: "#ffffff",
   },
 }));
 
 export default function SignUp1() {
   const classes = useStyles();
 
-
   const [fields, setFields] = useState({
-    firstName:"",
-    lastName:"",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     phoneNumber: "",
@@ -61,21 +65,21 @@ export default function SignUp1() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name,value)
+    console.log(name, value);
     setFields({ ...fields, [name]: value });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { email, password, firstName,lastName, phone } = fields;
-    const name=firstName+lastName;
-    console.log(fields)
+    const { email, password, firstName, lastName, phone } = fields;
+    const name = firstName + lastName;
+    console.log(fields);
     try {
       const { user } = await auth.createUserWithEmailAndPassword(
         email,
         password
       );
-      createUserProfileDocument(user, {name , phone });
+      createUserProfileDocument(user, { name, phone });
     } catch (error) {
       console.error(error);
     }
@@ -83,8 +87,8 @@ export default function SignUp1() {
     setFields({
       email: "",
       password: "",
-      firstName:"",
-      lastName:"",
+      firstName: "",
+      lastName: "",
       phone: "",
     });
   };
@@ -107,7 +111,6 @@ export default function SignUp1() {
                 name="firstName"
                 value={fields.firstName}
                 onChange={handleChange}
-
                 variant="outlined"
                 required
                 fullWidth
@@ -126,8 +129,6 @@ export default function SignUp1() {
                 name="lastName"
                 value={fields.lastName}
                 onChange={handleChange}
-
-
                 autoComplete="lname"
               />
             </Grid>
@@ -141,8 +142,6 @@ export default function SignUp1() {
                 name="email"
                 value={fields.email}
                 onChange={handleChange}
-
-
                 autoComplete="email"
               />
             </Grid>
@@ -154,7 +153,6 @@ export default function SignUp1() {
                 name="password"
                 value={fields.password}
                 onChange={handleChange}
-
                 label="Password"
                 type="password"
                 id="password"
@@ -172,8 +170,7 @@ export default function SignUp1() {
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
-            className={classes.submit}
+            className={classes.button}
           >
             Sign Up
           </Button>
