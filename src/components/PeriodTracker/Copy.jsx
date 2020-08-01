@@ -22,6 +22,7 @@ import axios from "axios";
 import { useSpring, animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
 
+
 import cx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -128,6 +129,13 @@ const PrettoSlider = withStyles({
     height: 8,
     borderRadius: 4,
   },
+  calButton :{
+    marginLeft: '5%',
+    fontSize: '1.25rem',
+    color: 'white',
+    padding: '10px 50px',
+    background: 'linear-gradient(to right, rgb(238, 9, 121), rgb(255, 106, 0))'
+  }
 })(Slider);
 
 //
@@ -435,7 +443,7 @@ const DashBoard = (props) => {
       width: 70,
       height: 70,
       boxShadow: "0px 14px 80px rgba(34, 35, 58, 0.2)",
-      backgroundImage: "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)",
+      backgroundImage: "linear-gradient(to right, #ee0979, #ff6a00)",
       color: "#ffffff",
       margin: 15,
     },
@@ -893,55 +901,76 @@ const DashBoard = (props) => {
                       </Button>
                     </DialogActions>
                   </Dialog>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
+                  <Grid item xs={12} style={{background: 'linear-gradient(to right, #ee9ca7, #ffdde1)'}}>
+                    <Grid item xs= {4} sm={3} style={{display:'inline-block', marginLeft: 30, marginRight: 20}}>
+                      <Button style= {{height: '60px', width: '50px', borderRadius:'50%',background: 'linear-gradient(to right, #ee0979, #ff6a00)', color:'white' }}>
+                        1
+                      </Button>
+                    </Grid>
+                    <Grid item xs= {4} sm={3} style={{display:'inline-block', marginLeft: 30, marginRight: 20}}>
+                      <Button style= {{height: '60px', width: '50px', borderRadius:'50%',background: 'linear-gradient(to right, #ee0979, #ff6a00)', color:'white' }}>
+                        2
+                      </Button>
+                    </Grid>
+                    <Grid item xs= {4} sm={3} style={{display:'inline-block', marginLeft: 30, marginRight: 20}}>
+                      <Button style= {{height: '60px', width: '50px', borderRadius:'50%',background: 'linear-gradient(to right, #ee0979, #ff6a00)', color:'white' }}>
+                        3
+                      </Button>
+                    </Grid>
+                    <Grid item xs= {4} sm={3} style={{display:'inline-block', marginLeft: 30, marginRight: 20}}>
+                      <Button style= {{height: '60px', width: '50px', borderRadius:'50%',background: 'linear-gradient(to right, #ee0979, #ff6a00)', color:'white' }}>
+                        4
+                      </Button>
+                    </Grid>
+                    <Grid item xs= {4} sm={3} style={{display:'inline-block', marginLeft: 30, marginRight: 20}}>
+                      <Button style= {{height: '60px', width: '50px', borderRadius:'50%',background: 'linear-gradient(to right, #ee0979, #ff6a00)', color:'white' }}>
+                        5
+                      </Button>
+                    </Grid>
+                    {/* <AwesomeButton
                       onClick={handleClickOpen("paper", "height")}
                       size="medium"
                       aria-label="add an alarm"
                     >
                       {" "}
                       1{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
+                    </AwesomeButton> */}
+                    
+                    {/* <AwesomeButton
                       onClick={handleClickOpen("paper", "pulseRate")}
                       size="medium"
                       aria-label="add an alarm"
                     >
                       {" "}
                       2{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
+                    </AwesomeButton> */}
+                   
+                    {/* <AwesomeButton
                       onClick={handleClickOpen("paper", "RR")}
                       size="medium"
                       aria-label="add an alarm"
                     >
                       {" "}
                       3{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
+                    </AwesomeButton> */}
+                    
+                    {/* <AwesomeButton
                       onClick={handleClickOpen("paper", "Another")}
                       size="medium"
                       aria-label="add an alarm"
                     >
                       {" "}
                       4{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
+                    </AwesomeButton> */}
+                    {/* <AwesomeButton
                       size="medium"
                       onClick={handleClickOpen("paper", "Waist")}
                       aria-label="add an alarm"
                     >
                       {" "}
                       5{" "}
-                    </AwesomeButton>
+                    </AwesomeButton> */}
+                   
                   </Grid>
                   {/* <Grid item xs={6}md={3}>
          <IconButton onClick={handleClickOpen('paper')} } aria-label="add an alarm">   <AlarmIcon /> </IconButton>
@@ -972,7 +1001,10 @@ const DashBoard = (props) => {
             </Paper>
             </Grid>
         */}
-          <Dashboard />
+        <Grid xs={12} style={{marginBottom: '3%'}}>
+        <Dashboard/>
+        </Grid>
+          
         </Grid>
       </div>
     </>

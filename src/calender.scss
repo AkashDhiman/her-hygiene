@@ -41,6 +41,7 @@
     align-items: center;
     height: 60px;
     padding-top: 10px;
+    background: linear-gradient(to right, #ee9ca7, #ffdde1);
   }
   
   .rdrMonthAndYearPickers{
@@ -114,6 +115,9 @@
   
   .rdrMonth{
     padding: 0 0.833em 1.666em 0.833em;
+    width: 100%;
+background: linear-gradient(to right, #ee9ca7, #ffdde1,); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     .rdrWeekDays {
       padding: 0;
     }
@@ -388,4 +392,12 @@
     font-weight: 600;
     color: #849095;
     padding: 0.833em;
+  }
+
+  .rdrCalendarWrapper, .rdrDateRangeWrapper{
+    width: 100%;
+  }
+
+  .rdrMonths, .rdrMonthsVertical{
+    width: 100%;
   }

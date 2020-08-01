@@ -38,14 +38,14 @@ import {
         arr.push(selection);
         id++;
       });
-      const selectionPredicted = {
-        key: "selectionPredicted",
-        startDate: user.data.predictedStartDate.toDate(),
-        endDate: user.data.predictedEndDate.toDate(),
-        color: "#ffcfcc",
-        disabled: true,
-      };
-      arr.push(selectionPredicted);
+      // const selectionPredicted = {
+      //   key: "selectionPredicted",
+      //   startDate: user.data.predictedStartDate.toDate(),
+      //   endDate: user.data.predictedEndDate.toDate(),
+      //   color: "#ffcfcc",
+      //   disabled: true,
+      // };
+      // arr.push(selectionPredicted);
       console.log(arr);
       setState(arr);
 
