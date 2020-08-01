@@ -154,7 +154,7 @@ export default function Dashboard() {
             <Periods />
           </Paper>
         </Grid>
-        <Grid item lg={12}>
+        <Grid item xs={12}>
           <Paper className={fixedHeightPaper}>
             <Chart />
           </Paper>

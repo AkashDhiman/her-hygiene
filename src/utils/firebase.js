@@ -166,7 +166,50 @@ export const getUserLogDocument = async (uid) => {
 };
 
 
+export const updateLogData=async (user,{data})=>{
+  const today=Date.now();
+  console.log(today)
+  const ans=await db.collection("users").doc(`${user.data.uid}`).collection("log").doc(`${startOfMonth(Date.now())}`)
+  const x=await ans.get()
+  console.log(x.data())
+  if(x.exists)
+{
+  console.log("exists")
+  console.log(data)
+ await ans.set({
+    ...data
+  },{merge:true})
 
+}
+else{
+  console.log("does not exists")
+
+  console.log(data)
+
+  await ans.set({
+    weight:null,
+    height:null,
+    age:null,
+    pcos:null,
+    pulseRate:null,
+    rr:null,
+    regularity:null,
+    hip:null,
+    waist:null,
+    weightGain:null,
+    skinDarkening:null,
+    pimples:null,
+    fastFood:null,
+    regExercise:null,
+    bpSystolic:null,
+    bpDiastolic:null,
+    cycleLength:null,
+    cycleTotal:null,
+    ...data,
+  },{merge:true})
+  
+}
+}
 
 
 export const updateLogPeriod2=async (user,{selection})=>{
