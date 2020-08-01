@@ -38,7 +38,7 @@ import IconButton from "@material-ui/core/IconButton";
 import AlarmIcon from "@material-ui/icons/Alarm";
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import { AwesomeButton } from "react-awesome-button";
-import "react-awesome-button/dist/themes/theme-blue.css";
+import "react-awesome-button/dist/themes/theme-amber.css";
 //End of Vishesh :)
 import {
   addDays,
@@ -492,22 +492,29 @@ const DashBoard = (props) => {
   const shadowStyles = useOverShadowStyles();
 
   const whichBackgroundColor = () => {
-    // if(compareAsc(today, predictedStart.toDate()) >= 0 )
-    // {
-    //   if(compareAsc(calDate, today) >= 1)
-    //   {
-    //     //log period
-    //   }
-    //   else if(compareAsc(calDate, predictedStart.toDate()) >= 1 &&compareAsc(calDate, today) < 1 )
-    //   {
-    //     //late
-    //   }
-    //   else if(compareAsc(calDate, predictedStart.toDate()) < 1)
-    //   {
-    //     //before
-    //   }
-    // }
-    if (compareAsc(today, predictedStart.toDate()) == -1) {
+    if(compareAsc(today, predictedStart.toDate()) >= 0 )
+    {
+      if(compareAsc(calDate, today) >= 1)
+      {
+        //log period
+        return "linear-gradient(147deg, #00ffed 0%, #00888a 74%)";
+
+
+      }
+      else if(compareAsc(calDate, predictedStart.toDate()) >= 1 &&compareAsc(calDate, today) < 1 )
+      {
+        //late
+        return "linear-gradient(147deg, #f869d5 0%, #5650de 74%)";
+
+      }
+      else if(compareAsc(calDate, predictedStart.toDate()) < 1)
+      {
+        //before
+        return "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)";
+
+      }
+    }
+    else if (compareAsc(today, predictedStart.toDate()) == -1) {
       if (checkwithStart == -1) {
         return "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)";
       } else if (checkwithStart >= 0 && checkwithEnd <= 0) {
@@ -592,11 +599,18 @@ const DashBoard = (props) => {
                         {/* when period are late */}
                         {compareAsc(calDate, predictedStart.toDate()) < 1 ? (
                           <>
-                            <h1>before late periods</h1>
+                            <h1>Period</h1>
+                           <h2> {formatDistance(
+                              predictedStart.toDate(), //this will be the date of next period, which will come from the user variable
+                              calDate,
+                              { addSuffix: true }
+                            )}</h2>
+                            
                           </>
                         ) : (
                           <></>
                         )}
+                        {/* render logic for before period */}
                       </>
                     ) : (
                       <></>
