@@ -21,6 +21,7 @@ import Eportal from './components/Portal/Portal_employ'
 import EPortal2 from './components/Portal/EPortal2'
 import Job from './components/Job/Job'
 import Info from './components/Portal/info'
+import Copy from './components/PeriodTracker/Copy'
 
 const Signup = ({user,completeRegister}) => {
 
@@ -161,6 +162,7 @@ const App = () => {
             <Eportal path = '/eportal'/>
             <EPortal2 path = '/eportal2/:oppId'/>
             <Info path= '/info/:oppId'/>
+            <Copy path='/copy'/>
           </Router>
         </>
       );

@@ -23,6 +23,7 @@
     "ngeohash": "^0.6.3",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
+    "react-awesome-button": "^6.5.1",
     "react-date-range": "^1.0.3",
     "react-dom": "^16.13.1",
     "react-firebaseui": "^4.1.0",
