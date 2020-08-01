@@ -3,11 +3,12 @@ import {
   updateLogPeriod2,
   getUserLogDocument,
   updateCurrentUseDocument,
-} from "../utils/firebase";
+} from "../../utils/firebase";
 import {
   addDays,
   startOfMonth,
   compareAsc,
+  toDate
 } from "date-fns";
 
 import Paper from "@material-ui/core/Paper";
@@ -18,10 +19,10 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import CircleLoader from "react-spinners/CircleLoader";
 import { Link } from "@reach/router";
-import { UserContext } from "../providers/UserProvider";
+import { UserContext } from "../../providers/UserProvider";
 import "react-date-range/dist/styles.css"; // main style file
 // import 'react-date-range/dist/theme/default.css'; // default theme css
-import "../calender.scss";
+import "../../calender.scss";
 import axios from 'axios'
 
 import { DateRange } from "react-date-range";
@@ -62,7 +63,7 @@ const LogPeriod3 = () => {
       const currDate = Date.now();
       s.forEach((doc) => {
         let selection = {
-          key: `selection${startOfMonth(doc.data().endDate.toDate())}`,
+          key: `selection${startOfMonth(doc.data().endDate.toDate() )}`,
           num: id,
           startDate: doc.data().startDate.toDate(),
           endDate: doc.data().endDate.toDate(),

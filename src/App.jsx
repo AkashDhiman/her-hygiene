@@ -7,7 +7,7 @@ import { Router } from "@reach/router";
 import "./style.css";
 import Map from "./components/NewMap/Map";
 import Period from "./components/Period";
-import LogPeriod3 from './components/LogPeriod3'
+import LogPeriod3 from './components/PeriodTracker/LogPeriod3'
 import HelpSmall from './components/helpsmall';
 import Bar from './components/Bar'
 import Dasboard from './components/dash/Dashboard'
@@ -150,7 +150,6 @@ const App = () => {
             {/* <ResponsiveDrawer path="/res"/> */}
             <Dasboard path="/" />
             <Map path="/map" />
-            <Period path="/period"/> 
             <LogPeriod3 path="/logperiod"/>
             <Job path="/job"/>
             <Portal path = '/portal'/>
@@ -162,7 +161,7 @@ const App = () => {
             <Eportal path = '/eportal'/>
             <EPortal2 path = '/eportal2/:oppId'/>
             <Info path= '/info/:oppId'/>
-            <Copy path='/copy'/>
+            <Copy path='/period'/>
           </Router>
         </>
       );
