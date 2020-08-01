@@ -16,6 +16,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Cardy from "./cards";
+import Button from "@material-ui/core/Button";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -119,6 +120,14 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 500,
     height: 170,
   },
+  Button: {
+    height: 100,
+    boxShadow: "0px 14px 80px rgba(34, 35, 58, 0.2)",
+    backgroundImage: "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)",
+    color: "#ffffff",
+    margin: 10,
+    fontSize: 30,
+  },
 }));
 
 export default function Dashboard() {
@@ -163,9 +172,15 @@ export default function Dashboard() {
             <Periods />
           </Paper>
         </Grid>
-        <Grid item lg={12}>
+        <Grid item lg={9}>
           <Paper className={fixedHeightPaper} elevation={3}>
             <Chart />
+          </Paper>
+        </Grid>
+        <Grid item lg={3}>
+          <Paper className={fixedHeightPaper} elevation={3}>
+            <Button className={classes.Button}>Retrain</Button>
+            <Button className={classes.Button}>Caliberate</Button>
           </Paper>
         </Grid>
         {/* Recent Deposits */}
