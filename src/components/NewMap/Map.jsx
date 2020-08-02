@@ -6,6 +6,17 @@ import {
   Popup,
   useLeaflet,
 } from "react-leaflet";
+
+import {
+  Box,
+  TextField,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  CardMedia,
+} from "@material-ui/core";
 import { auth } from "../../utils/firebase";
 import { Link } from "@reach/router";
 import 'leaflet-offline';
@@ -48,6 +59,7 @@ import WorkOutlineIcon from "@material-ui/icons/WorkOutline";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import HomeIcon from "@material-ui/icons/Home";
 import LocationSearchingIcon from "@material-ui/icons/LocationSearching";
+import HelpIcon from '@material-ui/icons/Help';
 // import CancelHelp from "./cancelHelp";
 // import CancelRequest from "./cancelrequest";
 import Menu2 from "./help2";
@@ -744,43 +756,35 @@ const HelperCard = ({ requestDoc }) => {
 
 const Map = (props) => {
   const [requestDocs, setRequestDocs] = useState([]);
+  const [dialog,setDialogOpen]=useState({
+    noHelp:false,
+    opened:false});
+  const [scroll, setScroll] = React.useState("paper");
+
+  const{noHelp,opened}=dialog
+  
   const [user] = useContext(UserContext);
   const [location, setLocation] = usePersistedState("location", [0, 0]);
-  const [geohash, setGeohash] = usePersistedState(
-    "geohash",
-    encode(location[0], location[1], 8)
-  );
+  const [geohash, setGeohash] = usePersistedState("geohash",encode(location[0], location[1], 8));
   const [request, setRequest] = useState(null); // cyclic object error
   const [requestId, setRequestId] = usePersistedState("request id", undefined);
   const [isDefault, setIsDefault] = usePersistedState("default map", true);
   const [isHelping, setIsHelping] = usePersistedState("helping other", false);
-  const [requestedHelp, setRequestedHelp] = usePersistedState(
-    "requested help",
-    false
-  );
-  const [cancelledHelp, setCancelledHelp] = usePersistedState(
-    "cancelled help",
-    false
-  );
-  const [cancelledRequest, setCancelledRequest] = usePersistedState(
-    "cancelled request",
-    false
-  );
-  const [helpedSuccessfully, setHelpedSuccessfully] = usePersistedState(
-    "helped successfully",
-    false
-  );
-  const [requestFulfilled, setRequestFulfilled] = usePersistedState(
-    "request fulfilled",
-    false
-  );
+  const [requestedHelp, setRequestedHelp] = usePersistedState("requested help",false);
+  const [cancelledHelp, setCancelledHelp] = usePersistedState("cancelled help",false);
+  const [cancelledRequest, setCancelledRequest] = usePersistedState("cancelled request",false);
+  const [helpedSuccessfully, setHelpedSuccessfully] = usePersistedState("helped successfully",false);
+  const [requestFulfilled, setRequestFulfilled] = usePersistedState("request fulfilled",false);
   const [isOnline, setIsOnline] = useState(true);
 
   const mapRef = useRef();
 
   const handlePopup = () => {
     console.log("after a long time");
-    alert("Nobody seems to be helping you, don't worry we got you!");
+    setDialogOpen({  
+    noHelp: true,
+    opened:true
+    });
     // Add displayPopup code here
   };
 
@@ -1199,6 +1203,26 @@ const Map = (props) => {
           }}
         >
           <LocationSearchingIcon fontSize="large" />
+        </IconButton>
+      ) : (
+        <></>
+      )}
+      {noHelp ? (
+        <IconButton
+          style={{
+            position: "absolute",
+            top: "170px",
+            right: "40px",
+            zIndex: "10",
+            height: "48px",
+            width: "48px",
+            backgroundColor: "white",
+          }}
+          color="inherit"
+          edge="start"
+          onClick={() => {setDialogOpen({opened:true})}}
+        >
+          <HelpIcon fontSize="large"/> 
         </IconButton>
       ) : (
         <></>
@@ -1631,6 +1655,173 @@ const Map = (props) => {
             <></>
           )}
           {/* </div> */}
+          <Dialog
+                    open={opened}
+                    onClose={()=>{setDialogOpen({opened:false,noHelp:true})}}
+                    scroll={scroll}
+                    aria-labelledby="scroll-dialog-title"
+                    aria-describedby="scroll-dialog-description"
+                  >
+                    <DialogContent dividers={scroll === "paper"}>
+                      <DialogContentText
+                        id="scroll-dialog-description"
+                        tabIndex={-1}
+                      >
+  
+
+      
+          <Typography gutterBottom variant="h2" component="h2">
+            Looks like we do not have any volunteers nearby!
+          </Typography>
+          <Typography variant="h5" color="textSecondary" component="p">
+            Don't worry, here are a few tricks and tips that might be of use!
+          </Typography>
+      
+        {/* <Button size="small" color="primary">
+          Share
+        </Button>
+        <Button size="small" color="primary">
+          Learn More
+        </Button> */}
+      
+  
+    {/* Card1 */}
+    <Card className={classes.root}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          alt="Cotton"
+         
+          height="200"
+          image= {require('./assets/cotton.jpeg')}
+          title="Cotton"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h2" component="h2">
+          Cotton
+          </Typography>
+          <Typography variant="h5" color="textSecondary" component="p">
+1. Use cotton wool to make a rectangular pad like shape<br/>
+2. Wrap it with toilet paper or tissue paper to keep it secure <br/>
+3. Remember, this can last upto 2 hours so use accordingly. <br/>
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        {/* <Button size="small" color="primary">
+          Share
+        </Button>
+        <Button size="small" color="primary">
+          Learn More
+        </Button> */}
+      </CardActions>
+    </Card>
+      
+        {/* Card2 */}
+   
+    <Card className={classes.root}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          alt="Toilet Paper"
+          height="200"
+          image= {require('./assets/toiletpaper.jpeg')}
+          title="Toilet Paper"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h2" component="h2">
+          Toilet paper
+          </Typography>
+          <Typography variant="h5" color="textSecondary" component="p">
+1. Make multiple layers of toilet paper to avoid leakage
+<br/>
+2. Wrap the layers formed around your underwear to make it more secure
+
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        {/* <Button size="small" color="primary">
+          Share
+        </Button>
+        <Button size="small" color="primary">
+          Learn More
+        </Button> */}
+      </CardActions>
+    </Card>
+        {/* Card3 */}
+
+    <Card className={classes.root}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          alt="Cloth"
+          height="200"
+          image= {require('./assets/towel.jpeg')}
+          title="Cloth"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h2" component="h2">
+          Using Cloth
+          </Typography>
+          <Typography variant="h5" color="textSecondary" component="p">
+1. Check if the rags are liquid absorbent or not. <br/>
+2. Fold the rag into a rectangular shape.<br/>
+3. Remember, this is a temporary solution and can lead to health risks if used frequently.
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        {/* <Button size="small" color="primary">
+          Share
+        </Button>
+        <Button size="small" color="primary">
+          Learn More
+        </Button> */}
+      </CardActions>
+    </Card>
+   
+    <Card className={classes.root}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          alt="Socks"
+          height="200"
+          image={require('./assets/sock.jpeg')}
+          title="Socks"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h2" component="h2">
+          Socks
+          </Typography>
+          <Typography variant="h5" color="textSecondary" component="p">
+1. Socks are highly absorbent and can work in an emergency situation<br/>
+2. Wrap toilet paper around your underwear to keep it secure<br/>
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        {/* <Button size="small" color="primary">
+          Share
+        </Button>
+        <Button size="small" color="primary">
+          Learn More
+        </Button> */}
+      </CardActions>
+    </Card>
+              
+
+
+
+                      </DialogContentText>
+                    </DialogContent>
+                    {/* <DialogActions>
+                     
+                    </DialogActions> */}
+                  </Dialog>
+                 
+
+
         </main>
       </div>
     </>
