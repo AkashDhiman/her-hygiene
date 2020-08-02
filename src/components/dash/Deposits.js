@@ -1,43 +1,43 @@
-import React from 'react';
-import cx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import { useBlogTextInfoContentStyles } from '@mui-treasury/styles/textInfoContent/blog';
-import { useOverShadowStyles } from '@mui-treasury/styles/shadow/over';
-import cal from './cal.svg';
+import React from "react";
+import cx from "clsx";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import { useBlogTextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/blog";
+import { useOverShadowStyles } from "@mui-treasury/styles/shadow/over";
+import cal from "./cal.svg";
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   root: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
     // marginTop: '5%',
     borderRadius: spacing(2), // 16px
-    transition: '0.3s',
-    boxShadow: '0px 14px 80px rgba(34, 35, 58, 0.2)',
-    position: 'relative',
-    maxWidth: '100%',
+    transition: "0.3s",
+    boxShadow: "0px 14px 80px rgba(34, 35, 58, 0.2)",
+    position: "relative",
+    maxWidth: "100%",
     // marginLeft: '5%',
     // marginRight: 'auto',
-    overflow: 'initial',
-    background: '#ef5779',
-    display: 'flex',
-    flexDirection: 'column',
+    overflow: "initial",
+    background: "#f8c9d4",
+    display: "flex",
+    flexDirection: "column",
     // alignItems: 'center',
     paddingBottom: spacing(2),
-    [breakpoints.up('md')]: {
-      flexDirection: 'row',
+    [breakpoints.up("md")]: {
+      flexDirection: "row",
       paddingTop: spacing(2),
     },
   },
- 
+
   content: {
     padding: 24,
   },
   cta: {
     marginTop: 24,
-    textTransform: 'initial',
+    textTransform: "initial",
   },
 }));
 
@@ -51,11 +51,13 @@ export const Deposits = React.memo(function BlogCard() {
   return (
     <Card className={cx(styles.root, shadowStyles.root)}>
       <CardContent>
-        <h1 style={{color:'#ffffff', margin: 0}}>Go To <br/> Period Tracker</h1>
+        <h1 style={{ color: "#ffffff", margin: 0 }}>
+          Go To <br /> Period Tracker
+        </h1>
       </CardContent>
-      <img  height={100} src={cal} style={{marginTop:'5%'}}/>
+      <img height={100} src={cal} style={{ marginTop: "5%" }} />
     </Card>
   );
 });
 
-export default Deposits
+export default Deposits;
