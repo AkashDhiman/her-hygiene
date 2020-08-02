@@ -151,7 +151,6 @@ const App = () => {
           <Router>
             {/* <ResponsiveDrawer path="/res"/> */}
             <Dasboard path="/" />
-
             <Auth path="/auth"/>
             <Map path="/map" />
             <LogPeriod3 path="/logperiod"/>
@@ -165,7 +164,6 @@ const App = () => {
             <Eportal path = '/eportal'/>
             <EPortal2 path = '/eportal2/:oppId'/>
             <Info path= '/info/:oppId'/>
-          
             <Copy path='/period'/>
             <Edu path='/edu'/>
           </Router>

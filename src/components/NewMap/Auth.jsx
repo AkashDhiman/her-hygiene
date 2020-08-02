@@ -3,6 +3,8 @@ import Webcam from "react-webcam";
 import { Link } from '@reach/router';
 import { Button } from '@material-ui/core';
 import Map from './Map'
+import CircleLoader from 'react-spinners/CircleLoader'
+
 const videoConstraints = {
     width: 1280,
     height: 720,
@@ -50,7 +52,9 @@ const videoConstraints = {
      }
      else if(auth==1)
      {
-         return <h1>Authenticating</h1>
+         return<> <h1>Authenticating</h1>
+         <CircleLoader css={{position: 'absolute', left: '50%', top: '50%',transform: 'translate(-50%, -50%)'}} size="400px"color="pink"/>;
+         </>
      }
      else if(auth===2)
      {
