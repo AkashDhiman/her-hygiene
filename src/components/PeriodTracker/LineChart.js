@@ -1,5 +1,6 @@
-import React from "react";
+import React,{useEffect,useState,useContext} from "react";
 import { useTheme } from "@material-ui/core/styles";
+import {db} from '../../utils/firebase'
 import {
   LineChart,
   CartesianGrid,
@@ -12,7 +13,8 @@ import {
   Label,
   ResponsiveContainer,
 } from "recharts";
-// import Title from "./Title";
+import {UserContext} from '../../providers/UserProvider'
+import Title from "../dash/Title";
 
 // Generate Sales Data
 // function createData(time, amount) {
@@ -70,11 +72,29 @@ const data = [
 ];
 
 export default function Chart() {
+  const [data,setData]=useState(null)
+  const[user,setUser]=useContext(UserContext)
   const theme = useTheme();
+  useEffect(() => {  
+    const fetchData=async ()=>{
+      const doc=await db.collection("test").doc(`${user.data.uid}`).get()
+      console.log(doc.data().dateUpdated)
+      const arr=[];
+      doc.data().dateUpdated.forEach((elem,i)=>{
+        const x={
+          name:`${elem}`,
+          loss:doc.data().loss[i]
+        }
+        arr.push(x);
+      })
+      setData(arr);
+    }
+    fetchData()
+  }, [])
 
   return (
     <React.Fragment>
-      {/* <Title>Today</Title> */}
+      <Title>Your Loss function</Title>
       <ResponsiveContainer>
         {/* <BarChart
           data={data}
@@ -102,8 +122,8 @@ export default function Chart() {
           <XAxis dataKey="name" />
           <YAxis />
           <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-          <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-          <Line type="monotone" dataKey="pv" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="loss" stroke="#8884d8" />
+          {/* <Line type="monotone" dataKey="pv" stroke="#82ca9d" /> */}
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>
