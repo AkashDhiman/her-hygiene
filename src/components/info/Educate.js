@@ -6,6 +6,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import CardMedia from "@material-ui/core/CardMedia";
+import Card from "@material-ui/core/Card";
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
@@ -20,15 +22,15 @@ import MediaCard1 from './Card_1';
 import MediaCard2 from './Card_2';
 import MediaCard3 from './Card_3';
 import Map1 from './GotoMap';
-import Map from './Map';
-import Welcome from "./Welcome";
+import { Player } from 'video-react';
 import Regular from "./Regular";
 import Exercise from "./Exercise";
-import Periods from "./Periods";
 import Opp from "./Opp";
 import Button from '@material-ui/core/Button'
 import{ UserContext }from '../../providers/UserProvider'
 import work from './images/work.svg'
+import img1 from './images/edu6.jpg';
+import img2 from './images/edu7.jpg'
 
 function Copyright() {
   return (
@@ -46,6 +48,10 @@ function Copyright() {
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
+  media: {
+    height: 0,
+    paddingTop: "56.25%" // 16:9
+  },
   root: {
     display: 'flex',
   },
@@ -165,86 +171,45 @@ const logout = async () => {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             {/* Chart */}
-            <Grid item xs= {12}>
-            <Paper className={fixedHeightPaper}>
-              <Welcome user={user}/>
-              </Paper>
+            <Grid item xs= {12} style={{textAlign: 'center'}}>
+            <h2 style={{fontSize:'4rem', fontWeight: 100}}>Let us De-stigmatize<br/><b style={{color: '#f50057'}}>Menstruation</b></h2>
             </Grid>
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Periods />
-              </Paper>
+            <Grid item xs={12}>
+            <Player style={{padding: 0}}>
+             <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" />
+             </Player>
             </Grid>
             {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              {/* <Paper className={fixedHeightPaper} style= {{backgroundColor: '#ef5579'}}> */}
+            <Grid item xs={12}>
                 <Deposits />
-              {/* </Paper> */}
             </Grid>
-            <Grid item xs={12} md={4} lg={3}>
-              {/* <Paper className={fixedHeightPaper} style= {{backgroundColor: '#ef5579'}}> */}
+            <Grid item xs={12}>
+            <h1 style= {{backgroundColor:"#ef5779", padding : '1%' ,color: '#ffffff', marginBottom: '3%'}}>Govt. Schemes and Initiatives</h1>
+            </Grid> 
+            <Grid item xs={12} sm={6}>
                 <Map1 />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              {/* <Paper className={fixedHeightPaper} style= {{backgroundColor: '#ef5579'}}> */}
+                <Exercise/>
               {/* </Paper> */}
             </Grid>
-            
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper style={{height:'100%'}}>
-                <Map />
-              </Paper>
+            <Grid item xs={12} sm={6}>
+              <img src= {img1} />
             </Grid>
-
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-              <div className= {classes.heading}>
-                  <h2>Start Building Your Own Career Now</h2>
-                </div>
-            <img src={work} style={{height: 150, float: 'right'}}/>
-
-              </Paper>
+            <Grid item xs={12} sm={6}>
+              <img src= {img2} />
             </Grid>
-
-            <Grid item xs={12} md={4} lg={3}>
-                <Opp />
-            </Grid>
-
-
-            
-            <Grid item xs={12} md={6}>
-              <BlogCardDemo/>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <BlogCardDemo2/>
-            </Grid>
-
-            <Grid item xs={12}>
-            <h1 style= {{backgroundColor:"#f8c9d4", padding : '2%' ,color: '#ffffff'}}>Contemporaray Women Hygiene Pioneers</h1>
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <MediaCard1/>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <MediaCard2/>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <MediaCard3/>
-            </Grid>
-            <Grid item xs={12}>
-            <h1 style= {{backgroundColor:"#f8c9d4", padding : '2%' ,color: '#ffffff'}}>Menstruation Survey by Her-Hygiene</h1>
-            </Grid>
-          <Grid item xs={12} md={6}>
-          <Regular/>
-          </Grid>
-          <Grid item xs={12} md={6}>
-          <Exercise/>
-          </Grid>
-          {/* <Grid item xs={12} md={6}>
-          <Mens1/>
-          </Grid> */}
-           {/* <Grid item xs={12} md={6}>
-          <Mens2/>
-          </Grid> */}
-
+            {/* <Grid item xs= {12} sm={6}>
+            <Card className={classes.root}>
+            <CardMedia
+        className={classes.media}
+        image= {img1}
+        title="Paella dish"
+      />
+              </Card>
+            </Grid> */}
+                              
           </Grid>
         </Container>
       </main>
