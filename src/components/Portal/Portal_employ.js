@@ -1,5 +1,6 @@
 import React,{useContext,useEffect,useState} from 'react';
 import clsx from 'clsx';
+import CircleLoader from 'react-spinners/CircleLoader'
 import {db,auth} from '../../utils/firebase'
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -510,7 +511,7 @@ oppArr.forEach((doc,i)=>{
 
 if(loading)
 {
-  return <h1>Loading</h1>
+  return <CircleLoader css={{position: 'absolute', left: '50%', top: '50%',transform: 'translate(-50%, -50%)'}} size="400px"color="pink"/>
 }
 else{
   return (

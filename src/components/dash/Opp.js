@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import { useBlogTextInfoContentStyles } from '@mui-treasury/styles/textInfoContent/blog';
 import { useOverShadowStyles } from '@mui-treasury/styles/shadow/over';
 import opp from './images/oppimg.svg';
+import {Link} from '@reach/router'
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   root: {
@@ -50,7 +51,8 @@ export const Opp = React.memo(function BlogCard() {
   const shadowStyles = useOverShadowStyles();
   return (
     <Card className={cx(styles.root, shadowStyles.root)}>
-      <CardContent>
+      <CardContent component={Link} to={"/portal"}>
+        
         <h1 style={{color:'#ffffff', margin: 0}}>Go To <br/> Opportunity Portal</h1>
       </CardContent>
       <img  height={100} src={opp} style={{marginTop:'5%'}}/>

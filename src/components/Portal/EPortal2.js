@@ -33,7 +33,7 @@ import { ResponsiveBar } from '@nivo/bar';
 import CardHeader from '@material-ui/core/CardHeader';
 import {db} from '../../utils/firebase'
 import { useParams } from "@reach/router"
-
+import CircleLoader from 'react-spinners/CircleLoader'
 import './styles.css';
 
 
@@ -315,7 +315,7 @@ const logout = async () => {
 
   if(loading)
   {
-    return <h1>Loading</h1>
+    return  <CircleLoader css={{position: 'absolute', left: '50%', top: '50%',transform: 'translate(-50%, -50%)'}} size="400px"color="pink"/>;
   }
   else{
     return (

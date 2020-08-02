@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import clsx from "clsx";
 import { Link } from "@reach/router";
+import CircleLoader from 'react-spinners/CircleLoader'
 
 import { auth } from "../../utils/firebase";
 import { makeStyles } from "@material-ui/core/styles";
@@ -467,7 +468,7 @@ export default function Portal() {
   };
 
   if (loading) {
-    return <h1>Loading</h1>;
+    return <CircleLoader css={{position: 'absolute', left: '50%', top: '50%',transform: 'translate(-50%, -50%)'}} size="400px"color="pink"/>;
   } else {
     return (
       <div className={classes.root}>
