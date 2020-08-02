@@ -21,6 +21,9 @@ const ViewCalendar = () => {
       let id = 0;
       const currDate = Date.now();
       s.forEach((doc) => {
+        console.log(doc.data())
+        if(doc.data().startDate)
+        {
         let selection = {
           key: `selection${startOfMonth(doc.data().endDate.toDate())}`,
           num: id,
@@ -30,6 +33,7 @@ const ViewCalendar = () => {
           disabled: true,
         };
         arr.push(selection);
+      }
         id++;
       });
       // const selectionPredicted = {
