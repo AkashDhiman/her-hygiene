@@ -539,7 +539,7 @@ const RequestedHelpInterface = ({ handleCancelRequest, handleFulfilled }) => {
       fontSize: "2rem",
     },
     button: {
-      marginLeft: "25%",
+      marginLeft: "8%",
       fontSize: "1.1rem",
       padding: "8px 15px",
     },

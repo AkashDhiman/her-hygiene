@@ -21,6 +21,7 @@ import Eportal from './components/Portal/Portal_employ'
 import EPortal2 from './components/Portal/EPortal2'
 import Job from './components/Job/Job'
 import Info from './components/Portal/info'
+import Edu from './components/info/Educate'
 import Copy from './components/PeriodTracker/Copy'
 import Auth from './components/NewMap/Auth'
 
@@ -166,6 +167,7 @@ const App = () => {
             <Info path= '/info/:oppId'/>
           
             <Copy path='/period'/>
+            <Edu path='/edu'/>
           </Router>
         </>
       );
