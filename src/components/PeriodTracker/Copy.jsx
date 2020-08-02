@@ -4,16 +4,14 @@ import {
   getUserLogDocument,
   updateLogPeriod2,
   updateCurrentUseDocument,
-  updateLogData
 } from "../../utils/firebase";
 import Dashboard from "./Dashboard2";
-import Registration from './Registration'
 
 import firebase from "firebase/app";
 import React, { useState, useContext } from "react";
 import { useSwipeable } from "react-swipeable";
 import { Calendar } from "react-date-range";
-// import ViewCalendar from "./ViewCalendar.jsx";
+import ViewCalendar from "./ViewCalendar.jsx";
 import formatDistance from "date-fns/formatDistance";
 import Paper from "@material-ui/core/Paper";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
@@ -25,12 +23,14 @@ import axios from "axios";
 import { useSpring, animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
 
+
 import cx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import TextInfoContent from "@mui-treasury/components/content/textInfo";
 import { useBlogTextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/blog";
 import { useOverShadowStyles } from "@mui-treasury/styles/shadow/over";
+import Welcome from "../dash/Welcome";
 
 //Vishesh
 
@@ -40,8 +40,7 @@ import IconButton from "@material-ui/core/IconButton";
 import AlarmIcon from "@material-ui/icons/Alarm";
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import { AwesomeButton } from "react-awesome-button";
-// import "react-awesome-button/dist/themes/theme-blue.css";
-import "./awesomestyle.css"
+import "react-awesome-button/dist/themes/theme-amber.css";
 //End of Vishesh :)
 import {
   addDays,
@@ -132,6 +131,13 @@ const PrettoSlider = withStyles({
     height: 8,
     borderRadius: 4,
   },
+  calButton :{
+    marginLeft: '5%',
+    fontSize: '1.25rem',
+    color: 'white',
+    padding: '10px 50px',
+    background: 'linear-gradient(to right, rgb(238, 9, 121), rgb(255, 106, 0))'
+  }
 })(Slider);
 
 //
@@ -307,14 +313,65 @@ const RegForm = ({ user, handleRegister }) => {
 
 const DashBoard = (props) => {
   const { user, start, end } = props;
-  const [sliderval,setSliderVal]=useState(-1);
   const [cal, setCalDate] = useState({
     calDate: Date.now(),
     futureDay: 0,
   });
+  const [open, setOpen] = React.useState({
+    isOpen: false,
+    height: false,
+    pulseRate: false,
+    RR: false,
+    Another: false,
+    Waist: false,
+  });
+  const { isOpen, height, pulseRate, RR, Another, Waist } = open;
   const [scroll, setScroll] = React.useState("paper");
 
+  const handleClickOpen = (scrollType, toOpen) => () => {
+    console.log(toOpen);
+    if (toOpen === "height") {
+      setOpen({ isOpen: true, height: true });
+    } else if (toOpen === "pulseRate") {
+      setOpen({ isOpen: true, pulseRate: true });
+    } else if (toOpen === "RR") {
+      setOpen({ isOpen: true, RR: true });
+    } else if (toOpen === "Another") {
+      setOpen({ isOpen: true, Another: true });
+    } else {
+      setOpen({ isOpen: true, Waist: true });
+    }
+    setScroll(scrollType);
+  };
 
+  const handleClose = () => {
+    setOpen({
+      isOpen: false,
+      height: false,
+      pulseRate: false,
+      Waist: false,
+      RR: false,
+      Another: false,
+    });
+  };
+
+  const [fields, setFields] = useState({
+    weight: 0,
+    height: 0,
+    pcos: 0,
+    pulseRate: 0,
+    rr: 0,
+    regularity: 0,
+    hip: 0,
+    waist: 0,
+    weightGain: 0,
+    skinDarkening: 0,
+    pimples: 0,
+    fastFood: 0,
+    regExercise: 0,
+    bpSystolic: 0,
+    bpDiastolic: 0,
+  });
 
   let { predictedStartDate, predictedEndDate } = user.data;
   const predictedStart = predictedStartDate ? predictedStartDate : start;
@@ -369,6 +426,7 @@ const DashBoard = (props) => {
     trackMouse: true,
     preventDefaultTouchmoveEvent: true,
   });
+
   const weekday = ["S", "M", "T", "W", "T", "F", "S"];
   const checkwithStart = compareAsc(calDate, predictedStart.toDate());
   const checkwithEnd = compareAsc(calDate, predictedEnd.toDate());
@@ -394,7 +452,7 @@ const DashBoard = (props) => {
       width: 70,
       height: 70,
       boxShadow: "0px 14px 80px rgba(34, 35, 58, 0.2)",
-      backgroundImage: "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)",
+      backgroundImage: "linear-gradient(to right, #ee0979, #ff6a00)",
       color: "#ffffff",
       margin: 15,
     },
@@ -409,7 +467,11 @@ const DashBoard = (props) => {
     set({ x: down ? mx : 0, y: down ? my : 0 });
   });
 
- 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    console.log(name, value);
+    setFields({ ...fields, [name]: value });
+  };
   const useStylesCard = makeStyles(({ breakpoints, spacing }) => ({
     root: {
       marginLeft: "10%",
@@ -471,282 +533,15 @@ const DashBoard = (props) => {
     } else {
       return "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)";
     }
-  
-  
-  
-  
   };
-  // const varToString = varObj => Object.keys(varObj)[0]
-  const [open, setOpen] = React.useState({
-    isOpen:false,
-    height:false,
-    pulseRate:false,
-    rr:false,
-    bpDiastolic:false,
-    bpSystolic:false,
-    hip:false,
-    waist:false,
-    weight:false,
-    // binary begins
-    fastFood:false,
-    pcos:false,
-    pimples:false,
-    regExercise:false,
-    regularity:false,
-    skinDarkening:false,
-    weightGain:false,
-  });
-  const {
-    isOpen,
-    height,
-    pulseRate,
-    rr,
-    bpDiastolic,
-    bpSystolic,
-    hip,
-    waist,
-    weight,
-    fastFood,
-    pcos,
-    pimples,
-    regExercise,
-    regularity,
-    skinDarkening,
-    weightGain,
-  } = open;
-  
-  const handleClickOpen = (scrollType, toOpen) => () => {
-
-         console.log(toOpen)
-     if(toOpen==="height"){
-      setOpen({isOpen:true, height:true})
-    }
-    else if(toOpen==="pulseRate"){
-      setOpen({isOpen:true, pulseRate:true})
-    }
-    else if(toOpen==="rr"){
-      console.log(toOpen)
-      setOpen({isOpen:true,rr :true})
-    }
-    else if(toOpen==="waist"){
-      setOpen({isOpen:true,waist :true})
-    }
-    else if(toOpen==="bpDiastolic"){
-      setOpen({isOpen:true,bpDiastolic :true})
-    }
-    else if(toOpen==="bpSystolic"){
-      setOpen({isOpen:true, bpSystolic:true})
-    }
-    else if(toOpen==="hip"){
-      console.log(toOpen)
-      setOpen({isOpen:true,hip:true})
-    }
-    else if(toOpen==="weight"){
-      setOpen({isOpen:true, weight:true})
-    }
-    else if(toOpen==="fastFood"){
-      setOpen({isOpen:true,fastFood :true})
-    }
-    else if(toOpen==="pcos"){
-      setOpen({isOpen:true, pcos:true})
-    }
-    else if(toOpen==="pimples"){
-      setOpen({isOpen:true,pimples :true})
-    }
-    else if(toOpen==="regExercise"){
-      setOpen({isOpen:true,regExercise :true})
-    }
-    else if(toOpen==="regularity"){
-      console.log(toOpen)
-      setOpen({isOpen:true,regularity :true})
-    }
-    else if(toOpen==="skinDarkening"){
-      setOpen({isOpen:true,skinDarkening :true})
-    }
-    else if(toOpen==="weightGain"){
-      setOpen({isOpen:true, weightGain:true})
-    }    
-    setScroll(scrollType);
-  };
-
-  const handleClose = () => {
-    setOpen({
-    isOpen:false,
-    height:false,
-    pulseRate:false,
-    rr:false,
-    bpDiastolic:false,
-    bpSystolic:false,
-    hip:false,
-    waist:false,
-    weight:false,
-    fastFood:false,
-    pcos:false,
-    pimples:false,
-    regExercise:false,
-    regularity:false,
-    skinDarkening:false,
-    weightGain:false,
-    
-    });
-  };
-  const  handleSliderSubmit=async (bit)=>{
-    if(sliderval<0) return ;
-
-         if(height){
-          const data={
-            height:sliderval
-          }
-          const height=sliderval
-          await updateLogData(user,{data})
-          await updateCurrentUseDocument(user,height)
-         }
-    else if(pulseRate){
-      const pulseRate=sliderval
-      const data={
-        pulseRate:sliderval
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,pulseRate)
-    }
-    else if(rr){
-      const rr=sliderval
-      const data={
-        rr:sliderval
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,rr)
-    }
-    else if(bpDiastolic){
-      const bpDiastolic=sliderval
-      const data={
-        bpDiastolic:sliderval
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,bpDiastolic)
-    }
-    else if(bpSystolic){
-      const bpSystolic=sliderval
-      const data={
-        bpSystolic:sliderval
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,bpSystolic)
-    }
-    else if(hip){
-      const hip=sliderval
-      const data={
-        hip:sliderval
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,hip)
-
-    }
-    else if(waist){
-      const waist=sliderval
-      const data={
-        waist:sliderval
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,waist)
-    }
-    else if(weight){
-      const weight=sliderval
-      const data={
-        weight:sliderval
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,weight)
-    }
-
-
-    else if(fastFood){
-      const fastFood=bit
-      const data={
-        fastFood:bit
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,fastFood)
-    }
-    else if(pcos){
-      const pcos=bit
-      const data={
-        pcos:bit
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,pcos)
-    }
-    else if(pimples){
-      const pimples=bit
-      const data={
-        pimples:bit
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,pimples)
-    }
-    else if(regExercise){
-      const regExercise=bit
-      const data={
-        regExercise:bit
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,regExercise)
-    }
-    else if(regularity){
-      const regularity=bit
-      const data={
-        regularity:bit
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,regularity)
-    }
-    else if(skinDarkening){
-      const skinDarkening=bit
-      const data={
-        skinDarkening:bit
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,skinDarkening)
-    }
-    else if(weightGain){
-      const weightGain=bit
-      const data={
-        weightGain:bit
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,weightGain)
-    }
-    
-   
-   
-
-    handleClose()
-    
-
-  }
-  const renderRequiredQuestion=()=>{
-    if(height){return "Please enter your height (in cms)"}
-    else if(pulseRate){return "Please enter your Pulse Rate"}
-    else if(rr){return "Please enter your respiratory rate"}
-    else if(bpDiastolic){return "Plese enter your Diastolic Blood pressure (in mmHg)"}
-    else if(bpSystolic){return "Plese enter your Systolic Blood pressure (in mmHg)"}
-    else if(hip){return "Please give your hip measure (in cms)"}
-    else if(waist){return "Please enter your waist measure (in cms)"}
-    else if(weight){return "How much do you weigh as of last measurement (in Kgs)"}
-    else if(fastFood){return "Do you consume fastfood regularly?"}
-    else if(pcos){return "Do you have PCOS?"}
-    else if(pimples){return "Have you observed increased pimples?"}
-    else if(regExercise){return "Do you exercise Regularly"}
-    else if(regularity){return "Are your menstrual cycles regular?"}
-    else if(skinDarkening){return "Have you observed any skin darkening recently?"}
-    else if(weightGain){return "Have you experienced weight gain recently?"}
-  }
   return (
     <>
       <div className={classes.root}>
         <Grid container spacing={2} component="main">
           {/* <CssBaseline /> */}
-
+          {/* <Grid item xs={12}>
+            <Welcome/>
+          </Grid> */}
           <Grid item xs={12} sm={12} md={7} lg={7} component={Paper} square>
             {/* <div className={classes.paper}> */}
             <Paper
@@ -756,6 +551,7 @@ const DashBoard = (props) => {
                 width: "100%",
                 backgroundImage: whichBackgroundColor(),
                 color: "white",
+                paddingBottom: 50
               }}
             >
               <div style={{ textAlign: "center" }}>
@@ -764,7 +560,7 @@ const DashBoard = (props) => {
                   <Box
                     {...dayhandlers}
                     style={{
-                      fontSize: "60px",
+                      fontSize: "3.5rem",
                       paddingTop: "30px",
                       textAlign: "center",
                     }}
@@ -799,7 +595,7 @@ const DashBoard = (props) => {
                         {compareAsc(calDate, predictedStart.toDate()) >= 1 &&
                         compareAsc(calDate, today) < 1 ? (
                           <>
-                            <h1>Late for </h1>
+                            <h1 style={{fontWeight :500 }}>Late for </h1>
                             <h1>
                               {formatDistance(
                                 predictedStart.toDate(), //this will be the date of next period, which will come from the user variable
@@ -920,9 +716,11 @@ const DashBoard = (props) => {
                       variant="contained"
                       size="medium"
                       color="secondary"
+                      style={{fontSize:'1.25rem', marginTop: '3%', marginBottom: '3%'}}
                     >
                       Log Period
                     </Button>
+                    {/* <BlogCardDemo2/> */}
                     {!isSameDay(today, calDate) ? (
                       <Button
                         onClick={() => {
@@ -987,9 +785,9 @@ const DashBoard = (props) => {
             {/* </div> */}
           </Grid>
 
-          <Grid item xs={12} sm={12} md={5} lg={5} square>
-            <Paper>
-              <Paper>
+          <Grid item xs={12} sm={12} md={5} lg={5} square style={{backgroundColor: '#5dbcd2 !important'}} >
+            <Paper style={{backgroundColor: '#5dbcd2 !important'}}>
+              <Paper style={{backgroundColor: '#5dbcd2 !important'}}>
                 {/* <Calendar /> */}
                 {/* <ViewCalendar /> */}
               </Paper>
@@ -1011,219 +809,191 @@ const DashBoard = (props) => {
                     aria-labelledby="scroll-dialog-title"
                     aria-describedby="scroll-dialog-description"
                   >
+                    <DialogTitle id="scroll-dialog-title">
+                      Input Value
+                    </DialogTitle>
                     <DialogContent dividers={scroll === "paper"}>
                       <DialogContentText
                         id="scroll-dialog-description"
                         tabIndex={-1}
                       >
-                       
-                      { height||pulseRate||rr||bpDiastolic||bpSystolic||hip||waist||weight ?(<>
-                        <Typography
+                        {/* <VisheshSlider
+        defaultValue={0.00000005}
+        getAriaValueText={valuetext}
+        aria-labelledby="discrete-slider-small-steps"
+        step={0.00000001}
+        marks
+        min={-0.00000005}
+        max={0.0000001}
+        valueLabelDisplay="auto"
+      /> */}
+
+                        {height ? (
+                          <>
+                            <Typography
                               id="discrete-slider-small-steps"
                               gutterBottom
                             >
-                               <h3>{renderRequiredQuestion()}</h3>
+                              Weight
                             </Typography>
                             <PrettoSlider
                               valueLabelDisplay="auto"
                               aria-label="pretto slider"
                               defaultValue={20}
-                              max={300}
-                              onChange={(e)=>{setSliderVal(parseInt(e.target.textContent))}}
                             />
-                            
-                      
-                      </>):<></>}
-                      {fastFood||pcos||pimples||pimples||regExercise||regularity||skinDarkening||weightGain?(<>
-                        <Typography
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                        {pulseRate ? (
+                          <>
+                            <Typography
                               id="discrete-slider-small-steps"
                               gutterBottom
                             >
-                              <h3>{renderRequiredQuestion()}</h3>
-                        </Typography>
-                      
-                      </>):<></>}
+                              Pulse Rate
+                            </Typography>
+                            <PrettoSlider
+                              valueLabelDisplay="auto"
+                              aria-label="pretto slider"
+                              defaultValue={20}
+                            />
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                        {RR ? (
+                          <>
+                            <Typography
+                              id="discrete-slider-small-steps"
+                              gutterBottom
+                            >
+                              RR
+                            </Typography>
+                            <PrettoSlider
+                              valueLabelDisplay="auto"
+                              aria-label="pretto slider"
+                              defaultValue={20}
+                            />
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                        {Another ? (
+                          <>
+                            <div className={classes.hmm}>
+                              <div className={classes.margin} />
+                              <Typography gutterBottom>
+                                Another Type of Slider
+                              </Typography>
+                              <PrettoSlider
+                                valueLabelDisplay="auto"
+                                aria-label="pretto slider"
+                                defaultValue={20}
+                              />
+                            </div>
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                        {Waist ? (
+                          <>
+                            <TextField id="standard-basic" label="Waist" />
+                          </>
+                        ) : (
+                          <></>
+                        )}
                       </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                    {height||pulseRate||rr||bpDiastolic||bpSystolic||hip||waist||weight?(<>
                       <Button onClick={handleClose} color="primary">
                         Cancel
                       </Button>
-                      <Button onClick={()=>{handleSliderSubmit()}} color="primary">
+                      <Button onClick={handleClose} color="primary">
                         Submit
                       </Button>
-                    
-                    </>):<>
-                    <Button onClick={()=>{handleSliderSubmit(0); handleClose()}} color="primary">
-                        No
-                      </Button>
-                      <Button onClick={()=>{handleSliderSubmit(1) ; handleClose()}} color="primary">
-                        Yes
-                      </Button>
-                    
-                    
-                    
-                    </>}
-                    
                     </DialogActions>
                   </Dialog>
-                  
-
-  
-                  
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "height")}
+                  <Grid item xs={12}>
+                    {/* <Grid item xs= {4} sm={3} style={{display:'inline-block', marginLeft: 30, marginRight: 20}}>
+                      <Button style= {{height: '60px', width: '50px', borderRadius:'50%',background: 'linear-gradient(to right, #ee0979, #ff6a00)', color:'white' }}>
+                        1
+                      </Button>
+                    </Grid>
+                    <Grid item xs= {4} sm={3} style={{display:'inline-block', marginLeft: 30, marginRight: 20}}>
+                      <Button style= {{height: '60px', width: '50px', borderRadius:'50%',background: 'linear-gradient(to right, #ee0979, #ff6a00)', color:'white' }}>
+                        2
+                      </Button>
+                    </Grid>
+                    <Grid item xs= {4} sm={3} style={{display:'inline-block', marginLeft: 30, marginRight: 20}}>
+                      <Button style= {{height: '60px', width: '50px', borderRadius:'50%',background: 'linear-gradient(to right, #ee0979, #ff6a00)', color:'white' }}>
+                        3
+                      </Button>
+                    </Grid>
+                    <Grid item xs= {4} sm={3} style={{display:'inline-block', marginLeft: 30, marginRight: 20}}>
+                      <Button style= {{height: '60px', width: '50px', borderRadius:'50%',background: 'linear-gradient(to right, #ee0979, #ff6a00)', color:'white' }}>
+                        4
+                      </Button>
+                    </Grid>
+                    <Grid item xs= {4} sm={3} style={{display:'inline-block', marginLeft: 30, marginRight: 20}}>
+                      <Button style= {{height: '60px', width: '50px', borderRadius:'50%',background: 'linear-gradient(to right, #ee0979, #ff6a00)', color:'white' }}>
+                        5
+                      </Button>
+                    </Grid> */}
+                    {/* <AwesomeButton
+                      onClick={handleClickOpen("paper", "height")}
                       size="medium"
                       aria-label="add an alarm"
                     >
                       {" "}
-                      height{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "pulseRate")}
+                      1{" "}
+                    </AwesomeButton> */}
+                    
+                    {/* <AwesomeButton
+                      onClick={handleClickOpen("paper", "pulseRate")}
                       size="medium"
                       aria-label="add an alarm"
                     >
                       {" "}
-                      Pulse rate{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "rr")}
+                      2{" "}
+                    </AwesomeButton> */}
+                   
+                    {/* <AwesomeButton
+                      onClick={handleClickOpen("paper", "RR")}
                       size="medium"
                       aria-label="add an alarm"
                     >
                       {" "}
-                      rr{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "bpDiastolic")}
+                      3{" "}
+                    </AwesomeButton> */}
+                    
+                    {/* <AwesomeButton
+                      onClick={handleClickOpen("paper", "Another")}
                       size="medium"
                       aria-label="add an alarm"
                     >
                       {" "}
-                      bp Diastolic{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
+                      4{" "}
+                    </AwesomeButton> */}
+                    {/* <AwesomeButton
                       size="medium"
-                      onPress={handleClickOpen("paper", "bpSystolic")}
+                      onClick={handleClickOpen("paper", "Waist")}
                       aria-label="add an alarm"
                     >
                       {" "}
-                      bpS ystolic{" "}
-                    </AwesomeButton>
+                      5{" "}
+                    </AwesomeButton> */}
+                   
                   </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "hip")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      Hip{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "waist")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      waist measurement{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      size="medium"
-                      onPress={handleClickOpen("paper", "weight")}
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      Weight{" "}
-                    </AwesomeButton>
-                  </Grid>
-                
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "fastFood")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      fast Food{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "pcos")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      pcos{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "pimples")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      pimples{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      size="medium"
-                      onPress={handleClickOpen("paper", "regExercise")}
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      Exercising habits{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "regularity")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      regularity{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "skinDarkening")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      
-                      skin Darkening{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      size="medium"
-                      onPress={handleClickOpen("paper", "weightGain")}
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      weight Gain{" "}
-                    </AwesomeButton>
-                  </Grid>
-                 
+                  {/* <Grid item xs={6}md={3}>
+         <IconButton onClick={handleClickOpen('paper')} } aria-label="add an alarm">   <AlarmIcon /> </IconButton>
+        </Grid>
+        <Grid item xs={6}md={3}>
+         <IconButton } aria-label="add an alarm">   <AlarmIcon /> </IconButton>
+        </Grid>
+        <Grid item xs={6} md={3}>
+         <IconButton } aria-label="add an alarm">   <AlarmIcon /> </IconButton>
+        </Grid> */}
                 </Grid>
 
                 {/* </form> */}
@@ -1244,7 +1014,10 @@ const DashBoard = (props) => {
             </Paper>
             </Grid>
         */}
-          <Dashboard />
+        <Grid xs={12} style={{marginBottom: '3%'}}>
+        <Dashboard/>
+        </Grid>
+          
         </Grid>
       </div>
     </>
@@ -1273,8 +1046,7 @@ const Period = () => {
   } else {
     return (
       <>
-      <Registration user={user} handleRegister={handleRegister}/>
-        {/* <RegForm  /> */}
+        <RegForm user={user} handleRegister={handleRegister} />
       </>
     );
   }

@@ -17,7 +17,13 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Cardy from "./cards";
 import Button from "@material-ui/core/Button";
+// import OwlCarousel from "react-owl-carousel";
+// import "owl.carousel/dist/assets/owl.carousel.css";
+// import "owl.carousel/dist/assets/owl.theme.default.css";
+import { useOverShadowStyles } from '@mui-treasury/styles/shadow/over';
 const drawerWidth = 240;
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -128,12 +134,34 @@ const useStyles = makeStyles((theme) => ({
     margin: 10,
     fontSize: 30,
   },
+  button2:{
+    marginBottom: '5%',
+    color: 'white',
+    fontSize: '2rem',
+    marginLeft: '2%', 
+    width: '100%', 
+    backgroundColor: '#f50057',
+    padding: '15px 25px'
+   },
+   contain:{
+     marginLeft: '5%',
+     [theme.breakpoints.up("sm")]: {
+      marginLeft: '25%',
+    },
+    pos: {
+      marginBottom: 12,
+      fontSize:'1.5rem',
+      marginTop: '5%',
+      marginBottom: '15%',
+    },
+   }
 }));
 
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [user, setUser] = useContext(UserContext);
+  const shadowStyles = useOverShadowStyles();
 
   const logout = async () => {
     await auth.signOut();
@@ -157,54 +185,151 @@ export default function Dashboard() {
       {/* <Container maxWidth="lg" className={classes.container}> */}
       <Grid container spacing={3}>
         {/* Chart */}
-        <Grid item xs={12}>
+        <Grid item xs={12} style={{marginTop: '3%'}}>
           <Paper className={fixedHeightPaper} elevation={3}>
             <Welcome user={user} />
           </Paper>
         </Grid>
         <Grid item xs={12} md={4} lg={3}>
-          {/* <Paper className={fixedHeightPaper} elevation={3} style= {{backgroundColor: '#ef5579'}}> */}
           <Deposits />
-          {/* </Paper> */}
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
           <Paper className={fixedHeightPaper} elevation={3}>
-            <Periods />
+            <Periods/>
           </Paper>
         </Grid>
-        <Grid item lg={9}>
-          <Paper className={fixedHeightPaper} elevation={3}>
-            <Chart />
-          </Paper>
-        </Grid>
-        <Grid item lg={3}>
-          <Paper className={fixedHeightPaper} elevation={3}>
-            <Button className={classes.Button}>Retrain</Button>
-            <Button className={classes.Button}>Caliberate</Button>
-          </Paper>
-        </Grid>
+        <Grid item lg={3} className={classes.contain}>
+          {/* <Paper className={fixedHeightPaper} elevation={3}> */}
+          <Button variant="contained" size="large" className={classes.button2}>
+              Retrain
+           </Button>
+           </Grid>
+           <Grid item lg={3}>
+           <Button variant="contained" size="large" className={classes.button2}>
+              Calibrate
+           </Button>
+           </Grid>
         {/* Recent Deposits */}
 
         {/* Do you knowww */}
-        <Grid item xs="12">
-          <Paper className={fixedHeightPaper} elevation={3}>
+        <Grid item xs={12}>
+        {/* <OwlCarousel className="owl-theme" loop margin={10} nav>
+        <div class="item">
+          <img src={cal} />
+        </div>
+        <div class="item">
+          <img src={cal} />
+        </div>
+        <div class="item">
+          <img src={cal} />
+        </div>
+        <div class="item">
+          <img src={cal} />
+        </div>
+        <div class="item">
+          <img src={cal} />
+        </div>
+      </OwlCarousel> */}
+
+<Grid item xs={12}>
+            <h1 style= {{backgroundColor:"#f50057", padding : '1%' ,color: '#ffffff', marginBottom: '3%'}}>Your Menstruation Guide</h1>
+            </Grid>
+    
+        <Grid item xs={12} sm={6} md={3} style={{marginBottom: '5%', display: 'inline-block', marginRight: '5%', marginLeft: '5%'}}>
+                        <Card className={shadowStyles.root} style={{maxWidth: 280}}>
+                        <CardContent variant= "outlined">
+                            <Typography variant="h3" component="h2" style={{fontSize: '2rem', marginBottom: '5%', fontWeight: 700}}>
+                             Most Common Events associated with Periods : 
+                            </Typography>
+                            <Typography className={classes.pos} color="textSecondary" >
+                            <ul style={{fontSize: '1.25rem', color:'black'}}>
+                              <li>Backache</li>
+                              <li>Bloating</li>
+                              <li>Cramps</li>
+                              <li>Mood Swings</li>
+                              <li>Tender Breasts</li>
+                              <li>Headache</li>
+                            </ul> 
+                            </Typography>
+                            </CardContent>
+                        </Card>
+        </Grid>
+
+        <Grid item xs={12} sm={6} md={3} style={{marginBottom: '5%', display: 'inline-block', marginRight: '5%'}}>
+                        <Card className={shadowStyles.root} style={{maxWidth: 280}}>
+                        <CardContent variant= "outlined">
+                            <Typography variant="h3" component="h2" style={{fontSize: '2rem', marginBottom: '5%', fontWeight: 700}}>
+                             Tips for combating cramps : 
+                            </Typography>
+                            <Typography className={classes.pos} color="textSecondary" >
+                            <ul style={{fontSize: '1.25rem', color:'black'}}>
+                              <li>Backache</li>
+                              <li>Bloating</li>
+                              <li>Cramps</li>
+                              <li>Mood Swings</li>
+                              <li>Tender Breasts</li>
+                              <li>Headache</li>
+                            </ul> 
+                            </Typography>
+                            </CardContent>
+                        </Card>
+        </Grid>
+
+        <Grid item xs={12} sm={6} md={3} style={{marginBottom: '5%', display: 'inline-block', marginRight: '5%'}}>
+                        <Card className={shadowStyles.root} style={{maxWidth: 280}}>
+                        <CardContent variant= "outlined">
+                            <Typography variant="h3" component="h2" style={{fontSize: '2rem', marginBottom: '5%', fontWeight: 700}}>
+                             Most Common Events associated with Periods : 
+                            </Typography>
+                            <Typography className={classes.pos} color="textSecondary" >
+                            <ul style={{fontSize: '1.25rem', color:'black'}}>
+                              <li>Backache</li>
+                              <li>Bloating</li>
+                              <li>Cramps</li>
+                              <li>Mood Swings</li>
+                              <li>Tender Breasts</li>
+                              <li>Headache</li>
+                            </ul> 
+                            </Typography>
+                            </CardContent>
+                        </Card>
+        </Grid>
+        
+        <Grid item xs={12} sm={6} md={3} style={{marginBottom: '5%', display: 'inline-block', marginRight: '5%'}}>
+                        <Card className={shadowStyles.root} style={{maxWidth: 280}}>
+                        <CardContent variant= "outlined">
+                            <Typography variant="h3" component="h2" style={{fontSize: '2rem', marginBottom: '5%', fontWeight: 700}}>
+                             Most Common Events associated with Periods : 
+                            </Typography>
+                            <Typography className={classes.pos} color="textSecondary" >
+                            <ul style={{fontSize: '1.25rem', color:'black'}}>
+                              <li>Backache</li>
+                              <li>Bloating</li>
+                              <li>Cramps</li>
+                              <li>Mood Swings</li>
+                              <li>Tender Breasts</li>
+                              <li>Headache</li>
+                            </ul> 
+                            </Typography>
+                            </CardContent>
+                        </Card>
+        </Grid>
+        </Grid>
+
+        {/* <Grid item xs="12">
             <Grid container spacing="2" xs="12">
               <Grid item xs={12} lg={4}>
-                <Paper elevation={3} className={fixedHeightPaper2}>
-                  <Paper className={cardyboi}>
-                    <Typography variant="h1">Fact 1</Typography>
-                  </Paper>
+              <Paper elevation={3} className={fixedHeightPaper2} style={{backgroundImage: 'linear-gradient(147deg, #ff9897 0%, #f650a0 74%)', color:'white'}}>
+                    <Typography variant="h1" style={{fontSize: '3.5rem', marginBottom: '3%'}}>Fact 1</Typography>
                   <Typography variant="h4">
                     {" "}
                     A rare period disorder can cause bleeding of the eyes.
                   </Typography>
-                </Paper>
+                  </Paper>
               </Grid>
               <Grid item xs={12} lg={4}>
-                <Paper elevation={3} className={fixedHeightPaper2}>
-                  <Paper className={cardyboi}>
-                    <Typography variant="h1">Fact 2</Typography>
-                  </Paper>
+                <Paper elevation={3} className={fixedHeightPaper2} style={{backgroundImage: 'linear-gradient(147deg, #ff9897 0%, #f650a0 74%)', color:'white'}}>
+                    <Typography variant="h1"style={{fontSize: '3.5rem', marginBottom: '3%'}} >Fact 2</Typography>
                   <Typography variant="h4">
                     {" "}
                     Getting your period can worsen asthma symptoms.
@@ -212,10 +337,8 @@ export default function Dashboard() {
                 </Paper>
               </Grid>
               <Grid item xs={12} lg={4}>
-                <Paper elevation={3} className={fixedHeightPaper2}>
-                  <Paper className={cardyboi}>
-                    <Typography variant="h1">Fact 3</Typography>
-                  </Paper>
+                <Paper elevation={3} className={fixedHeightPaper2} style={{backgroundImage: 'linear-gradient(147deg, #ff9897 0%, #f650a0 74%)', color:'white'}}>
+                    <Typography variant="h1" style={{fontSize: '3.5rem', marginBottom: '3%'}}>Fact 3</Typography>
                   <Typography variant="h4">
                     {" "}
                     Sleeping with a nightlight can help regulate your cycle.
@@ -223,8 +346,7 @@ export default function Dashboard() {
                 </Paper>
               </Grid>
             </Grid>
-          </Paper>
-        </Grid>
+        </Grid> */}
         {/* <Grid container spacing={4}>
           <Grid item xs={4}>
             <Paper className={cardyboi}>

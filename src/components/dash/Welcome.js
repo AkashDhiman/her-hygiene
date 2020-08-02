@@ -16,11 +16,12 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   depositContext: {
     flex: 1,
     textTransform: 'capitalize',
+    fontSize: '1.5rem'
   },
   image:{
     height: '75px',
-    marginTop: '2%',
-    [breakpoints.up('md')]: {
+    marginTop: '15%',
+    [breakpoints.up('sm')]: {
       height: '200px',
       marginTop: 0
     }
@@ -31,7 +32,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
 export default function Welcome({user}) {
   const classes = useStyles();
   return (
-    <React.Fragment>
+    <React.Fragment style={{marginTop:'3%'}}>
               <Grid container>
 <Grid item xs={12} lg={6}>  
 <Typography component="h2" variant="h4" style={{fontSize: '3rem', color: 'black', marginBottom: '2%'}}>Welcome</Typography>
@@ -39,7 +40,7 @@ export default function Welcome({user}) {
          {user.data.name}
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext} >
-        account created on {" "}
+        Account created on {" "}
         { format (user.data.createdAt.toDate(),"dd MMMM yyyy")}
       </Typography>
       <div>
@@ -48,12 +49,7 @@ export default function Welcome({user}) {
         </Link> */}
       </div>
       </Grid>
-<Grid item xs={false}lg={6}><img className= {classes.image}  src={natureOnScreen}/></Grid>
-
-              
-
-    
-     
+<Grid item xs={false}lg={6}><img className= {classes.image}  src={natureOnScreen}/></Grid> 
       </Grid>
     </React.Fragment>
   );

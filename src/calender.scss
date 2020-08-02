@@ -41,6 +41,8 @@
     align-items: center;
     height: 60px;
     padding-top: 10px;
+    background-color: #fbbccc
+
   }
   
   .rdrMonthAndYearPickers{
@@ -114,6 +116,8 @@
   
   .rdrMonth{
     padding: 0 0.833em 1.666em 0.833em;
+    width: 100%;
+
     .rdrWeekDays {
       padding: 0;
     }
@@ -389,3 +393,20 @@
     color: #849095;
     padding: 0.833em;
   }
+
+  .rdrCalendarWrapper, .rdrDateRangeWrapper{
+    width: 100%;
+  }
+
+  .rdrMonths, .rdrMonthsVertical{
+    width: 100%;
+    background-color: #fbfbf3
+  }
+
+  // .MuiPaper-root, .MuiPaper-elevation1, .MuiPaper-rounded{
+  //   background-color: #5dbcd2 !important;
+  // }
+
+  // .MuiGrid-root, .MuiGrid-item, .MuiGrid-grid-xs-12, .MuiGrid-grid-sm-12, .MuiGrid-grid-md-5, .MuiGrid-grid-lg5{
+  //   background-color: #5dbcd2 !important;
+  // }
