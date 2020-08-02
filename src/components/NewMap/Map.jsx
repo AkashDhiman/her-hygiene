@@ -37,7 +37,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import PersonPinCircleIcon from "@material-ui/icons/PersonPinCircle";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Header from "../originals/Header";
-import { othersIcon, userIcon,vendorIcon } from "../icon";
+import { othersIcon, userIcon, vendorIcon } from "../icon";
 import { UserContext } from "../../providers/UserProvider";
 import { usePersistedState } from "./usePersistedState";
 // import "./styles2.css";
@@ -105,44 +105,51 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 let dummyRequests = [
-{
-name:"Sethi Medicos",
-openFrom : "9am-10:30pm",
-contact:1142133367,
-address:"Sethi Medicos, B-19, Tagore Garden, New Delhi, Delhi 110027",
-location: [28.650460,77.116410],
-},{
-name:"Life Line chemist",
-address:"Block J, Rajouri Garden Extension, Rajouri Garden, New Delhi, Delhi 110027",
-location:[28.646980, 77.125660],
-openFrom :"9am-10pm",
-contact:9818533500,
-},{
-name : "Radhey Medicos",
-address:"G-18/1, Main Market, Back lane, Sabha Marg, Rajouri Garden, Rajouri Garden, New Delhi, Delhi 110027",
-contact:911145871616,
-location:[28.646980, 77.125660],
-openFrom:"9am-7pm",
-},{
-name:"Apollo Pharmacy",
-openFrom:'8am - 11am',
-address:"Shop No F3 F- Block Market, Kirti Nagar, New Delhi, Delhi 110015",
-contact:911125191030,
-location:[28.651100, 77.141530],
-},{
-name:"Yarma Medicos",
-openFrom:'9am - 10pm',
-address:"Shop No. J-68, Main Market, St Sujan Singh Marg, Rajouri Garden, New Delhi, Delhi 110027",
-contact:911127691030,
-location:[28.646980, 77.124880],
-},{
-name:"Ahuja Chemist",
-openFrom:"10am-11pm",
-address:"Janta Market, Rajouri Garden, New Delhi, Delhi 110027",
-contact: 919881052782,
-location:[28.646980, 77.134880],
-},
-
+  {
+    name: "Sethi Medicos",
+    openFrom: "9am-10:30pm",
+    contact: 1142133367,
+    address: "Sethi Medicos, B-19, Tagore Garden, New Delhi, Delhi 110027",
+    location: [28.65046, 77.11641],
+  },
+  {
+    name: "Life Line chemist",
+    address:
+      "Block J, Rajouri Garden Extension, Rajouri Garden, New Delhi, Delhi 110027",
+    location: [28.64698, 77.12566],
+    openFrom: "9am-10pm",
+    contact: 9818533500,
+  },
+  {
+    name: "Radhey Medicos",
+    address:
+      "G-18/1, Main Market, Back lane, Sabha Marg, Rajouri Garden, Rajouri Garden, New Delhi, Delhi 110027",
+    contact: 911145871616,
+    location: [28.64698, 77.12566],
+    openFrom: "9am-7pm",
+  },
+  {
+    name: "Apollo Pharmacy",
+    openFrom: "8am - 11am",
+    address: "Shop No F3 F- Block Market, Kirti Nagar, New Delhi, Delhi 110015",
+    contact: 911125191030,
+    location: [28.6511, 77.14153],
+  },
+  {
+    name: "Yarma Medicos",
+    openFrom: "9am - 10pm",
+    address:
+      "Shop No. J-68, Main Market, St Sujan Singh Marg, Rajouri Garden, New Delhi, Delhi 110027",
+    contact: 911127691030,
+    location: [28.64698, 77.12488],
+  },
+  {
+    name: "Ahuja Chemist",
+    openFrom: "10am-11pm",
+    address: "Janta Market, Rajouri Garden, New Delhi, Delhi 110027",
+    contact: 919881052782,
+    location: [28.64698, 77.13488],
+  },
 ];
 
 const Cards = ({ position, detail }) => {
@@ -241,57 +248,53 @@ const RequestMarkers = ({
   }, [requestDocs]);
   return (
     <>
-    {dummyRequests.map((dummy,i)=>(
-      <Marker
-      key={i}
-      position={dummy.location}
-      icon={vendorIcon}
-    >
-      <Popup
-        style={{
-          width: "50px",
-          color: "black",
-          fontWeight: "bold",
-          textAlign: "center",
-          fontSize: "1.5rem",
-        }}
-      >
-        <CardActionArea>
-          <CardContent>
-            <Typography
-              variant="h4"
-              component="h2"
-              className={classes.heading}
-            >
-              {dummy.name}
-            </Typography>
-            <Typography
-              variant="body1"
-              component="h2"
-              className={classes.name}
-            >
-              {dummy.openFrom}
-            </Typography>
-            <Typography
-              variant="body1"
-              color="text "
-              component="h2"
-              style={{ fontSize: "1.25rem", textAlign: "center" }}
-            >
-              {dummy.contact}
-            </Typography>
-            <Typography
-              variant="body1"
-              color="text "
-              component="h2"
-              style={{ fontSize: "1.25rem", textAlign: "center" }}
-            >
-              {dummy.address}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          {/* <Button
+      {dummyRequests.map((dummy, i) => (
+        <Marker key={i} position={dummy.location} icon={vendorIcon}>
+          <Popup
+            style={{
+              width: "50px",
+              color: "black",
+              fontWeight: "bold",
+              textAlign: "center",
+              fontSize: "1.5rem",
+            }}
+          >
+            <CardActionArea>
+              <CardContent>
+                <Typography
+                  variant="h4"
+                  component="h2"
+                  className={classes.heading}
+                >
+                  {dummy.name}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  component="h2"
+                  className={classes.name}
+                >
+                  {dummy.openFrom}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="text "
+                  component="h2"
+                  style={{ fontSize: "1.25rem", textAlign: "center" }}
+                >
+                  {dummy.contact}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="text "
+                  component="h2"
+                  style={{ fontSize: "1.25rem", textAlign: "center" }}
+                >
+                  {dummy.address}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              {/* <Button
             onClick={() => handleHelpingOthers(requestDoc, user, location)}
             variant="contained"
             size="large"
@@ -300,12 +303,10 @@ const RequestMarkers = ({
           >
             Help them
           </Button> */}
-        </CardActions>
-      </Popup>
-    </Marker>
- 
-
-    ))}
+            </CardActions>
+          </Popup>
+        </Marker>
+      ))}
 
       {requests.map((requestDoc) => (
         <Marker
@@ -359,8 +360,7 @@ const RequestMarkers = ({
             </CardActions>
           </Popup>
         </Marker>
-     
-     ))}
+      ))}
     </>
   );
 };
@@ -611,7 +611,7 @@ const RequestedHelpInterface = ({ handleCancelRequest, handleFulfilled }) => {
       fontSize: "2rem",
     },
     button: {
-      marginLeft: "25%",
+      marginLeft: "8%",
       fontSize: "1.1rem",
       padding: "8px 15px",
     },
@@ -774,8 +774,49 @@ const Map = (props) => {
     "request fulfilled",
     false
   );
+  const [isOnline, setIsOnline] = useState(true);
 
   const mapRef = useRef();
+
+  const handlePopup = () => {
+    console.log("after a long time");
+    alert("Nobody seems to be helping you, don't worry we got you!");
+    // Add displayPopup code here
+  };
+
+  useEffect(() => {
+    const checkConnectivity = () => {
+      var connectivity = navigator.onLine ? "online" : "offline";
+      if (connectivity === "online") {
+        console.log("ONLINE");
+        fetch("https://www.google.com/", {
+          // Check for internet connectivity
+          mode: "no-cors",
+        })
+          .then(() => {
+            setIsOnline(true);
+          })
+          .catch(() => {
+            setIsOnline(false);
+          });
+      } else {
+        console.log("OFFLINE");
+        setIsOnline(false);
+      }
+    };
+    const intervalHandler = setInterval(checkConnectivity, 3000);
+    return () => clearInterval(intervalHandler);
+  }, []);
+
+  useEffect(() => {
+    if (requestedHelp === true) {
+      const timeoutHandler = setTimeout(
+        handlePopup,
+        1000 * 10 // 10 seconds
+      );
+      return () => clearTimeout(timeoutHandler);
+    }
+  }, [requestedHelp]);
 
   useEffect(() => {
       const map = L.map("map-id");
