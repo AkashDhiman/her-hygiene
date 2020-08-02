@@ -174,11 +174,17 @@ const logout = async () => {
             <Grid item xs= {12} style={{textAlign: 'center'}}>
             <h2 style={{fontSize:'4rem', fontWeight: 100}}>Let us De-stigmatize<br/><b style={{color: '#f50057'}}>Menstruation</b></h2>
             </Grid>
-            <Grid item xs={12}>
-            <Player style={{padding: 0}}>
-             <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" />
-             </Player>
-            </Grid>
+            <Grid item  lg={2}></Grid>
+            <Grid item xs={12} lg={8}>           
+            <iframe width="100%" 
+            height="315" 
+            src="https://www.youtube.com/embed/NCMIxoODLNU" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>         
+             </Grid>
+             <Grid item lg={2}></Grid>
+
             {/* Recent Deposits */}
             <Grid item xs={12}>
                 <Deposits />
