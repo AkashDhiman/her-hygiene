@@ -62,6 +62,9 @@ const LogPeriod3 = () => {
       let id = 0;
       const currDate = Date.now();
       s.forEach((doc) => {
+        console.log(doc.data())
+        if(doc.data().endDate)
+        {
         let selection = {
           key: `selection${startOfMonth(doc.data().endDate.toDate() )}`,
           num: id,
@@ -72,22 +75,26 @@ const LogPeriod3 = () => {
         };
         arr.push(selection);
         id++;
+      }
       });
+      if(user.data.predictedStartDate)
+      {
       const selectionPredicted = {
         key: "selectionPredicted",
         startDate: user.data.predictedStartDate.toDate(),
         endDate: user.data.predictedEndDate.toDate(),
-        color: "yellow",
+        color: "red",
         disabled: true,
       };
+      arr.push(selectionPredicted);
+    }
       const selection = {
         key: "selection",
         startDate: startOfMonth(currDate),
         endDate: startOfMonth(currDate),
-        color: "green",
+        color: "pink",
       };
 
-      arr.push(selectionPredicted);
       arr.push(selection);
       console.log(arr);
       setState(arr);
@@ -197,7 +204,7 @@ const LogPeriod3 = () => {
             <div className={classes.paper}>
               <DateRange
                 months={2}
-                rangeColors={["pink"]}
+                // rangeColors={["pink"]}
                 moveRangeOnFirstSelection={false}
                 showDateDisplay={true}
                 onShownDateChange={(item) => {

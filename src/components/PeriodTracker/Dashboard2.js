@@ -198,15 +198,13 @@ export default function Dashboard() {
             <Periods/>
           </Paper>
         </Grid>
-        <Grid item lg={3} className={classes.contain}>
+        <Grid item lg={9}>
           {/* <Paper className={fixedHeightPaper} elevation={3}> */}
-          <Button variant="contained" size="large" className={classes.button2}>
-              Retrain
-           </Button>
+          <Chart/>
            </Grid>
            <Grid item lg={3}>
            <Button variant="contained" size="large" className={classes.button2}>
-              Calibrate
+              Retrain
            </Button>
            </Grid>
         {/* Recent Deposits */}

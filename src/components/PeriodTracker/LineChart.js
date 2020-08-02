@@ -95,37 +95,16 @@ export default function Chart() {
   return (
     <React.Fragment>
       <Title>Your Loss function</Title>
-      <ResponsiveContainer>
-        {/* <BarChart
-          data={data}
-          margin={{
-            top: 16,
-            right: 16,
-            bottom: 0,
-            left: 24,
-          }}
-        >
-          <XAxis dataKey="time" stroke={theme.palette.text.secondary} />
-          <YAxis stroke={theme.palette.text.secondary}>
-            <Label
-              angle={270}
-              position="left"
-              style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
-            >
-              Sales ($)
-            </Label>
-          </YAxis>
-          <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={false} />
-        </BarChart>
-      */}
-        <LineChart width={500} height={300} data={data}>
+      {/* <ResponsiveContainer> */}
+
+        <LineChart width={730} height={300} data={data}>
           <XAxis dataKey="name" />
           <YAxis />
           <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
           <Line type="monotone" dataKey="loss" stroke="#8884d8" />
           {/* <Line type="monotone" dataKey="pv" stroke="#82ca9d" /> */}
         </LineChart>
-      </ResponsiveContainer>
+      {/* </ResponsiveContainer> */}
     </React.Fragment>
   );
 }
