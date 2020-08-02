@@ -1100,6 +1100,8 @@ import {
 import Dashboard from "./Dashboard2";
 import Registration from "./Registration";
 import ViewCalendar from "./ViewCalendar.jsx";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
 
 import firebase from "firebase/app";
 import React, { useState, useContext } from "react";
@@ -1194,6 +1196,29 @@ const VisheshSlider = withStyles({
     borderRadius: 4,
   },
 })(Slider);
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      // light: will be calculated from palette.primary.main,
+      main: "#f8c9d4",
+      // dark: will be calculated from palette.primary.main,
+      // contrastText: will be calculated to contrast with palette.primary.main
+    },
+    secondary: {
+      light: "#f8c9d4",
+      main: "#ffa8bd",
+      // dark: will be calculated from palette.secondary.main,
+      contrastText: "#ffffff",
+    },
+    // Used by `getContrastText()` to maximize the contrast between
+    // the background and the text.
+    contrastThreshold: 3,
+    // Used by the functions below to shift a color's luminance by approximately
+    // two indexes within its tonal palette.
+    // E.g., shift from Red 500 to Red 300 or Red 700.
+    tonalOffset: 0.2,
+  },
+});
 
 const PrettoSlider = withStyles({
   root: {
@@ -1479,10 +1504,8 @@ const DashBoard = (props) => {
       },
     },
     Button: {
-      width: 70,
-      height: 70,
       boxShadow: "0px 14px 80px rgba(34, 35, 58, 0.2)",
-      backgroundImage: "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)",
+      backgroundImage: "linear-gradient(147deg, #ff93ac 0%, #ff93ac 74%)",
       color: "#ffffff",
       margin: 15,
     },
@@ -1980,21 +2003,23 @@ const DashBoard = (props) => {
                       to={"/logperiod"}
                       variant="contained"
                       size="medium"
-                      color="secondary"
+                      className={classes.Button}
                     >
                       Log Period
                     </Button>
                     {!isSameDay(today, calDate) ? (
-                      <Button
-                        onClick={() => {
-                          setCalDate({ calDate: today });
-                        }}
-                        variant="outlined"
-                        size="medium"
-                        color="secondary"
-                      >
-                        Today
-                      </Button>
+                      <ThemeProvider theme={theme}>
+                        <Button
+                          onClick={() => {
+                            setCalDate({ calDate: today });
+                          }}
+                          variant="outlined"
+                          size="medium"
+                          color="secondary"
+                        >
+                          Today
+                        </Button>
+                      </ThemeProvider>
                     ) : (
                       <></>
                     )}
@@ -2012,25 +2037,27 @@ const DashBoard = (props) => {
                             end: endOfWeek(calDate),
                           }).map((day) => {
                             return (
-                              <Button
-                                color="secondary"
-                                value={day}
-                                onClick={(e) => {
-                                  setCalDate({
-                                    calDate: new Date(e.currentTarget.value),
-                                    futureDay:
-                                      differenceInDays(
-                                        predictedStart.toDate(),
-                                        new Date(e.currentTarget.value)
-                                      ) % 31,
-                                  });
-                                }}
-                              >
-                                <h1>
-                                  {" "}
-                                  {weekday[getDay(day)]} {format(day, "dd ")}
-                                </h1>
-                              </Button>
+                              <ThemeProvider theme={theme}>
+                                <Button
+                                  color="secondary"
+                                  value={day}
+                                  onClick={(e) => {
+                                    setCalDate({
+                                      calDate: new Date(e.currentTarget.value),
+                                      futureDay:
+                                        differenceInDays(
+                                          predictedStart.toDate(),
+                                          new Date(e.currentTarget.value)
+                                        ) % 31,
+                                    });
+                                  }}
+                                >
+                                  <h1>
+                                    {" "}
+                                    {weekday[getDay(day)]} {format(day, "dd ")}
+                                  </h1>
+                                </Button>
+                              </ThemeProvider>
                             );
                           })}
                         </div>
@@ -2172,8 +2199,7 @@ const DashBoard = (props) => {
                       )}
                     </DialogActions>
                   </Dialog>
-                 
-                 
+
                   <Grid container spacing={3} direction="row" justify="center">
                     <Grid item>
                       <AwesomeButton
