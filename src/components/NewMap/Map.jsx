@@ -8,6 +8,8 @@ import {
 } from "react-leaflet";
 import { auth } from "../../utils/firebase";
 import { Link } from "@reach/router";
+import 'leaflet-offline';
+import localforage from 'localforage';
 
 import L from "leaflet";
 import "leaflet-routing-machine";
@@ -776,6 +778,17 @@ const Map = (props) => {
   const mapRef = useRef();
 
   useEffect(() => {
+      const map = L.map("map-id");
+      const offlineLayer = L.tileLayer.offline("https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2FuaXNoa2d1cHRhMjAwMCIsImEiOiJjazdpdmd5aG8wMDYwM2ZvN2U5eWs0Mm55In0.svdKVHGfRl4873N_UZBoaA", localforage, {
+      subdomains: "abc",
+      minZoom: 13,
+      maxZoom: 19,
+      crossOrigin: true
+      });
+      offlineLayer.addTo(map);
+      
+  }, [])
+  useEffect(() => {
     console.log("map 1");
     const watcher = navigator.geolocation.watchPosition(
       (pos) => setLocation([pos.coords.latitude, pos.coords.longitude]),
@@ -1185,6 +1198,7 @@ const Map = (props) => {
         </nav>
         <main className={classes.content}>
           {/* <div className={classes.toolbar} /> */}
+          <div id="map-id">
           <LeafletMap ref={mapRef} center={location} zoom={17}>
             <TileLayer
               url={
@@ -1226,7 +1240,7 @@ const Map = (props) => {
               <></>
             )}
           </LeafletMap>
-
+          </div>
           <IconButton
             color="inherit"
             aria-label="open drawer"
