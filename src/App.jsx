@@ -22,6 +22,7 @@ import EPortal2 from './components/Portal/EPortal2'
 import Job from './components/Job/Job'
 import Info from './components/Portal/info'
 import Copy from './components/PeriodTracker/Copy'
+import Auth from './components/NewMap/Auth'
 
 const Signup = ({user,completeRegister}) => {
 
@@ -149,6 +150,8 @@ const App = () => {
           <Router>
             {/* <ResponsiveDrawer path="/res"/> */}
             <Dasboard path="/" />
+
+            <Auth path="/auth"/>
             <Map path="/map" />
             <LogPeriod3 path="/logperiod"/>
             <Job path="/job"/>
@@ -161,6 +164,7 @@ const App = () => {
             <Eportal path = '/eportal'/>
             <EPortal2 path = '/eportal2/:oppId'/>
             <Info path= '/info/:oppId'/>
+          
             <Copy path='/period'/>
           </Router>
         </>

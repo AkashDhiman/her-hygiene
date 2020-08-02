@@ -10,6 +10,12 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 import {
   addPeriodRegister,
@@ -130,7 +136,11 @@ const Registration = ({ user, handleRegister }) => {
     //     setPlaceHolderText("Please Submit with the following details");
     // };
    
+    const [selectedDate, setSelectedDate] = React.useState(new Date());
 
+    const handleDateChange = (date) => {
+      setSelectedDate(date);
+    };
 
     return (
       <>
@@ -141,7 +151,7 @@ const Registration = ({ user, handleRegister }) => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Register for our Period Tracker with this basic information!
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <TextField
@@ -221,7 +231,48 @@ const Registration = ({ user, handleRegister }) => {
             label="weight"
             type="number"
             id="weight"
-          />       
+          />  
+
+
+           <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <Grid container justify="space-around">
+      <KeyboardDatePicker
+          margin="normal"
+          id="date-picker-dialog"
+          label="date of birth"
+          format="MM/dd/yyyy"
+          InputProps={{ classes: { root: classes.inputRoot } }}
+          InputLabelProps={{
+            classes: {
+              root: classes.labelRoot,
+              focused: classes.labelFocused
+            }
+          }}
+          value={selectedDate}
+          onChange={handleDateChange}
+          KeyboardButtonProps={{'aria-label': 'change date',}}
+        />
+      
+        <KeyboardDatePicker
+          margin="normal"
+          id="date-picker-dialog"
+          label="last Date of period?"
+          format="MM/dd/yyyy"
+          InputProps={{ classes: { root: classes.inputRoot } }}
+          InputLabelProps={{
+            classes: {
+              root: classes.labelRoot,
+              focused: classes.labelFocused
+            }
+          }}
+          value={selectedDate}
+          onChange={handleDateChange}
+          KeyboardButtonProps={{'aria-label': 'change date',}}
+        />
+       
+       
+      </Grid>
+    </MuiPickersUtilsProvider>     
 
           <Button
             type="submit"
