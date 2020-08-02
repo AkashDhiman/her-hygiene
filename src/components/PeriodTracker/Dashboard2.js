@@ -17,9 +17,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Cardy from "./cards";
 import Button from "@material-ui/core/Button";
-// import OwlCarousel from "react-owl-carousel";
-// import "owl.carousel/dist/assets/owl.carousel.css";
-// import "owl.carousel/dist/assets/owl.theme.default.css";
+import axios from 'axios'
 import { useOverShadowStyles } from '@mui-treasury/styles/shadow/over';
 const drawerWidth = 240;
 
@@ -173,6 +171,21 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const handleRetrain = async () => {
+    const config = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const send = {
+      id: user.data.uid,
+    };
+    const res = await axios.post("https://herhygiene.herokuapp.com/retrain", send, config);
+    console.log(res)
+    window.location.reload()
+  };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const fixedHeightPaper2 = clsx(classes.paper, classes.fixedHeight2);
   const cardyboi = clsx(classes.paper, classes.Cardy);
@@ -198,12 +211,13 @@ export default function Dashboard() {
             <Periods/>
           </Paper>
         </Grid>
-        <Grid item lg={9}>
-          {/* <Paper className={fixedHeightPaper} elevation={3}> */}
-          <Chart/>
-           </Grid>
+        <Grid item xs={12}>
+          <Paper className={fixedHeightPaper}>
+            <Chart />
+          </Paper>
+          </Grid>
            <Grid item lg={3}>
-           <Button variant="contained" size="large" className={classes.button2}>
+           <Button onClick={handleRetrain} variant="contained" size="large" className={classes.button2}>
               Retrain
            </Button>
            </Grid>

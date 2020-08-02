@@ -113,22 +113,35 @@ const LogPeriod3 = () => {
     })
     console.log(state);
     await updateLogPeriod2(user, { selection });
-    const config={
-        headers:{
-        'Content-Type':'application/json'
-        }
-    }
-    const send={
-        id:user.data.uid
-    }  
+    // const config={
+    //     headers:{
+    //     'Content-Type':'application/json'
+    //     }
+    // }
+    // const send={
+    //     id:user.data.uid
+    // }  
+    const config = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const send = {
+      id: user.data.uid,
+    };
 
 
     if (
       compareAsc(startOfMonth(selection.endDate), startOfMonth(currDate)) === 0
     ) {
       console.log("prediction api called ");
-    const res=await axios.post('http://localhost:5000/predict',send,config)
-    console.log(res)
+     
+      const res = await axios.post("https://herhygiene.herokuapp.com/predict", send, config);
+      console.log(res)
+
+    // const res=await axios.post('http://localhost:5000/predict',send,config)
+    // console.log(res)
     const predictedStartDate = addDays(selection.startDate, res.data.t_len);
     const predictedEndDate = addDays(predictedStartDate, res.data.p_len);
     console.log(predictedStartDate,predictedEndDate)
