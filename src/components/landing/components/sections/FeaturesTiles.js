@@ -67,8 +67,10 @@ const FeaturesTiles = ({
                   </div>
                 </div>
                 <div className="features-tiles-item-content">
-                  <h4 className="mt-0 mb-8">Pad SOS</h4>
-                  <p className="m-0 text-sm">Access pads when in need!</p>
+                  <h4 className="mt-0 mb-8">For Organizations</h4>
+                  <p className="m-0 text-sm">
+                    Help grow your microenterprise with our platform!
+                  </p>
                 </div>
               </div>
             </div>
@@ -89,9 +91,10 @@ const FeaturesTiles = ({
                   </div>
                 </div>
                 <div className="features-tiles-item-content">
-                  <h4 className="mt-0 mb-8">Period Tracker</h4>
+                  <h4 className="mt-0 mb-8">Security</h4>
                   <p className="m-0 text-sm">
-                    Track and predict your cycles, anytime, anywhere.
+                    your safety matters. Learn more about our security measures
+                    here.
                   </p>
                 </div>
               </div>
@@ -113,9 +116,9 @@ const FeaturesTiles = ({
                   </div>
                 </div>
                 <div className="features-tiles-item-content">
-                  <h4 className="mt-0 mb-8">Opportunities Portal</h4>
+                  <h4 className="mt-0 mb-8">Offline Accesss</h4>
                   <p className="m-0 text-sm">
-                    Connect with local NGOs and help make a change.
+                    Access local vendors even when offline!
                   </p>
                 </div>
               </div>

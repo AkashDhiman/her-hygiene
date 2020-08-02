@@ -169,12 +169,12 @@ const FeaturesSplit = ({
                   {/* <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
                   Lightning fast workflow
                   </div> */}
-                  <h3 className="mt-0 mb-12">Destigmatization Portal</h3>
+                  <h3 className="mt-0 mb-12">Awareness Portal Portal</h3>
                   <p className="m-0">
                     Learn more about the menstrual cycle and help eradicate the
                     preconcived notions and stigmas surrounding the issues. As
                     they say, education is the best weapon in the face of
-                    ignorance!.
+                    ignorance!
                   </p>
                 </div>
                 <div
