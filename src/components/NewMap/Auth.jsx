@@ -3,6 +3,7 @@ import Webcam from "react-webcam";
 import { Link } from '@reach/router';
 import { Button } from '@material-ui/core';
 import Map from './Map'
+import axios from 'axios'
 import CircleLoader from 'react-spinners/CircleLoader'
 
 const videoConstraints = {
@@ -16,16 +17,34 @@ const videoConstraints = {
 
     const webcamRef = React.useRef(null);
     const capture = React.useCallback(
-        () => {
+        async () => {
             setAuth(1)
             const imageSrc = webcamRef.current.getScreenshot();
-            console.log(imageSrc)
-
-            setInterval(()=>{
+            // console.log(imageSrc)
+            const config = {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            };
+            const send = {
+              img: imageSrc,
+            };
+            const res = await axios.post("https://herhygienefg.herokuapp.com/detect_face", send, config);
+            console.log(res)
+            if(res.data.gender==="1")
+            {
+              setAuth(2)
+            }
+            else{
+              setAuth(-1)
+            }
+            // window.location.reload()
+            // setInterval(()=>{
                
-                if(1) setAuth(2)
-                else setAuth(-1)
-            },2000)
+            //     if(1) setAuth(2)
+            //     else setAuth(-1)
+            // },2000)
         //   if(1) setAuth(2)
         //   else setAuth(-1)
         },

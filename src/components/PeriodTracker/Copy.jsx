@@ -355,7 +355,7 @@
 //   const [fields, setFields] = useState({
 //     weight: 0,
 //     height: 0,
-//     pcos: 0,
+//     PCOS: 0,
 //     pulseRate: 0,
 //     rr: 0,
 //     regularity: 0,
@@ -1100,6 +1100,8 @@ import {
 import Dashboard from "./Dashboard2";
 import Registration from "./Registration";
 import ViewCalendar from "./ViewCalendar.jsx";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
 
 import firebase from "firebase/app";
 import React, { useState, useContext } from "react";
@@ -1194,6 +1196,29 @@ const VisheshSlider = withStyles({
     borderRadius: 4,
   },
 })(Slider);
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      // light: will be calculated from palette.primary.main,
+      main: "#f8c9d4",
+      // dark: will be calculated from palette.primary.main,
+      // contrastText: will be calculated to contrast with palette.primary.main
+    },
+    secondary: {
+      light: "#f8c9d4",
+      main: "#ffa8bd",
+      // dark: will be calculated from palette.secondary.main,
+      contrastText: "#ffffff",
+    },
+    // Used by `getContrastText()` to maximize the contrast between
+    // the background and the text.
+    contrastThreshold: 3,
+    // Used by the functions below to shift a color's luminance by approximately
+    // two indexes within its tonal palette.
+    // E.g., shift from Red 500 to Red 300 or Red 700.
+    tonalOffset: 0.2,
+  },
+});
 
 const PrettoSlider = withStyles({
   root: {
@@ -1479,10 +1504,8 @@ const DashBoard = (props) => {
       },
     },
     Button: {
-      width: 70,
-      height: 70,
       boxShadow: "0px 14px 80px rgba(34, 35, 58, 0.2)",
-      backgroundImage: "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)",
+      backgroundImage: "linear-gradient(147deg, #ff93ac 0%, #ff93ac 74%)",
       color: "#ffffff",
       margin: 15,
     },
@@ -1536,13 +1559,13 @@ const DashBoard = (props) => {
     if (compareAsc(today, predictedStart.toDate()) >= 0) {
       if (compareAsc(calDate, today) >= 1) {
         //log period
-        return "linear-gradient(147deg, #bdc3c7 0%, #2c3e50 74%)";
+        return "linear-gradient(147deg, #C81F70 0%, #D19592 74%)";
       } else if (
         compareAsc(calDate, predictedStart.toDate()) >= 1 &&
         compareAsc(calDate, today) < 1
       ) {
         //late
-        return "linear-gradient(147deg, #FF416C 0%, #FF4B2B 74%)";
+        return "linear-gradient(147deg, #D99EC9 0%, #F6F0C4 74%)";
       } else if (compareAsc(calDate, predictedStart.toDate()) < 1) {
         //before
         return "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)";
@@ -1553,7 +1576,7 @@ const DashBoard = (props) => {
       } else if (checkwithStart >= 0 && checkwithEnd <= 0) {
         return "linear-gradient(147deg, #f869d5 0%, #5650de 74%)";
       } else if (checkwithEnd == 1) {
-        return "linear-gradient(147deg, #bdc3c7 0%, #2c3e50 74%)";
+        return "linear-gradient(147deg, #C81F70 0%, #D19592 74%)";
       }
     } else {
       return "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)";
@@ -1805,10 +1828,10 @@ const DashBoard = (props) => {
   return (
     <>
       <div className={classes.root}>
-        <Grid container spacing={2} component="main">
+        <Grid container spacing={4} component="main">
           {/* <CssBaseline /> */}
 
-          <Grid item xs={12} sm={12} md={7} lg={7} component={Paper} square>
+          <Grid item xs={12} sm={12} md={7} lg={7} square>
             {/* <div className={classes.paper}> */}
             <Paper
               {...dayhandlers}
@@ -1980,21 +2003,23 @@ const DashBoard = (props) => {
                       to={"/logperiod"}
                       variant="contained"
                       size="medium"
-                      color="secondary"
+                      className={classes.Button}
                     >
                       Log Period
                     </Button>
                     {!isSameDay(today, calDate) ? (
-                      <Button
-                        onClick={() => {
-                          setCalDate({ calDate: today });
-                        }}
-                        variant="outlined"
-                        size="medium"
-                        color="secondary"
-                      >
-                        Today
-                      </Button>
+                      <ThemeProvider theme={theme}>
+                        <Button
+                          onClick={() => {
+                            setCalDate({ calDate: today });
+                          }}
+                          variant="outlined"
+                          size="medium"
+                          color="secondary"
+                        >
+                          Today
+                        </Button>
+                      </ThemeProvider>
                     ) : (
                       <></>
                     )}
@@ -2012,25 +2037,27 @@ const DashBoard = (props) => {
                             end: endOfWeek(calDate),
                           }).map((day) => {
                             return (
-                              <Button
-                                color="secondary"
-                                value={day}
-                                onClick={(e) => {
-                                  setCalDate({
-                                    calDate: new Date(e.currentTarget.value),
-                                    futureDay:
-                                      differenceInDays(
-                                        predictedStart.toDate(),
-                                        new Date(e.currentTarget.value)
-                                      ) % 31,
-                                  });
-                                }}
-                              >
-                                <h1>
-                                  {" "}
-                                  {weekday[getDay(day)]} {format(day, "dd ")}
-                                </h1>
-                              </Button>
+                              <ThemeProvider theme={theme}>
+                                <Button
+                                  color="secondary"
+                                  value={day}
+                                  onClick={(e) => {
+                                    setCalDate({
+                                      calDate: new Date(e.currentTarget.value),
+                                      futureDay:
+                                        differenceInDays(
+                                          predictedStart.toDate(),
+                                          new Date(e.currentTarget.value)
+                                        ) % 31,
+                                    });
+                                  }}
+                                >
+                                  <h1>
+                                    {" "}
+                                    {weekday[getDay(day)]} {format(day, "dd ")}
+                                  </h1>
+                                </Button>
+                              </ThemeProvider>
                             );
                           })}
                         </div>
@@ -2050,13 +2077,8 @@ const DashBoard = (props) => {
 
           <Grid item xs={12} sm={12} md={5} lg={5} square>
             <Paper>
-              <Paper>
-                {/* <Calendar /> */}
-                {/* <ViewCalendar /> */}
-              </Paper>
-              <Paper>
-                {/* <form  className={classes.form} noValidate autoComplete="off"> */}
-                {/* <Button
+              {/* <form  className={classes.form} noValidate autoComplete="off"> */}
+              {/* <Button
         variant="contained"
         color="secondary"
         }
@@ -2064,69 +2086,19 @@ const DashBoard = (props) => {
       >
         
       </Button> */}
-                <Grid container direction="row" justify="center" spacing={3}>
-                  <Dialog
-                    open={isOpen}
-                    onClose={handleClose}
-                    scroll={scroll}
-                    aria-labelledby="scroll-dialog-title"
-                    aria-describedby="scroll-dialog-description"
-                  >
-                    <DialogContent dividers={scroll === "paper"}>
-                      <DialogContentText
-                        id="scroll-dialog-description"
-                        tabIndex={-1}
-                      >
-                        {height ||
-                        pulseRate ||
-                        rr ||
-                        bpDiastolic ||
-                        bpSystolic ||
-                        hip ||
-                        waist ||
-                        weight ? (
-                          <>
-                            <Typography
-                              id="discrete-slider-small-steps"
-                              gutterBottom
-                            >
-                              <h3>{renderRequiredQuestion()}</h3>
-                            </Typography>
-                            <PrettoSlider
-                              valueLabelDisplay="auto"
-                              aria-label="pretto slider"
-                              defaultValue={20}
-                              max={300}
-                              onChange={(e) => {
-                                setSliderVal(parseInt(e.target.textContent));
-                              }}
-                            />
-                          </>
-                        ) : (
-                          <></>
-                        )}
-                        {fastFood ||
-                        pcos ||
-                        pimples ||
-                        pimples ||
-                        regExercise ||
-                        regularity ||
-                        skinDarkening ||
-                        weightGain ? (
-                          <>
-                            <Typography
-                              id="discrete-slider-small-steps"
-                              gutterBottom
-                            >
-                              <h3>{renderRequiredQuestion()}</h3>
-                            </Typography>
-                          </>
-                        ) : (
-                          <></>
-                        )}
-                      </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
+              <Grid container direction="row" justify="center" spacing={3}>
+                <Dialog
+                  open={isOpen}
+                  onClose={handleClose}
+                  scroll={scroll}
+                  aria-labelledby="scroll-dialog-title"
+                  aria-describedby="scroll-dialog-description"
+                >
+                  <DialogContent dividers={scroll === "paper"}>
+                    <DialogContentText
+                      id="scroll-dialog-description"
+                      tabIndex={-1}
+                    >
                       {height ||
                       pulseRate ||
                       rr ||
@@ -2136,199 +2108,247 @@ const DashBoard = (props) => {
                       waist ||
                       weight ? (
                         <>
-                          <Button onClick={handleClose} color="primary">
-                            Cancel
-                          </Button>
-                          <Button
-                            onClick={() => {
-                              handleSliderSubmit();
-                            }}
-                            color="primary"
+                          <Typography
+                            id="discrete-slider-small-steps"
+                            gutterBottom
                           >
-                            Submit
-                          </Button>
+                            <h3>{renderRequiredQuestion()}</h3>
+                          </Typography>
+                          <PrettoSlider
+                            valueLabelDisplay="auto"
+                            aria-label="pretto slider"
+                            defaultValue={20}
+                            max={300}
+                            onChange={(e) => {
+                              setSliderVal(parseInt(e.target.textContent));
+                            }}
+                          />
                         </>
                       ) : (
-                        <>
-                          <Button
-                            onClick={() => {
-                              handleSliderSubmit(0);
-                              handleClose();
-                            }}
-                            color="primary"
-                          >
-                            No
-                          </Button>
-                          <Button
-                            onClick={() => {
-                              handleSliderSubmit(1);
-                              handleClose();
-                            }}
-                            color="primary"
-                          >
-                            Yes
-                          </Button>
-                        </>
+                        <></>
                       )}
-                    </DialogActions>
-                  </Dialog>
-                 
-                 
-                  <Grid container spacing={3} direction="row" justify="center">
-                    <Grid item>
-                      <AwesomeButton
-                        onPress={handleClickOpen("paper", "height")}
-                        size="medium"
-                        aria-label="add an alarm"
-                      >
-                        {" "}
-                        height{" "}
-                      </AwesomeButton>
-                    </Grid>
-                    <Grid item>
-                      <AwesomeButton
-                        onPress={handleClickOpen("paper", "pulseRate")}
-                        size="medium"
-                        aria-label="add an alarm"
-                      >
-                        {" "}
-                        Pulse rate{" "}
-                      </AwesomeButton>
-                    </Grid>
-                    <Grid item>
-                      <AwesomeButton
-                        onPress={handleClickOpen("paper", "rr")}
-                        size="medium"
-                        aria-label="add an alarm"
-                      >
-                        {" "}
-                        rr{" "}
-                      </AwesomeButton>
-                    </Grid>
-                    <Grid item>
-                      <AwesomeButton
-                        onPress={handleClickOpen("paper", "bpDiastolic")}
-                        size="medium"
-                        aria-label="add an alarm"
-                      >
-                        {" "}
-                        bp Diastolic{" "}
-                      </AwesomeButton>
-                    </Grid>
-                    <Grid item>
-                      <AwesomeButton
-                        size="medium"
-                        onPress={handleClickOpen("paper", "bpSystolic")}
-                        aria-label="add an alarm"
-                      >
-                        {" "}
-                        bpS ystolic{" "}
-                      </AwesomeButton>
-                    </Grid>
-                    <Grid item>
-                      <AwesomeButton
-                        onPress={handleClickOpen("paper", "hip")}
-                        size="medium"
-                        aria-label="add an alarm"
-                      >
-                        {" "}
-                        Hip{" "}
-                      </AwesomeButton>
-                    </Grid>
-                    <Grid item>
-                      <AwesomeButton
-                        onPress={handleClickOpen("paper", "waist")}
-                        size="medium"
-                        aria-label="add an alarm"
-                      >
-                        {" "}
-                        waist measurement{" "}
-                      </AwesomeButton>
-                    </Grid>
-                    <Grid item>
-                      <AwesomeButton
-                        size="medium"
-                        onPress={handleClickOpen("paper", "weight")}
-                        aria-label="add an alarm"
-                      >
-                        {" "}
-                        Weight{" "}
-                      </AwesomeButton>
-                    </Grid>
+                      {fastFood ||
+                      pcos ||
+                      pimples ||
+                      pimples ||
+                      regExercise ||
+                      regularity ||
+                      skinDarkening ||
+                      weightGain ? (
+                        <>
+                          <Typography
+                            id="discrete-slider-small-steps"
+                            gutterBottom
+                          >
+                            <h3>{renderRequiredQuestion()}</h3>
+                          </Typography>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    {height ||
+                    pulseRate ||
+                    rr ||
+                    bpDiastolic ||
+                    bpSystolic ||
+                    hip ||
+                    waist ||
+                    weight ? (
+                      <>
+                        <Button onClick={handleClose} color="primary">
+                          Cancel
+                        </Button>
+                        <Button
+                          onClick={() => {
+                            handleSliderSubmit();
+                          }}
+                          color="primary"
+                        >
+                          Submit
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <Button
+                          onClick={() => {
+                            handleSliderSubmit(0);
+                            handleClose();
+                          }}
+                          color="primary"
+                        >
+                          No
+                        </Button>
+                        <Button
+                          onClick={() => {
+                            handleSliderSubmit(1);
+                            handleClose();
+                          }}
+                          color="primary"
+                        >
+                          Yes
+                        </Button>
+                      </>
+                    )}
+                  </DialogActions>
+                </Dialog>
 
-                    <Grid item>
-                      <AwesomeButton
-                        onPress={handleClickOpen("paper", "fastFood")}
-                        size="medium"
-                        aria-label="add an alarm"
-                      >
-                        {" "}
-                        fast Food{" "}
-                      </AwesomeButton>
-                    </Grid>
-                    <Grid item>
-                      <AwesomeButton
-                        onPress={handleClickOpen("paper", "pcos")}
-                        size="medium"
-                        aria-label="add an alarm"
-                      >
-                        {" "}
-                        pcos{" "}
-                      </AwesomeButton>
-                    </Grid>
-                    <Grid item>
-                      <AwesomeButton
-                        onPress={handleClickOpen("paper", "pimples")}
-                        size="medium"
-                        aria-label="add an alarm"
-                      >
-                        {" "}
-                        pimples{" "}
-                      </AwesomeButton>
-                    </Grid>
-                    <Grid item>
-                      <AwesomeButton
-                        size="medium"
-                        onPress={handleClickOpen("paper", "regExercise")}
-                        aria-label="add an alarm"
-                      >
-                        {" "}
-                        Exercising habits{" "}
-                      </AwesomeButton>
-                    </Grid>
-                    <Grid item>
-                      <AwesomeButton
-                        onPress={handleClickOpen("paper", "regularity")}
-                        size="medium"
-                        aria-label="add an alarm"
-                      >
-                        {" "}
-                        regularity{" "}
-                      </AwesomeButton>
-                    </Grid>
-                    <Grid item>
-                      <AwesomeButton
-                        onPress={handleClickOpen("paper", "skinDarkening")}
-                        size="medium"
-                        aria-label="add an alarm"
-                      >
-                        skin Darkening{" "}
-                      </AwesomeButton>
-                    </Grid>
-                    <Grid item>
-                      <AwesomeButton
-                        size="medium"
-                        onPress={handleClickOpen("paper", "weightGain")}
-                        aria-label="add an alarm"
-                      >
-                        {" "}
-                        weight Gain{" "}
-                      </AwesomeButton>
-                    </Grid>
+                <Grid container spacing={3} direction="row" justify="center">
+                  <Grid item>
+                    <AwesomeButton
+                      onPress={handleClickOpen("paper", "height")}
+                      size="large"
+                      aria-label="add an alarm"
+                    >
+                      {" "}
+                      Height{" "}
+                    </AwesomeButton>
+                  </Grid>
+                  <Grid item>
+                    <AwesomeButton
+                      onPress={handleClickOpen("paper", "pulseRate")}
+                      size="large"
+                      aria-label="add an alarm"
+                    >
+                      {" "}
+                      Pulse rate{" "}
+                    </AwesomeButton>
+                  </Grid>
+                  <Grid item>
+                    <AwesomeButton
+                      onPress={handleClickOpen("paper", "rr")}
+                      size="large"
+                      aria-label="add an alarm"
+                    >
+                      {" "}
+                      rr{" "}
+                    </AwesomeButton>
+                  </Grid>
+                  <Grid item>
+                    <AwesomeButton
+                      onPress={handleClickOpen("paper", "bpDiastolic")}
+                      size="large"
+                      aria-label="add an alarm"
+                    >
+                      {" "}
+                      bp Diastolic{" "}
+                    </AwesomeButton>
+                  </Grid>
+                  <Grid item>
+                    <AwesomeButton
+                      size="large"
+                      onPress={handleClickOpen("paper", "bpSystolic")}
+                      aria-label="add an alarm"
+                    >
+                      {" "}
+                      bpS ystolic{" "}
+                    </AwesomeButton>
+                  </Grid>
+                  <Grid item>
+                    <AwesomeButton
+                      onPress={handleClickOpen("paper", "hip")}
+                      size="large"
+                      aria-label="add an alarm"
+                    >
+                      {" "}
+                      Hip{" "}
+                    </AwesomeButton>
+                  </Grid>
+                  <Grid item>
+                    <AwesomeButton
+                      onPress={handleClickOpen("paper", "waist")}
+                      size="large"
+                      aria-label="add an alarm"
+                    >
+                      {" "}
+                      Waist Measurement{" "}
+                    </AwesomeButton>
+                  </Grid>
+                  <Grid item>
+                    <AwesomeButton
+                      size="large"
+                      onPress={handleClickOpen("paper", "weight")}
+                      aria-label="add an alarm"
+                    >
+                      {" "}
+                      Weight{" "}
+                    </AwesomeButton>
+                  </Grid>
+
+                  <Grid item>
+                    <AwesomeButton
+                      onPress={handleClickOpen("paper", "fastFood")}
+                      size="large"
+                      aria-label="add an alarm"
+                    >
+                      {" "}
+                      Fast Food{" "}
+                    </AwesomeButton>
+                  </Grid>
+                  <Grid item>
+                    <AwesomeButton
+                      onPress={handleClickOpen("paper", "PCOS")}
+                      size="large"
+                      aria-label="add an alarm"
+                    >
+                      {" "}
+                      PCOS{" "}
+                    </AwesomeButton>
+                  </Grid>
+                  <Grid item>
+                    <AwesomeButton
+                      onPress={handleClickOpen("paper", "pimples")}
+                      size="large"
+                      aria-label="add an alarm"
+                    >
+                      {" "}
+                      Pimples{" "}
+                    </AwesomeButton>
+                  </Grid>
+                  <Grid item>
+                    <AwesomeButton
+                      size="large"
+                      onPress={handleClickOpen("paper", "regExercise")}
+                      aria-label="add an alarm"
+                    >
+                      {" "}
+                      Exercising Habits{" "}
+                    </AwesomeButton>
+                  </Grid>
+                  <Grid item>
+                    <AwesomeButton
+                      onPress={handleClickOpen("paper", "regularity")}
+                      size="large"
+                      aria-label="add an alarm"
+                    >
+                      {" "}
+                      Regularity{" "}
+                    </AwesomeButton>
+                  </Grid>
+                  <Grid item>
+                    <AwesomeButton
+                      onPress={handleClickOpen("paper", "skinDarkening")}
+                      size="large"
+                      aria-label="add an alarm"
+                    >
+                      Skin Darkening{" "}
+                    </AwesomeButton>
+                  </Grid>
+                  <Grid item>
+                    <AwesomeButton
+                      size="large"
+                      onPress={handleClickOpen("paper", "weightGain")}
+                      aria-label="add an alarm"
+                    >
+                      {" "}
+                      Weight Gain{" "}
+                    </AwesomeButton>
                   </Grid>
                 </Grid>
-                {/* </form> */}
-              </Paper>
+              </Grid>
+              {/* </form> */}
             </Paper>
           </Grid>
           {/* <Grid container spacing={3}>

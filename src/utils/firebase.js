@@ -219,7 +219,7 @@ const past=await userRef.collection('log').doc(`${startOfMonth(subMonths(selecti
 const future=await userRef.collection('log').doc(`${startOfMonth( addMonths(selection.endDate,1))}`).get()
 let cycleLength=Math.abs(differenceInDays(selection.startDate,selection.endDate));
 let cycleTotal=28;
-if(past.exists)
+if(past.exists && past.data().startDate)
 {
   console.log("karta hai ")
 
@@ -228,9 +228,10 @@ if(past.exists)
   console.log(cycleTotal,past.data().startDate.toDate() ,selection.startDate)
 
 }
-if(future.exists)
+if(future.exists && future.data().startDate)
 {
-  console.log("future")
+  console.log(future.data())
+  console.log(future.id)
   await userRef.collection('log').doc(`${startOfMonth( addMonths(selection.endDate,1))}`).set({
     cycleTotal:differenceInDays(future.data().startDate.toDate(),selection.startDate)
   },{merge:true})
@@ -266,7 +267,6 @@ else{
     ...selection,
     cycleLength,
     cycleTotal,
-   
   },{merge:true})
 
 }
