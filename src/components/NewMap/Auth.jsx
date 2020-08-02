@@ -18,7 +18,7 @@ const videoConstraints = {
             setAuth(1)
             const imageSrc = webcamRef.current.getScreenshot();
             console.log(imageSrc)
-
+            
             setInterval(()=>{
                
                 if(1) setAuth(2)

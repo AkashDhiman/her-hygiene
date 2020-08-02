@@ -488,7 +488,7 @@ export default function Portal() {
               Dashboard
             </Typography>
             <Button onClick={logout}>LogOut</Button>
-            <Button component={Link} to={"/hportal"}>
+            <Button component={Link} to={"/eportal"}>
               {" "}
               Opportunity creator{" "}
             </Button>
