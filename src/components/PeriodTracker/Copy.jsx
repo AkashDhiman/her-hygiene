@@ -22,7 +22,6 @@
 // import { useSpring, animated } from "react-spring";
 // import { useDrag } from "react-use-gesture";
 
-
 // import cx from "clsx";
 // import Card from "@material-ui/core/Card";
 // import CardContent from "@material-ui/core/CardContent";
@@ -202,7 +201,6 @@
 //       key:"selection"
 //     }
 //     await updateLogPeriod2(user,{selection})
-
 
 //     handleRegister(predictedStartDate, predictedEndDate);
 //   };
@@ -778,8 +776,7 @@
 //             </Paper>
 
 //             {/* <Paper style={{ textAlign: "center", width: "100%" }} >
-              
-           
+
 //             </Paper> */}
 //             {/* </div> */}
 //           </Grid>
@@ -798,7 +795,7 @@
 //         }
 //         startIcon={<AlarmIcon />}
 //       >
-        
+
 //       </Button> */}
 //                 <Grid container direction="row" justify="center" spacing={3}>
 //                   <Dialog
@@ -947,7 +944,7 @@
 //                       {" "}
 //                       1{" "}
 //                     </AwesomeButton> */}
-                    
+
 //                     {/* <AwesomeButton
 //                       onClick={handleClickOpen("paper", "pulseRate")}
 //                       size="medium"
@@ -956,7 +953,7 @@
 //                       {" "}
 //                       2{" "}
 //                     </AwesomeButton> */}
-                   
+
 //                     {/* <AwesomeButton
 //                       onClick={handleClickOpen("paper", "RR")}
 //                       size="medium"
@@ -965,7 +962,7 @@
 //                       {" "}
 //                       3{" "}
 //                     </AwesomeButton> */}
-                    
+
 //                     {/* <AwesomeButton
 //                       onClick={handleClickOpen("paper", "Another")}
 //                       size="medium"
@@ -982,7 +979,7 @@
 //                       {" "}
 //                       5{" "}
 //                     </AwesomeButton> */}
-                   
+
 //                   </Grid>
 //                   {/* <Grid item xs={6}md={3}>
 //          <IconButton onClick={handleClickOpen('paper')} } aria-label="add an alarm">   <AlarmIcon /> </IconButton>
@@ -1016,7 +1013,7 @@
 //         <Grid xs={12} style={{marginBottom: '3%'}}>
 //         <Dashboard/>
 //         </Grid>
-          
+
 //         </Grid>
 //       </div>
 //     </>
@@ -1056,11 +1053,11 @@
 // }
 
 // {
-//   /* 
+//   /*
 //    if(today>predictedEndDate)
 //    {
 //      //yaha pe absolutely break app for future dates --prompt user to log period of only this month--once done->this will lead us to (else if today<predictedStartDate and app will work)
-//      //remains same for past dates 
+//      //remains same for past dates
 //    }
 //    if(today>= predictedStartDate&&today<=predictedEndDate)
 //    {
@@ -1073,19 +1070,19 @@
 //        if(currentmonthperiodEndDate<calDate&&calDate<PredictedStartDate)
 //        {
 //          day 5-x etc
-//          number of days to period , 
+//          number of days to period ,
 //          ovulation period cycle ,
 //          chances of getting pregnant,
 //        }
 //        else if(calDate within this months logged period dates){
-//          show day 0 day1 etc 
+//          show day 0 day1 etc
 //        }
 //        else if(calDate<this months logged startDate)
 //        {
-//          show past cycle day 0-28 
+//          show past cycle day 0-28
 //           which will show
 //           ovulation period cycle ,
-//           chances of getting pregnant, etc 
+//           chances of getting pregnant, etc
 //           //yaha pe firebase fetch karna padega mp to get all dates from past and then access if month is available or not
 
 //        }
@@ -1098,10 +1095,10 @@ import {
   getUserLogDocument,
   updateLogPeriod2,
   updateCurrentUseDocument,
-  updateLogData
+  updateLogData,
 } from "../../utils/firebase";
 import Dashboard from "./Dashboard2";
-import Registration from './Registration'
+import Registration from "./Registration";
 import ViewCalendar from "./ViewCalendar.jsx";
 
 import firebase from "firebase/app";
@@ -1135,7 +1132,7 @@ import AlarmIcon from "@material-ui/icons/Alarm";
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import { AwesomeButton } from "react-awesome-button";
 // import "react-awesome-button/dist/themes/theme-blue.css";
-import "./awesomestyle.css"
+import "./awesomestyle.css";
 //End of Vishesh :)
 import {
   addDays,
@@ -1285,13 +1282,12 @@ const RegForm = ({ user, handleRegister }) => {
       predictedEndDate,
     });
     // CREATE FIRST LOG ELSE APP BREAKS
-    const selection={
-      startDate:subDays(lastDate,cycleLength),
-      endDate:lastDate,
-      key:"selection"
-    }
-    await updateLogPeriod2(user,{selection})
-
+    const selection = {
+      startDate: subDays(lastDate, cycleLength),
+      endDate: lastDate,
+      key: "selection",
+    };
+    await updateLogPeriod2(user, { selection });
 
     handleRegister(predictedStartDate, predictedEndDate);
   };
@@ -1401,14 +1397,12 @@ const RegForm = ({ user, handleRegister }) => {
 
 const DashBoard = (props) => {
   const { user, start, end } = props;
-  const [sliderval,setSliderVal]=useState(-1);
+  const [sliderval, setSliderVal] = useState(-1);
   const [cal, setCalDate] = useState({
     calDate: Date.now(),
     futureDay: 0,
   });
   const [scroll, setScroll] = React.useState("paper");
-
-
 
   let { predictedStartDate, predictedEndDate } = user.data;
   const predictedStart = predictedStartDate ? predictedStartDate : start;
@@ -1503,7 +1497,6 @@ const DashBoard = (props) => {
     set({ x: down ? mx : 0, y: down ? my : 0 });
   });
 
- 
   const useStylesCard = makeStyles(({ breakpoints, spacing }) => ({
     root: {
       marginLeft: "10%",
@@ -1565,30 +1558,26 @@ const DashBoard = (props) => {
     } else {
       return "linear-gradient(147deg, #ff9897 0%, #f650a0 74%)";
     }
-  
-  
-  
-  
   };
   // const varToString = varObj => Object.keys(varObj)[0]
   const [open, setOpen] = React.useState({
-    isOpen:false,
-    height:false,
-    pulseRate:false,
-    rr:false,
-    bpDiastolic:false,
-    bpSystolic:false,
-    hip:false,
-    waist:false,
-    weight:false,
+    isOpen: false,
+    height: false,
+    pulseRate: false,
+    rr: false,
+    bpDiastolic: false,
+    bpSystolic: false,
+    hip: false,
+    waist: false,
+    weight: false,
     // binary begins
-    fastFood:false,
-    pcos:false,
-    pimples:false,
-    regExercise:false,
-    regularity:false,
-    skinDarkening:false,
-    weightGain:false,
+    fastFood: false,
+    pcos: false,
+    pimples: false,
+    regExercise: false,
+    regularity: false,
+    skinDarkening: false,
+    weightGain: false,
   });
   const {
     isOpen,
@@ -1608,233 +1597,211 @@ const DashBoard = (props) => {
     skinDarkening,
     weightGain,
   } = open;
-  
-  const handleClickOpen = (scrollType, toOpen) => () => {
 
-         console.log(toOpen)
-     if(toOpen==="height"){
-      setOpen({isOpen:true, height:true})
+  const handleClickOpen = (scrollType, toOpen) => () => {
+    console.log(toOpen);
+    if (toOpen === "height") {
+      setOpen({ isOpen: true, height: true });
+    } else if (toOpen === "pulseRate") {
+      setOpen({ isOpen: true, pulseRate: true });
+    } else if (toOpen === "rr") {
+      console.log(toOpen);
+      setOpen({ isOpen: true, rr: true });
+    } else if (toOpen === "waist") {
+      setOpen({ isOpen: true, waist: true });
+    } else if (toOpen === "bpDiastolic") {
+      setOpen({ isOpen: true, bpDiastolic: true });
+    } else if (toOpen === "bpSystolic") {
+      setOpen({ isOpen: true, bpSystolic: true });
+    } else if (toOpen === "hip") {
+      console.log(toOpen);
+      setOpen({ isOpen: true, hip: true });
+    } else if (toOpen === "weight") {
+      setOpen({ isOpen: true, weight: true });
+    } else if (toOpen === "fastFood") {
+      setOpen({ isOpen: true, fastFood: true });
+    } else if (toOpen === "pcos") {
+      setOpen({ isOpen: true, pcos: true });
+    } else if (toOpen === "pimples") {
+      setOpen({ isOpen: true, pimples: true });
+    } else if (toOpen === "regExercise") {
+      setOpen({ isOpen: true, regExercise: true });
+    } else if (toOpen === "regularity") {
+      console.log(toOpen);
+      setOpen({ isOpen: true, regularity: true });
+    } else if (toOpen === "skinDarkening") {
+      setOpen({ isOpen: true, skinDarkening: true });
+    } else if (toOpen === "weightGain") {
+      setOpen({ isOpen: true, weightGain: true });
     }
-    else if(toOpen==="pulseRate"){
-      setOpen({isOpen:true, pulseRate:true})
-    }
-    else if(toOpen==="rr"){
-      console.log(toOpen)
-      setOpen({isOpen:true,rr :true})
-    }
-    else if(toOpen==="waist"){
-      setOpen({isOpen:true,waist :true})
-    }
-    else if(toOpen==="bpDiastolic"){
-      setOpen({isOpen:true,bpDiastolic :true})
-    }
-    else if(toOpen==="bpSystolic"){
-      setOpen({isOpen:true, bpSystolic:true})
-    }
-    else if(toOpen==="hip"){
-      console.log(toOpen)
-      setOpen({isOpen:true,hip:true})
-    }
-    else if(toOpen==="weight"){
-      setOpen({isOpen:true, weight:true})
-    }
-    else if(toOpen==="fastFood"){
-      setOpen({isOpen:true,fastFood :true})
-    }
-    else if(toOpen==="pcos"){
-      setOpen({isOpen:true, pcos:true})
-    }
-    else if(toOpen==="pimples"){
-      setOpen({isOpen:true,pimples :true})
-    }
-    else if(toOpen==="regExercise"){
-      setOpen({isOpen:true,regExercise :true})
-    }
-    else if(toOpen==="regularity"){
-      console.log(toOpen)
-      setOpen({isOpen:true,regularity :true})
-    }
-    else if(toOpen==="skinDarkening"){
-      setOpen({isOpen:true,skinDarkening :true})
-    }
-    else if(toOpen==="weightGain"){
-      setOpen({isOpen:true, weightGain:true})
-    }    
     setScroll(scrollType);
   };
 
   const handleClose = () => {
     setOpen({
-    isOpen:false,
-    height:false,
-    pulseRate:false,
-    rr:false,
-    bpDiastolic:false,
-    bpSystolic:false,
-    hip:false,
-    waist:false,
-    weight:false,
-    fastFood:false,
-    pcos:false,
-    pimples:false,
-    regExercise:false,
-    regularity:false,
-    skinDarkening:false,
-    weightGain:false,
-    
+      isOpen: false,
+      height: false,
+      pulseRate: false,
+      rr: false,
+      bpDiastolic: false,
+      bpSystolic: false,
+      hip: false,
+      waist: false,
+      weight: false,
+      fastFood: false,
+      pcos: false,
+      pimples: false,
+      regExercise: false,
+      regularity: false,
+      skinDarkening: false,
+      weightGain: false,
     });
   };
-  const  handleSliderSubmit=async (bit)=>{
-    if(sliderval<0) return ;
+  const handleSliderSubmit = async (bit) => {
+    if (sliderval < 0) return;
 
-         if(height){
-          const data={
-            height:sliderval
-          }
-          const height=sliderval
-          await updateLogData(user,{data})
-          await updateCurrentUseDocument(user,height)
-         }
-    else if(pulseRate){
-      const pulseRate=sliderval
-      const data={
-        pulseRate:sliderval
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,pulseRate)
+    if (height) {
+      const data = {
+        height: sliderval,
+      };
+      const height = sliderval;
+      await updateLogData(user, { data });
+      await updateCurrentUseDocument(user, height);
+    } else if (pulseRate) {
+      const pulseRate = sliderval;
+      const data = {
+        pulseRate: sliderval,
+      };
+      await updateLogData(user, { data });
+      await updateCurrentUseDocument(user, pulseRate);
+    } else if (rr) {
+      const rr = sliderval;
+      const data = {
+        rr: sliderval,
+      };
+      await updateLogData(user, { data });
+      await updateCurrentUseDocument(user, rr);
+    } else if (bpDiastolic) {
+      const bpDiastolic = sliderval;
+      const data = {
+        bpDiastolic: sliderval,
+      };
+      await updateLogData(user, { data });
+      await updateCurrentUseDocument(user, bpDiastolic);
+    } else if (bpSystolic) {
+      const bpSystolic = sliderval;
+      const data = {
+        bpSystolic: sliderval,
+      };
+      await updateLogData(user, { data });
+      await updateCurrentUseDocument(user, bpSystolic);
+    } else if (hip) {
+      const hip = sliderval;
+      const data = {
+        hip: sliderval,
+      };
+      await updateLogData(user, { data });
+      await updateCurrentUseDocument(user, hip);
+    } else if (waist) {
+      const waist = sliderval;
+      const data = {
+        waist: sliderval,
+      };
+      await updateLogData(user, { data });
+      await updateCurrentUseDocument(user, waist);
+    } else if (weight) {
+      const weight = sliderval;
+      const data = {
+        weight: sliderval,
+      };
+      await updateLogData(user, { data });
+      await updateCurrentUseDocument(user, weight);
+    } else if (fastFood) {
+      const fastFood = bit;
+      const data = {
+        fastFood: bit,
+      };
+      await updateLogData(user, { data });
+      await updateCurrentUseDocument(user, fastFood);
+    } else if (pcos) {
+      const pcos = bit;
+      const data = {
+        pcos: bit,
+      };
+      await updateLogData(user, { data });
+      await updateCurrentUseDocument(user, pcos);
+    } else if (pimples) {
+      const pimples = bit;
+      const data = {
+        pimples: bit,
+      };
+      await updateLogData(user, { data });
+      await updateCurrentUseDocument(user, pimples);
+    } else if (regExercise) {
+      const regExercise = bit;
+      const data = {
+        regExercise: bit,
+      };
+      await updateLogData(user, { data });
+      await updateCurrentUseDocument(user, regExercise);
+    } else if (regularity) {
+      const regularity = bit;
+      const data = {
+        regularity: bit,
+      };
+      await updateLogData(user, { data });
+      await updateCurrentUseDocument(user, regularity);
+    } else if (skinDarkening) {
+      const skinDarkening = bit;
+      const data = {
+        skinDarkening: bit,
+      };
+      await updateLogData(user, { data });
+      await updateCurrentUseDocument(user, skinDarkening);
+    } else if (weightGain) {
+      const weightGain = bit;
+      const data = {
+        weightGain: bit,
+      };
+      await updateLogData(user, { data });
+      await updateCurrentUseDocument(user, weightGain);
     }
-    else if(rr){
-      const rr=sliderval
-      const data={
-        rr:sliderval
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,rr)
-    }
-    else if(bpDiastolic){
-      const bpDiastolic=sliderval
-      const data={
-        bpDiastolic:sliderval
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,bpDiastolic)
-    }
-    else if(bpSystolic){
-      const bpSystolic=sliderval
-      const data={
-        bpSystolic:sliderval
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,bpSystolic)
-    }
-    else if(hip){
-      const hip=sliderval
-      const data={
-        hip:sliderval
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,hip)
 
+    handleClose();
+  };
+  const renderRequiredQuestion = () => {
+    if (height) {
+      return "Please enter your height (in cms)";
+    } else if (pulseRate) {
+      return "Please enter your Pulse Rate";
+    } else if (rr) {
+      return "Please enter your respiratory rate";
+    } else if (bpDiastolic) {
+      return "Plese enter your Diastolic Blood pressure (in mmHg)";
+    } else if (bpSystolic) {
+      return "Plese enter your Systolic Blood pressure (in mmHg)";
+    } else if (hip) {
+      return "Please give your hip measure (in cms)";
+    } else if (waist) {
+      return "Please enter your waist measure (in cms)";
+    } else if (weight) {
+      return "How much do you weigh as of last measurement (in Kgs)";
+    } else if (fastFood) {
+      return "Do you consume fastfood regularly?";
+    } else if (pcos) {
+      return "Do you have PCOS?";
+    } else if (pimples) {
+      return "Have you observed increased pimples?";
+    } else if (regExercise) {
+      return "Do you exercise Regularly";
+    } else if (regularity) {
+      return "Are your menstrual cycles regular?";
+    } else if (skinDarkening) {
+      return "Have you observed any skin darkening recently?";
+    } else if (weightGain) {
+      return "Have you experienced weight gain recently?";
     }
-    else if(waist){
-      const waist=sliderval
-      const data={
-        waist:sliderval
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,waist)
-    }
-    else if(weight){
-      const weight=sliderval
-      const data={
-        weight:sliderval
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,weight)
-    }
-
-
-    else if(fastFood){
-      const fastFood=bit
-      const data={
-        fastFood:bit
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,fastFood)
-    }
-    else if(pcos){
-      const pcos=bit
-      const data={
-        pcos:bit
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,pcos)
-    }
-    else if(pimples){
-      const pimples=bit
-      const data={
-        pimples:bit
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,pimples)
-    }
-    else if(regExercise){
-      const regExercise=bit
-      const data={
-        regExercise:bit
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,regExercise)
-    }
-    else if(regularity){
-      const regularity=bit
-      const data={
-        regularity:bit
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,regularity)
-    }
-    else if(skinDarkening){
-      const skinDarkening=bit
-      const data={
-        skinDarkening:bit
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,skinDarkening)
-    }
-    else if(weightGain){
-      const weightGain=bit
-      const data={
-        weightGain:bit
-      }
-      await updateLogData(user,{data})
-      await updateCurrentUseDocument(user,weightGain)
-    }
-    
-   
-   
-
-    handleClose()
-    
-
-  }
-  const renderRequiredQuestion=()=>{
-    if(height){return "Please enter your height (in cms)"}
-    else if(pulseRate){return "Please enter your Pulse Rate"}
-    else if(rr){return "Please enter your respiratory rate"}
-    else if(bpDiastolic){return "Plese enter your Diastolic Blood pressure (in mmHg)"}
-    else if(bpSystolic){return "Plese enter your Systolic Blood pressure (in mmHg)"}
-    else if(hip){return "Please give your hip measure (in cms)"}
-    else if(waist){return "Please enter your waist measure (in cms)"}
-    else if(weight){return "How much do you weigh as of last measurement (in Kgs)"}
-    else if(fastFood){return "Do you consume fastfood regularly?"}
-    else if(pcos){return "Do you have PCOS?"}
-    else if(pimples){return "Have you observed increased pimples?"}
-    else if(regExercise){return "Do you exercise Regularly"}
-    else if(regularity){return "Are your menstrual cycles regular?"}
-    else if(skinDarkening){return "Have you observed any skin darkening recently?"}
-    else if(weightGain){return "Have you experienced weight gain recently?"}
-  }
+  };
   return (
     <>
       <div className={classes.root}>
@@ -2085,7 +2052,7 @@ const DashBoard = (props) => {
             <Paper>
               <Paper>
                 {/* <Calendar /> */}
-                <ViewCalendar />
+                {/* <ViewCalendar /> */}
               </Paper>
               <Paper>
                 {/* <form  className={classes.form} noValidate autoComplete="off"> */}
@@ -2110,221 +2077,360 @@ const DashBoard = (props) => {
                         id="scroll-dialog-description"
                         tabIndex={-1}
                       >
-                       
-                      { height||pulseRate||rr||bpDiastolic||bpSystolic||hip||waist||weight ?(<>
-                        <Typography
+                        {height ||
+                        pulseRate ||
+                        rr ||
+                        bpDiastolic ||
+                        bpSystolic ||
+                        hip ||
+                        waist ||
+                        weight ? (
+                          <>
+                            <Typography
                               id="discrete-slider-small-steps"
                               gutterBottom
                             >
-                               <h3>{renderRequiredQuestion()}</h3>
+                              <h3>{renderRequiredQuestion()}</h3>
                             </Typography>
                             <PrettoSlider
                               valueLabelDisplay="auto"
                               aria-label="pretto slider"
                               defaultValue={20}
                               max={300}
-                              onChange={(e)=>{setSliderVal(parseInt(e.target.textContent))}}
+                              onChange={(e) => {
+                                setSliderVal(parseInt(e.target.textContent));
+                              }}
                             />
-                            
-                      
-                      </>):<></>}
-                      {fastFood||pcos||pimples||pimples||regExercise||regularity||skinDarkening||weightGain?(<>
-                        <Typography
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                        {fastFood ||
+                        pcos ||
+                        pimples ||
+                        pimples ||
+                        regExercise ||
+                        regularity ||
+                        skinDarkening ||
+                        weightGain ? (
+                          <>
+                            <Typography
                               id="discrete-slider-small-steps"
                               gutterBottom
                             >
                               <h3>{renderRequiredQuestion()}</h3>
-                        </Typography>
-                      
-                      </>):<></>}
+                            </Typography>
+                          </>
+                        ) : (
+                          <></>
+                        )}
                       </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                    {height||pulseRate||rr||bpDiastolic||bpSystolic||hip||waist||weight?(<>
-                      <Button onClick={handleClose} color="primary">
-                        Cancel
-                      </Button>
-                      <Button onClick={()=>{handleSliderSubmit()}} color="primary">
-                        Submit
-                      </Button>
-                    
-                    </>):<>
-                    <Button onClick={()=>{handleSliderSubmit(0); handleClose()}} color="primary">
-                        No
-                      </Button>
-                      <Button onClick={()=>{handleSliderSubmit(1) ; handleClose()}} color="primary">
-                        Yes
-                      </Button>
-                    
-                    
-                    
-                    </>}
-                    
+                      {height ||
+                      pulseRate ||
+                      rr ||
+                      bpDiastolic ||
+                      bpSystolic ||
+                      hip ||
+                      waist ||
+                      weight ? (
+                        <>
+                          <Button onClick={handleClose} color="primary">
+                            Cancel
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              handleSliderSubmit();
+                            }}
+                            color="primary"
+                          >
+                            Submit
+                          </Button>
+                        </>
+                      ) : (
+                        <>
+                          <Button
+                            onClick={() => {
+                              handleSliderSubmit(0);
+                              handleClose();
+                            }}
+                            color="primary"
+                          >
+                            No
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              handleSliderSubmit(1);
+                              handleClose();
+                            }}
+                            color="primary"
+                          >
+                            Yes
+                          </Button>
+                        </>
+                      )}
                     </DialogActions>
                   </Dialog>
-                  
+                  <Grid container spacing={3} direction="row" justify="center">
+                    <Grid item>
+                      <AwesomeButton
+                        onPress={handleClickOpen("paper", "height")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        height{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onPress={handleClickOpen("paper", "pulseRate")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        Pulse rate{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onPress={handleClickOpen("paper", "rr")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        rr{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onPress={handleClickOpen("paper", "bpDiastolic")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        bp Diastolic{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        size="medium"
+                        onPress={handleClickOpen("paper", "bpSystolic")}
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        bpS ystolic{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onPress={handleClickOpen("paper", "hip")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        Hip{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onPress={handleClickOpen("paper", "waist")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        waist measurement{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        size="medium"
+                        onPress={handleClickOpen("paper", "weight")}
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        Weight{" "}
+                      </AwesomeButton>
+                    </Grid>
 
-  
-                  
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "height")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      height{" "}
-                    </AwesomeButton>
+                    <Grid item>
+                      <AwesomeButton
+                        onPress={handleClickOpen("paper", "fastFood")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        fast Food{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onPress={handleClickOpen("paper", "pcos")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        pcos{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onPress={handleClickOpen("paper", "pimples")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        pimples{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        size="medium"
+                        onPress={handleClickOpen("paper", "regExercise")}
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        Exercising habits{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onPress={handleClickOpen("paper", "regularity")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        regularity{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onPress={handleClickOpen("paper", "skinDarkening")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        skin Darkening{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        size="medium"
+                        onPress={handleClickOpen("paper", "weightGain")}
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        weight Gain{" "}
+                      </AwesomeButton>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "pulseRate")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      Pulse rate{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "rr")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      rr{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "bpDiastolic")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      bp Diastolic{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      size="medium"
-                      onPress={handleClickOpen("paper", "bpSystolic")}
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      bpS ystolic{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "hip")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      Hip{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "waist")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      waist measurement{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      size="medium"
-                      onPress={handleClickOpen("paper", "weight")}
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      Weight{" "}
-                    </AwesomeButton>
-                  </Grid>
-                
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "fastFood")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      fast Food{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "pcos")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      pcos{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "pimples")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      pimples{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      size="medium"
-                      onPress={handleClickOpen("paper", "regExercise")}
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      Exercising habits{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "regularity")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      regularity{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      onPress={handleClickOpen("paper", "skinDarkening")}
-                      size="medium"
-                      aria-label="add an alarm"
-                    >
-                      
-                      skin Darkening{" "}
-                    </AwesomeButton>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    <AwesomeButton
-                      size="medium"
-                      onPress={handleClickOpen("paper", "weightGain")}
-                      aria-label="add an alarm"
-                    >
-                      {" "}
-                      weight Gain{" "}
-                    </AwesomeButton>
-                  </Grid>
-                 
                 </Grid>
-
                 {/* </form> */}
               </Paper>
             </Paper>
           </Grid>
-
+          {/* <Grid container spacing={3}>
+                    <Grid item>
+                      <AwesomeButton
+                        onClick={handleClickOpen("paper", "height")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        1{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onClick={handleClickOpen("paper", "height")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        1{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onClick={handleClickOpen("paper", "height")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        1{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onClick={handleClickOpen("paper", "height")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        1{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onClick={handleClickOpen("paper", "height")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        1{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onClick={handleClickOpen("paper", "height")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        1{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onClick={handleClickOpen("paper", "height")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        1{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onClick={handleClickOpen("paper", "height")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        1{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onClick={handleClickOpen("paper", "height")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        1{" "}
+                      </AwesomeButton>
+                    </Grid>
+                    <Grid item>
+                      <AwesomeButton
+                        onClick={handleClickOpen("paper", "height")}
+                        size="medium"
+                        aria-label="add an alarm"
+                      >
+                        {" "}
+                        1{" "}
+                      </AwesomeButton>
+                    </Grid>
+                  </Grid> */}
           {/* <Grid
           item
           xs={12}
@@ -2367,7 +2473,7 @@ const Period = () => {
   } else {
     return (
       <>
-      <Registration user={user} handleRegister={handleRegister}/>
+        <Registration user={user} handleRegister={handleRegister} />
         {/* <RegForm  /> */}
       </>
     );
