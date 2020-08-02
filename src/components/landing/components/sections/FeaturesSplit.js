@@ -102,7 +102,7 @@ const FeaturesSplit = ({
                   {/* <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
                   Lightning fast workflow
                   </div> */}
-                  <h3 className="mt-0 mb-12">2nd Text</h3>
+                  <h3 className="mt-0 mb-12">ML Based Period Tracking</h3>
                   <p className="m-0">
                     India's first ML based period tracking app that adapts to
                     your cycle and keeps your sensitive data safe and secure.
@@ -134,13 +134,13 @@ const FeaturesSplit = ({
                   {/* <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
                   Lightning fast workflow
                   </div> */}
-                  <h3 className="mt-0 mb-12">3rd Text</h3>
+                  <h3 className="mt-0 mb-12"> Opportunity Portal</h3>
                   <p className="m-0">
-                    Opportunity Portal: In our conviction to reach all parts of
-                    India, the opportunity Portal established a connection
-                    between women in rural areas and government schemes and
-                    NGOs. We hope to bring awareness, accessibility and
-                    affordability while driving forward women empowerment.
+                    In our conviction to reach all parts of India, the
+                    opportunity Portal established a connection between women in
+                    rural areas and government schemes and NGOs. We hope to
+                    bring awareness, accessibility and affordability while
+                    driving forward women empowerment.
                   </p>
                 </div>
                 <div
@@ -169,11 +169,12 @@ const FeaturesSplit = ({
                   {/* <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
                   Lightning fast workflow
                   </div> */}
-                  <h3 className="mt-0 mb-12">Text 4</h3>
+                  <h3 className="mt-0 mb-12">Destigmatization Portal</h3>
                   <p className="m-0">
-                    All of our predictions are based on the most up-to-date
-                    science. We collaborate with scientists and universities to
-                    ensure continuous improvements.
+                    Learn more about the menstrual cycle and help eradicate the
+                    preconcived notions and stigmas surrounding the issues. As
+                    they say, education is the best weapon in the face of
+                    ignorance!.
                   </p>
                 </div>
                 <div
