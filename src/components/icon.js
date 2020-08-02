@@ -23,5 +23,16 @@ const othersIcon = new L.icon({
   iconSize: new L.Point(50, 50),
   className: "marker",
 });
+const vendorIcon=new L.icon({
+  iconUrl:require('../utils/vendor.png'),
+  iconRetinaUrl: require("../utils/vendor.png"),
+  iconAnchor: [10,10],
+  popupAnchor: [10,10],
+  shadowUrl: null,
+  shadowSize: null,
+  shadowAnchor: null,
+  iconSize: new L.Point(50, 50),
+  className: "marker",
+})
 
-export { userIcon, othersIcon };
+export { userIcon, othersIcon,vendorIcon };
