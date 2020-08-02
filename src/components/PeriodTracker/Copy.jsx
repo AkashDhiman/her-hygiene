@@ -30,6 +30,7 @@ import CardContent from "@material-ui/core/CardContent";
 import TextInfoContent from "@mui-treasury/components/content/textInfo";
 import { useBlogTextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/blog";
 import { useOverShadowStyles } from "@mui-treasury/styles/shadow/over";
+import Welcome from "../dash/Welcome";
 
 //Vishesh
 
@@ -538,7 +539,9 @@ const DashBoard = (props) => {
       <div className={classes.root}>
         <Grid container spacing={2} component="main">
           {/* <CssBaseline /> */}
-
+          {/* <Grid item xs={12}>
+            <Welcome/>
+          </Grid> */}
           <Grid item xs={12} sm={12} md={7} lg={7} component={Paper} square>
             {/* <div className={classes.paper}> */}
             <Paper
@@ -548,6 +551,7 @@ const DashBoard = (props) => {
                 width: "100%",
                 backgroundImage: whichBackgroundColor(),
                 color: "white",
+                paddingBottom: 50
               }}
             >
               <div style={{ textAlign: "center" }}>
@@ -556,7 +560,7 @@ const DashBoard = (props) => {
                   <Box
                     {...dayhandlers}
                     style={{
-                      fontSize: "60px",
+                      fontSize: "3.5rem",
                       paddingTop: "30px",
                       textAlign: "center",
                     }}
@@ -591,7 +595,7 @@ const DashBoard = (props) => {
                         {compareAsc(calDate, predictedStart.toDate()) >= 1 &&
                         compareAsc(calDate, today) < 1 ? (
                           <>
-                            <h1>Late for </h1>
+                            <h1 style={{fontWeight :500 }}>Late for </h1>
                             <h1>
                               {formatDistance(
                                 predictedStart.toDate(), //this will be the date of next period, which will come from the user variable
@@ -712,6 +716,7 @@ const DashBoard = (props) => {
                       variant="contained"
                       size="medium"
                       color="secondary"
+                      style={{fontSize:'1.25rem', marginTop: '3%', marginBottom: '3%'}}
                     >
                       Log Period
                     </Button>
@@ -780,11 +785,11 @@ const DashBoard = (props) => {
             {/* </div> */}
           </Grid>
 
-          <Grid item xs={12} sm={12} md={5} lg={5} square>
-            <Paper>
-              <Paper>
+          <Grid item xs={12} sm={12} md={5} lg={5} square style={{backgroundColor: '#5dbcd2 !important'}} >
+            <Paper style={{backgroundColor: '#5dbcd2 !important'}}>
+              <Paper style={{backgroundColor: '#5dbcd2 !important'}}>
                 {/* <Calendar /> */}
-                <ViewCalendar />
+                {/* <ViewCalendar /> */}
               </Paper>
               <Paper>
                 {/* <form  className={classes.form} noValidate autoComplete="off"> */}
@@ -909,8 +914,8 @@ const DashBoard = (props) => {
                       </Button>
                     </DialogActions>
                   </Dialog>
-                  <Grid item xs={12} style={{background: 'linear-gradient(to right, #ee9ca7, #ffdde1)'}}>
-                    <Grid item xs= {4} sm={3} style={{display:'inline-block', marginLeft: 30, marginRight: 20}}>
+                  <Grid item xs={12}>
+                    {/* <Grid item xs= {4} sm={3} style={{display:'inline-block', marginLeft: 30, marginRight: 20}}>
                       <Button style= {{height: '60px', width: '50px', borderRadius:'50%',background: 'linear-gradient(to right, #ee0979, #ff6a00)', color:'white' }}>
                         1
                       </Button>
@@ -934,7 +939,7 @@ const DashBoard = (props) => {
                       <Button style= {{height: '60px', width: '50px', borderRadius:'50%',background: 'linear-gradient(to right, #ee0979, #ff6a00)', color:'white' }}>
                         5
                       </Button>
-                    </Grid>
+                    </Grid> */}
                     {/* <AwesomeButton
                       onClick={handleClickOpen("paper", "height")}
                       size="medium"

@@ -26,7 +26,8 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
     // marginLeft: '5%',
     // marginRight: 'auto',
     overflow: 'initial',
-    backgroundImage: 'linear-gradient(147deg, #ff9897 0%, #f650a0 74%)',
+    // backgroundImage: 'linear-gradient(147deg, #ff9897 0%, #f650a0 74%)',
+    backgroundColor: '#f50057',
     display: 'flex',
     flexDirection: 'column',
     // alignItems: 'center',
@@ -57,7 +58,7 @@ export const Deposits = React.memo(function BlogCard() {
     <Card className={cx(styles.root, shadowStyles.root)}>
       <CardContent>
         <h1 style={{color:'#ffffff', margin: 0}}>Go To <br/> Dashboard</h1>
-        <img  height={70} src={cal} style={{marginTop:'50%'}}/>
+        <img  height={100} src={cal}/>
       </CardContent>
       
     </Card>
