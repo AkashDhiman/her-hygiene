@@ -35,7 +35,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import PersonPinCircleIcon from "@material-ui/icons/PersonPinCircle";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Header from "../originals/Header";
-import { othersIcon, userIcon } from "../icon";
+import { othersIcon, userIcon,vendorIcon } from "../icon";
 import { UserContext } from "../../providers/UserProvider";
 import { usePersistedState } from "./usePersistedState";
 // import "./styles2.css";
@@ -103,42 +103,44 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 let dummyRequests = [
-  {
-    id: 1,
-    requester: {
-      id: 1,
-      location: [28.7040572, 77.1224902],
-      detail: {
-        name: "Jane Doe",
-        msg: "lorem ipsum doler set",
-      },
-    },
-    status: "active",
-  },
-  {
-    id: 2,
-    requester: {
-      id: 2,
-      location: [28.7040582, 77.1124902],
-      detail: {
-        name: "Jane Doe",
-        msg: "lorem ipsum doler set",
-      },
-    },
-    status: "active",
-  },
-  {
-    id: 3,
-    requester: {
-      id: 3,
-      location: [28.7040592, 77.0924915],
-      detail: {
-        name: "Jane Doe",
-        msg: "lorem ipsum doler set",
-      },
-    },
-    status: "active",
-  },
+{
+name:"Sethi Medicos",
+openFrom : "9am-10:30pm",
+contact:1142133367,
+address:"Sethi Medicos, B-19, Tagore Garden, New Delhi, Delhi 110027",
+location: [28.650460,77.116410],
+},{
+name:"Life Line chemist",
+address:"Block J, Rajouri Garden Extension, Rajouri Garden, New Delhi, Delhi 110027",
+location:[28.646980, 77.125660],
+openFrom :"9am-10pm",
+contact:9818533500,
+},{
+name : "Radhey Medicos",
+address:"G-18/1, Main Market, Back lane, Sabha Marg, Rajouri Garden, Rajouri Garden, New Delhi, Delhi 110027",
+contact:911145871616,
+location:[28.646980, 77.125660],
+openFrom:"9am-7pm",
+},{
+name:"Apollo Pharmacy",
+openFrom:'8am - 11am',
+address:"Shop No F3 F- Block Market, Kirti Nagar, New Delhi, Delhi 110015",
+contact:911125191030,
+location:[28.651100, 77.141530],
+},{
+name:"Yarma Medicos",
+openFrom:'9am - 10pm',
+address:"Shop No. J-68, Main Market, St Sujan Singh Marg, Rajouri Garden, New Delhi, Delhi 110027",
+contact:911127691030,
+location:[28.646980, 77.124880],
+},{
+name:"Ahuja Chemist",
+openFrom:"10am-11pm",
+address:"Janta Market, Rajouri Garden, New Delhi, Delhi 110027",
+contact: 919881052782,
+location:[28.646980, 77.134880],
+},
+
 ];
 
 const Cards = ({ position, detail }) => {
@@ -225,6 +227,7 @@ const HelpingInterface = ({ handleCancelHelp, requestDoc }) => {
 const RequestMarkers = ({
   requestDocs,
   handleHelpingOthers,
+  dummyRequests,
   user,
   location,
 }) => {
@@ -236,6 +239,72 @@ const RequestMarkers = ({
   }, [requestDocs]);
   return (
     <>
+    {dummyRequests.map((dummy,i)=>(
+      <Marker
+      key={i}
+      position={dummy.location}
+      icon={vendorIcon}
+    >
+      <Popup
+        style={{
+          width: "50px",
+          color: "black",
+          fontWeight: "bold",
+          textAlign: "center",
+          fontSize: "1.5rem",
+        }}
+      >
+        <CardActionArea>
+          <CardContent>
+            <Typography
+              variant="h4"
+              component="h2"
+              className={classes.heading}
+            >
+              {dummy.name}
+            </Typography>
+            <Typography
+              variant="body1"
+              component="h2"
+              className={classes.name}
+            >
+              {dummy.openFrom}
+            </Typography>
+            <Typography
+              variant="body1"
+              color="text "
+              component="h2"
+              style={{ fontSize: "1.25rem", textAlign: "center" }}
+            >
+              {dummy.contact}
+            </Typography>
+            <Typography
+              variant="body1"
+              color="text "
+              component="h2"
+              style={{ fontSize: "1.25rem", textAlign: "center" }}
+            >
+              {dummy.address}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          {/* <Button
+            onClick={() => handleHelpingOthers(requestDoc, user, location)}
+            variant="contained"
+            size="large"
+            color="secondary"
+            className={classes.button}
+          >
+            Help them
+          </Button> */}
+        </CardActions>
+      </Popup>
+    </Marker>
+ 
+
+    ))}
+
       {requests.map((requestDoc) => (
         <Marker
           key={requestDoc.data().id}
@@ -288,7 +357,8 @@ const RequestMarkers = ({
             </CardActions>
           </Popup>
         </Marker>
-      ))}
+     
+     ))}
     </>
   );
 };
@@ -1137,6 +1207,7 @@ const Map = (props) => {
             {isDefault ? (
               <RequestMarkers
                 requestDocs={requestDocs}
+                dummyRequests={dummyRequests}
                 handleHelpingOthers={handleHelpingOthers}
                 user={user}
                 location={location}

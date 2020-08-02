@@ -1108,7 +1108,6 @@ import firebase from "firebase/app";
 import React, { useState, useContext } from "react";
 import { useSwipeable } from "react-swipeable";
 import { Calendar } from "react-date-range";
-// import ViewCalendar from "./ViewCalendar.jsx";
 import formatDistance from "date-fns/formatDistance";
 import Paper from "@material-ui/core/Paper";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
