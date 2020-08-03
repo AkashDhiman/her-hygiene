@@ -9,7 +9,7 @@ import CircleLoader from 'react-spinners/CircleLoader'
 const videoConstraints = {
     width: 1280,
     height: 720,
-    facingMode: "user"
+    facingMode: "user",
   };
  
  const Auth = () => {
@@ -62,16 +62,17 @@ const videoConstraints = {
             ref={webcamRef}
             screenshotFormat="image/jpeg"
             width={300}
+            style={{marginLeft: '35%'}}
             videoConstraints={videoConstraints} />
-          <button onClick={capture}>Capture photo</button>
-          <h1>Or</h1>
-          <h1>Enter your access token here</h1>
+          <button onClick={capture} style={{border: 'none', padding: '10px 20px',backgroundColor: '#f50057',color: 'white', marginLeft : '-15%'}}>Capture photo</button>
+          <h1 style={{marginLeft: '42%', marginTop: '3%'}}>Or</h1>
+          <h1 style={{marginLeft: '35%'}}>Enter your access token here</h1>
         </>
       );
      }
      else if(auth==1)
      {
-         return<> <h1>Authenticating</h1>
+         return<> <h1 style={{textAlign : 'center'}}>Authenticating</h1>
          <CircleLoader css={{position: 'absolute', left: '50%', top: '50%',transform: 'translate(-50%, -50%)'}} size="400px"color="pink"/>;
          </>
      }

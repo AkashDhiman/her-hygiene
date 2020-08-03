@@ -31,6 +31,7 @@ import { subMonths } from "date-fns/esm";
 const LogPeriod3 = () => {
   const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(true);
+  // const currDate = Date.now();
   const currDate = subMonths(Date.now(),1);
   const [state, setState] = useState([]);
   const fetchLogMonth = async (date) => {

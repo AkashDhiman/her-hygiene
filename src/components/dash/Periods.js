@@ -79,8 +79,8 @@ export default function Periods() {
       let data = [];
       logRef.forEach((doc) => { // need to write a sort by 
         const t = {
-          "period Length": Math.abs(doc.data().periodLength || 5),
-          "cycle Length": doc.data().cycleLength ,
+          "period Length": Math.abs(doc.data().cycleLength || 5),
+          "cycle Length": doc.data().cycleTotal ,
           "name": `${format(startOfMonth(doc.data().endDate.toDate()), "MMM yy")}`,
           // weight: 10,
           // height: 20,

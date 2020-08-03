@@ -17,8 +17,14 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Cardy from "./cards";
 import Button from "@material-ui/core/Button";
-import axios from 'axios'
-import { useOverShadowStyles } from '@mui-treasury/styles/shadow/over';
+import axios from "axios";
+import { useOverShadowStyles } from "@mui-treasury/styles/shadow/over";
+import ChevronRightRounded from "@material-ui/icons/ChevronRightRounded";
+import TextInfoContent from "@mui-treasury/components/content/textInfo";
+import { useWideCardMediaStyles } from "@mui-treasury/styles/cardMedia/wide";
+import { useN01TextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/n01";
+import { useBouncyShadowStyles } from "@mui-treasury/styles/shadow/bouncy";
+import edu8 from "./edu8.jpg";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -150,6 +156,16 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "5%",
       marginBottom: "15%",
     },
+    cardroot: {
+      maxWidth: 304,
+      margin: "auto",
+      boxShadow: "none",
+      borderRadius: 0,
+    },
+    cta: {
+      marginTop: 24,
+      textTransform: "initial",
+    },
   },
 }));
 
@@ -157,7 +173,7 @@ export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [user, setUser] = useContext(UserContext);
-  const shadowStyles = useOverShadowStyles();
+  // const shadowStyles = useOverShadowStyles();
 
   const logout = async () => {
     await auth.signOut();
@@ -172,21 +188,28 @@ export default function Dashboard() {
 
   const handleRetrain = async () => {
     const config = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     };
     const send = {
       id: user.data.uid,
     };
-    const res = await axios.post("https://herhygiene.herokuapp.com/retrain", send, config);
-    console.log(res)
-    window.location.reload()
+    const res = await axios.post(
+      "https://herhygiene.herokuapp.com/retrain",
+      send,
+      config
+    );
+    console.log(res);
+    window.location.reload();
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const fixedHeightPaper2 = clsx(classes.paper, classes.fixedHeight2);
   const cardyboi = clsx(classes.paper, classes.Cardy);
+  const mediaStyles = useWideCardMediaStyles();
+  const textCardContentStyles = useN01TextInfoContentStyles();
+  const shadowStyles = useBouncyShadowStyles();
   return (
     <>
       <CssBaseline />
@@ -206,174 +229,154 @@ export default function Dashboard() {
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
           <Paper className={fixedHeightPaper} elevation={3}>
-            <Periods/>
+            <Periods />
           </Paper>
         </Grid>
         <Grid item lg={9}>
           <Paper className={fixedHeightPaper} elevation={3}>
-          <Chart />
+            <Chart />
           </Paper>
         </Grid>
         <Grid item lg={3}>
-          <Button onClick={handleRetrain} variant="contained" size="large" className={classes.button2}>
+          <Button
+            onClick={handleRetrain}
+            variant="contained"
+            size="large"
+            className={classes.button2}
+          >
             Retrain
           </Button>
         </Grid>
         {/* Recent Deposits */}
 
         {/* Do you knowww */}
-        <Grid item xs={12}>
-          {/* <OwlCarousel className="owl-theme" loop margin={10} nav>
-        <div class="item">
-          <img src={cal} />
-        </div>
-        <div class="item">
-          <img src={cal} />
-        </div>
-        <div class="item">
-          <img src={cal} />
-        </div>
-        <div class="item">
-          <img src={cal} />
-        </div>
-        <div class="item">
-          <img src={cal} />
-        </div>
-      </OwlCarousel> */}
 
-          <Grid item xs={12}>
-            <h1
-              style={{
-                backgroundColor: "#ffa8bd",
-                padding: "1%",
-                color: "#ffffff",
-                marginBottom: "3%",
-              }}
-            >
-              Your Menstruation Guide
-            </h1>
+        <Grid item xs={12}>
+          <h1
+            style={{
+              backgroundColor: "#ffa8bd",
+              padding: "1%",
+              color: "#ffffff",
+              marginBottom: "3%",
+            }}
+          >
+            Your Menstruation Guide
+          </h1>
+        </Grid>
+        <Grid
+          container
+          spacing={3}
+          justify={"space-around"}
+          alignItems="flex-start"
+        >
+          <Grid item>
+            <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
+              <CardMedia classes={mediaStyles} image={edu8} />
+              <CardContent>
+                <TextInfoContent
+                  classes={textCardContentStyles}
+                  overline={"March 20, 2019"}
+                  heading={"What happened in Thailand?"}
+                  body={
+                    "Kayaks crowd Three Sisters Springs, where people and manatees maintain controversial coexistence."
+                  }
+                />
+                <Button color={"primary"} fullWidth className={classes.cta}>
+                  Find Out More <ChevronRightRounded />
+                </Button>
+              </CardContent>
+            </Card>
           </Grid>
-          <Grid
+
+          <Grid item>
+            <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
+              <CardMedia classes={mediaStyles} image={edu8} />
+              <CardContent>
+                <TextInfoContent
+                  classes={textCardContentStyles}
+                  overline={"March 20, 2019"}
+                  heading={"What happened in Thailand?"}
+                  body={
+                    "Kayaks crowd Three Sisters Springs, where people and manatees maintain controversial coexistence."
+                  }
+                />
+                <Button color={"primary"} fullWidth className={classes.cta}>
+                  Find Out More <ChevronRightRounded />
+                </Button>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item>
+            <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
+              <CardMedia classes={mediaStyles} image={edu8} />
+              <CardContent>
+                <TextInfoContent
+                  classes={textCardContentStyles}
+                  overline={"March 20, 2019"}
+                  heading={"What happened in Thailand?"}
+                  body={
+                    "Kayaks crowd Three Sisters Springs, where people and manatees maintain controversial coexistence."
+                  }
+                />
+                <Button color={"primary"} fullWidth className={classes.cta}>
+                  Find Out More <ChevronRightRounded />
+                </Button>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item>
+            <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
+              <CardMedia classes={mediaStyles} image={edu8} />
+              <CardContent>
+                <TextInfoContent
+                  classes={textCardContentStyles}
+                  overline={"March 20, 2019"}
+                  heading={"What happened in Thailand?"}
+                  body={
+                    "Kayaks crowd Three Sisters Springs, where people and manatees maintain controversial coexistence."
+                  }
+                />
+                <Button color={"primary"} fullWidth className={classes.cta}>
+                  Find Out More <ChevronRightRounded />
+                </Button>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </Grid>
+
+      {/* <Grid item xs={12} sm={6} md={4}
             container
             spacing={3}
             justify={"space-around"}
             alignItems="flex-start"
           >
             <Grid item>
-              <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
-                <CardContent variant="outlined">
-                  <Typography
-                    variant="h3"
-                    component="h2"
-                    style={{
-                      fontSize: "2rem",
-                      marginBottom: "5%",
-                      fontWeight: 700,
-                    }}
-                  >
-                    Most Common Events associated with Periods :
-                  </Typography>
-                  <Typography className={classes.pos} color="textSecondary">
-                    <ul style={{ fontSize: "1.25rem", color: "black" }}>
-                      <li>Backache</li>
-                      <li>Bloating</li>
-                      <li>Cramps</li>
-                      <li>Mood Swings</li>
-                      <li>Tender Breasts</li>
-                      <li>Headache</li>
-                    </ul>
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
+            <Card className={clsx(classes.root, shadowStyles.root)}>
+      <CardMedia
+        classes={mediaStyles}
+        image={edu8}
+      />
+      <CardContent className={classes.content}>
+        <TextInfoContent
+          classes={textCardContentStyles}
+          overline={'March 20, 2019'}
+          heading={'What happened in Thailand?'}
+          body={
+            'Kayaks crowd Three Sisters Springs, where people and manatees maintain controversial coexistence.'
+          }
+        />
+        <Button color={'primary'} fullWidth className={classes.cta}>
+          Find Out More <ChevronRightRounded />
+        </Button>
+      </CardContent>
+    </Card>
+    </Grid>
+            </Grid> */}
 
-            <Grid item>
-              <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
-                <CardContent variant="outlined">
-                  <Typography
-                    variant="h3"
-                    component="h2"
-                    style={{
-                      fontSize: "2rem",
-                      marginBottom: "5%",
-                      fontWeight: 700,
-                    }}
-                  >
-                    Tips for combating cramps :
-                  </Typography>
-                  <Typography className={classes.pos} color="textSecondary">
-                    <ul style={{ fontSize: "1.25rem", color: "black" }}>
-                      <li>Backache</li>
-                      <li>Bloating</li>
-                      <li>Cramps</li>
-                      <li>Mood Swings</li>
-                      <li>Tender Breasts</li>
-                      <li>Headache</li>
-                    </ul>
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-
-            <Grid item>
-              <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
-                <CardContent variant="outlined">
-                  <Typography
-                    variant="h3"
-                    component="h2"
-                    style={{
-                      fontSize: "2rem",
-                      marginBottom: "5%",
-                      fontWeight: 700,
-                    }}
-                  >
-                    Most Common Events associated with Periods :
-                  </Typography>
-                  <Typography className={classes.pos} color="textSecondary">
-                    <ul style={{ fontSize: "1.25rem", color: "black" }}>
-                      <li>Backache</li>
-                      <li>Bloating</li>
-                      <li>Cramps</li>
-                      <li>Mood Swings</li>
-                      <li>Tender Breasts</li>
-                      <li>Headache</li>
-                    </ul>
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-
-            <Grid item>
-              <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
-                <CardContent variant="outlined">
-                  <Typography
-                    variant="h3"
-                    component="h2"
-                    style={{
-                      fontSize: "2rem",
-                      marginBottom: "5%",
-                      fontWeight: 700,
-                    }}
-                  >
-                    Most Common Events associated with Periods :
-                  </Typography>
-                  <Typography className={classes.pos} color="textSecondary">
-                    <ul style={{ fontSize: "1.25rem", color: "black" }}>
-                      <li>Backache</li>
-                      <li>Bloating</li>
-                      <li>Cramps</li>
-                      <li>Mood Swings</li>
-                      <li>Tender Breasts</li>
-                      <li>Headache</li>
-                    </ul>
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid>
-        </Grid>
-
-        {/* <Grid item xs="12">
+      {/* <Grid item xs="12">
             <Grid container spacing="2" xs="12">
               <Grid item xs={12} lg={4}>
               <Paper elevation={3} className={fixedHeightPaper2} style={{backgroundImage: 'linear-gradient(147deg, #ff9897 0%, #f650a0 74%)', color:'white'}}>
@@ -404,7 +407,7 @@ export default function Dashboard() {
               </Grid>
             </Grid>
         </Grid> */}
-        {/* <Grid container spacing={4}>
+      {/* <Grid container spacing={4}>
           <Grid item xs={4}>
             <Paper className={cardyboi}>
               <Typography variant="h1">Fact 1</Typography>
@@ -434,26 +437,25 @@ export default function Dashboard() {
           </Grid>
         </Grid> */}
 
-        {/* <Grid item xs={12} md={12} lg={9}>
+      {/* <Grid item xs={12} md={12} lg={9}>
               <BlogCardDemo2/>
             </Grid> */}
 
-        <Grid item xs={12}>
-          {/* <h1 style= {{backgroundColor:"#ef5779", padding : '2%' ,color: '#ffffff'}}>Your retraining status</h1> */}
-        </Grid>
-        <Grid item xs={12} md={6}>
-          {/* <Regular/> */}
-        </Grid>
-        <Grid item xs={12} md={6}>
-          {/* <Exercise/> */}
-        </Grid>
-        {/* <Grid item xs={12} md={6}>
+      <Grid item xs={12}>
+        {/* <h1 style= {{backgroundColor:"#ef5779", padding : '2%' ,color: '#ffffff'}}>Your retraining status</h1> */}
+      </Grid>
+      <Grid item xs={12} md={6}>
+        {/* <Regular/> */}
+      </Grid>
+      <Grid item xs={12} md={6}>
+        {/* <Exercise/> */}
+      </Grid>
+      {/* <Grid item xs={12} md={6}>
           <Mens1/>
           </Grid> */}
-        {/* <Grid item xs={12} md={6}>
+      {/* <Grid item xs={12} md={6}>
           <Mens2/>
           </Grid> */}
-      </Grid>
 
       {/* </Container> */}
       {/* </main> */}
