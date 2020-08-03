@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
+import Rating from '@material-ui/lab/Rating';
+
 import {
   Map as LeafletMap,
   TileLayer,
@@ -258,6 +260,44 @@ const RequestMarkers = ({
     console.log("request markers");
     setRequests([...requestDocs]);
   }, [requestDocs]);
+
+  const [requester, setRequester] = useState(null);
+  const [leafletref, setLeafletref] = useState(null);
+  const { map } = useLeaflet();
+  useEffect(() => {
+    return () => {
+      if (leafletref != null) map.removeControl(leafletref);
+    };
+  }, []);
+  const returnOut = (dummy) => {
+    const leafletElement = L.Routing.control({
+      waypoints: [
+        L.latLng(location[0], location[1]),
+        L.latLng(
+          dummy.location[0],
+          dummy.location[1]
+        ),
+      ],
+      router: L.Routing.mapbox(
+        "pk.eyJ1Ijoia2FuaXNoa2d1cHRhMjAwMCIsImEiOiJjazdpdmd5aG8wMDYwM2ZvN2U5eWs0Mm55In0.svdKVHGfRl4873N_UZBoaA"
+      ),
+      lineOptions: {
+        styles: [
+          {
+            color: "blue",
+            opacity: 0.6,
+            weight: 4,
+          },
+        ],
+      },
+      addWaypoints: false,
+      collapsible: true,
+      draggableWaypoints: false,
+      fitSelectedRoutes: false,
+      showAlternatives: false,
+    });
+    return leafletElement;
+  };
   return (
     <>
       {dummyRequests.map((dummy, i) => (
@@ -306,6 +346,30 @@ const RequestMarkers = ({
               </CardContent>
             </CardActionArea>
             <CardActions>
+            {leafletref == null ? (
+            <Button
+              onClick={() => {
+                let x = returnOut(dummy).addTo(map);
+                setLeafletref(x);
+              }}
+            >
+              Show Directions
+            </Button>
+          ) : (
+            <>
+              {" "}
+              <Button
+                onClick={() => {
+                  map.removeControl(leafletref);
+                  setLeafletref(null);
+                }}
+              >
+                Hide Directions
+              </Button>
+            </>
+          )}
+
+
               {/* <Button
             onClick={() => handleHelpingOthers(requestDoc, user, location)}
             variant="contained"
@@ -320,11 +384,27 @@ const RequestMarkers = ({
         </Marker>
       ))}
 
-      {requests.map((requestDoc) => (
+
+      {requests.map((requestDoc) =>{ 
+        let xIcon=null
+        if(requestDoc.data().requester.detail.photoURL){
+          xIcon = new L.icon({
+          iconUrl: requestDoc.data().requester.detail.photoURL,
+          iconRetinaUrl:requestDoc.data().requester.detail.photoURL,
+          iconAnchor: [10,10],
+          popupAnchor: [10,10],
+          shadowUrl: null,
+          shadowSize: null,
+          shadowAnchor: null,
+          iconSize: new L.Point(50, 50),
+          className: "marker",
+        });
+      }
+        return (<>
         <Marker
           key={requestDoc.data().id}
           position={requestDoc.data().requester.location}
-          icon={othersIcon}
+          icon={xIcon||othersIcon}
         >
           <Popup
             style={{
@@ -372,7 +452,7 @@ const RequestMarkers = ({
             </CardActions>
           </Popup>
         </Marker>
-      ))}
+      </>)})}
     </>
   );
 };
@@ -776,6 +856,8 @@ const Map = (props) => {
   const [helpedSuccessfully, setHelpedSuccessfully] = usePersistedState("helped successfully",false);
   const [requestFulfilled, setRequestFulfilled] = usePersistedState("request fulfilled",false);
   const [isOnline, setIsOnline] = useState(true);
+  const [value, setValue] = React.useState(2);
+
 
   const mapRef = useRef();
 
@@ -1062,6 +1144,8 @@ const Map = (props) => {
           </ListItemIcon>
           <ListItemText>
             <Button
+            component={Link}
+            to='/period'
               color="black"
               style={{ fontSize: "1.2rem", textTrandform: "none" }}
             >
@@ -1076,6 +1160,8 @@ const Map = (props) => {
           </ListItemIcon>
           <ListItemText>
             <Button
+            component={Link}
+            to='/portal'
               color="black"
               style={{ fontSize: "1.2rem", textTrandform: "none" }}
             >
@@ -1083,7 +1169,7 @@ const Map = (props) => {
             </Button>
           </ListItemText>
         </ListItem>
-        <ListItem>
+        {/* <ListItem>
           <ListItemIcon>
             {" "}
             <AccountCircleIcon style={{ fontSize: "30px", color: "#f50057" }} />
@@ -1096,8 +1182,7 @@ const Map = (props) => {
               Account
             </Button>
           </ListItemText>{" "}
-          {/*Link to Dashboard*/}
-        </ListItem>
+        </ListItem> */}
         <ListItem>
           <ListItemIcon>
             {" "}
@@ -1106,6 +1191,8 @@ const Map = (props) => {
           <ListItemText>
             <Button
               color="black"
+              component={Link}
+              to='/'
               style={{ fontSize: "1.2rem", textTrandform: "none" }}
             >
               Homepage
@@ -1150,7 +1237,7 @@ const Map = (props) => {
         <IconButton
           style={{
             position: "absolute",
-            top: "90px",
+            top: "120px",
             right: "40px",
             zIndex: "10",
             height: "48px",
@@ -1178,7 +1265,7 @@ const Map = (props) => {
         <IconButton
           style={{
             position: "absolute",
-            top: "140px",
+            top: "170px",
             right: "40px",
             zIndex: "10",
             height: "48px",
@@ -1211,7 +1298,7 @@ const Map = (props) => {
         <IconButton
           style={{
             position: "absolute",
-            top: "170px",
+            top: "200px",
             right: "40px",
             zIndex: "10",
             height: "48px",
@@ -1468,7 +1555,18 @@ const Map = (props) => {
                           textAlign: "center",
                         }}
                       >
-                        Your rating <br />
+                        Rating of our service <br />
+                        <Box component="fieldset" mb={3} borderColor="transparent">
+        {/* <Typography component="legend">Controlled</Typography> */}
+        <Rating
+        size="large"
+          name="simple-controlled"
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+        />
+      </Box>
                       </Typography>
                     </CardContent>
                   </CardActionArea>
@@ -1550,6 +1648,17 @@ const Map = (props) => {
                       >
                         Your rating <br />
                       </Typography>
+                      <Box component="fieldset" mb={3} borderColor="transparent">
+        {/* <Typography component="legend">Controlled</Typography> */}
+        <Rating
+        size="large"
+          name="simple-controlled"
+          value={value}
+          // onChange={(event, newValue) => {
+          //   setValue(newValue);
+          // }}
+        />
+      </Box>
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
@@ -1676,7 +1785,11 @@ const Map = (props) => {
           <Typography variant="h5" color="textSecondary" component="p">
             Don't worry, here are a few tricks and tips that might be of use!
           </Typography>
-      
+          <br/>
+          <Typography variant="h5" color="textSecondary" component="p">
+            Disclaimer: We do not promote these guidelines as the first preference over using menstrual hygiene products,we simply want to help the user if they are in grave emergency and no other options are available nearby.
+          </Typography>
+          <br/>
         {/* <Button size="small" color="primary">
           Share
         </Button>

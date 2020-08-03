@@ -26,6 +26,7 @@ const Menu2 = (props) => {
   const menu = props.dishes.map((dish, i) => {
     //probably a filter to check that user does not get self request if cancelled
     // console.log(dish.data().data())
+    console.log(dish.data().requester.detail)
     const namesplit = dish.data().requester.detail.name.split(" ");
     const fname = namesplit[0];
     const lname = namesplit[1];
@@ -50,7 +51,7 @@ const Menu2 = (props) => {
                 height="100%"
               >
                 <image
-                  xlinkHref ={dish.data().requester.photoURL||require("./assets/screenshot20.png")}
+                  xlinkHref ={dish.data().requester.detail.photoURL||require("./assets/screenshot20.png")}
                   x="0"
                   y="0"
                   width="112.00px"
