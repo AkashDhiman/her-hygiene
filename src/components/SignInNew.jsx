@@ -18,8 +18,6 @@ import Box from "@material-ui/core/Box";
 import SaveIcon from "@material-ui/icons/Save";
 import Google from "../utils/sign-in-with-google.png";
 
-
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -151,20 +149,21 @@ export default function SignInNew() {
               </Link>
             </Grid> */}
           </Grid>
+          <Grid>
+            Use Gmail to signIn instead
+            <button
+              className="icon"
+              onClick={() => {
+                signInWithGoogle();
+              }}
+            ></button>
+          </Grid>
         </form>
       </div>
-
-      <button
-        className="icon"
-        onClick={() => {
-          signInWithGoogle();
-        }}
-      ></button>
       {/* <Box mt={8}>
         <Copyright />
       </Box> */}
     </Container>
-  
   );
 }
 
