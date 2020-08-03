@@ -9,6 +9,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import Image from "./landing/components/elements/Image";
 
 import { signInWithGoogle, auth } from "../utils/firebase";
 
@@ -79,9 +80,19 @@ export default function SignInNew() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
+        <Image
+          // className={classes.avatar}
+          src={require("./landing/assets/images/logo.svg")}
+          alt="Open"
+          width={32}
+          height={32}
+          style={{
+            display: "inline",
+            borderRadius: "50%",
+            width: "45px",
+            height: "45px",
+          }}
+        />
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
@@ -130,12 +141,11 @@ export default function SignInNew() {
           <Button
             type="submit"
             fullWidth
-            size="large"
             variant="contained"
-            color="primary"
+            size="large"
             className={classes.button}
           >
-            Sign In
+            <strong style={{ fontSize: "1.2em" }}>Sign In</strong>
           </Button>
           <Grid container>
             <Grid item xs>
