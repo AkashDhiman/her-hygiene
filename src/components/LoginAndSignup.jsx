@@ -57,7 +57,12 @@ const LoginAndSignup = () => {
       {homePage ? (
         <Dash toggleHandler={toggleHandler} />
       ) : (
-        <>
+        <div
+          style={{
+            maxWidth: "400px",
+            margin: "auto",
+          }}
+        >
           <Button
             type="submit"
             fullWidth
@@ -81,7 +86,7 @@ const LoginAndSignup = () => {
           >
             {buttonText}
           </Button>
-        </>
+        </div>
       )}
     </>
   );
