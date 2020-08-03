@@ -57,32 +57,32 @@ export default function Regular() {
 const MyResponsivePie = () => {
   const data=[
     {
-      "id": "stylus",
-      "label": "stylus",
+      "id": "regular",
+      "label": "",
       "value": 171,
       "color": "hsl(65, 70%, 50%)"
     },
     {
-      "id": "go",
-      "label": "go",
+      "id": "irregular",
+      "label": "",
       "value": 115,
       "color": "hsl(19, 70%, 50%)"
     },
     {
-      "id": "rust",
-      "label": "rust",
+      "id": "highly irregular",
+      "label": "",
       "value": 17,
       "color": "hsl(340, 70%, 50%)"
     },
     {
-      "id": "scala",
-      "label": "scala",
+      "id": "need to consult OBGYN",
+      "label": "",
       "value": 325,
       "color": "hsl(278, 70%, 50%)"
     },
     {
-      "id": "hack",
-      "label": "hack",
+      "id": "fairly regular",
+      "label": "",
       "value": 500,
       "color": "hsl(134, 70%, 50%)"
     }
@@ -182,24 +182,24 @@ const MyResponsivePie = () => {
             }
         ]}
         legends={[
-            {
-                anchor: 'bottom',
-                direction: 'row',
-                translateY: 56,
-                itemWidth: 100,
-                itemHeight: 18,
-                itemTextColor: '#999',
-                symbolSize: 18,
-                symbolShape: 'circle',
-                effects: [
-                    {
-                        on: 'hover',
-                        style: {
-                            itemTextColor: '#000'
-                        }
-                    }
-                ]
-            }
+            // {
+            //     anchor: 'bottom',
+            //     direction: 'row',
+            //     translateY: 56,
+            //     itemWidth: 100,
+            //     itemHeight: 18,
+            //     itemTextColor: '#999',
+            //     symbolSize: 18,
+            //     symbolShape: 'circle',
+            //     effects: [
+            //         {
+            //             on: 'hover',
+            //             style: {
+            //                 itemTextColor: '#000'
+            //             }
+            //         }
+            //     ]
+            // }
         ]}
     />
 
