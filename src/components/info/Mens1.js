@@ -1,7 +1,18 @@
-import React from 'react';
-import { useTheme } from '@material-ui/core/styles';
-import { BarChart,CartesianGrid,Tooltip,Legend,Bar, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
-import Title from './Title';
+import React from "react";
+import { useTheme } from "@material-ui/core/styles";
+import {
+  BarChart,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  Bar,
+  Line,
+  XAxis,
+  YAxis,
+  Label,
+  ResponsiveContainer,
+} from "recharts";
+import Title from "./Title";
 
 // Generate Sales Data
 // function createData(time, amount) {
@@ -20,23 +31,21 @@ import Title from './Title';
 //   createData('24:00', undefined),
 // ];
 
-
 const data = [
   {
-    "name": "No",
-    "count": 80,
+    name: "No",
+    count: 80,
   },
   {
-    "name": "Sometimes",
-    "count" : 47
+    name: "Sometimes",
+    count: 47,
   },
   {
-    "name": "yes",
-     "count": 23
+    name: "yes",
+    count: 23,
   },
-  
-]
-  
+];
+
 export default function Mens1() {
   const theme = useTheme();
 
@@ -44,16 +53,15 @@ export default function Mens1() {
     <React.Fragment>
       <Title>Today</Title>
       <ResponsiveContainer>
-       
-     <BarChart width={730} height={250} data={data}>
-  <CartesianGrid strokeDasharray="3 3" />
-  <XAxis dataKey="name" />
-  <YAxis />
-  <Tooltip />
-  <Legend />
-  <Bar dataKey="count" fill="#8884d8" />
-  {/* <Bar dataKey="uv" fill="#ff70e5" /> */}
-</BarChart>
+        <BarChart width={730} height={250} data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="count" fill="#8884d8" />
+          {/* <Bar dataKey="uv" fill="#ff70e5" /> */}
+        </BarChart>
       </ResponsiveContainer>
     </React.Fragment>
   );

@@ -55,7 +55,7 @@ const Card = ({ position, detail }) => {
       </div>
     </>
   );
-}; 
+};
 
 const HelpingInterface = ({ handleCancelHelp, requestDoc }) => {
   return (
@@ -204,22 +204,38 @@ const RequestedHelpInterface = ({ handleCancelRequest, handleFulfilled }) => {
   );
 };
 
-
-
 const Map = () => {
   const [requestDocs, setRequestDocs] = useState([]);
   const [user] = useContext(UserContext);
   const [location, setLocation] = usePersistedState("location", [0, 0]);
-  const [geohash, setGeohash] = usePersistedState("geohash",encode(location[0], location[1], 4));
+  const [geohash, setGeohash] = usePersistedState(
+    "geohash",
+    encode(location[0], location[1], 4)
+  );
   const [request, setRequest] = useState(null); // cyclic object error
   const [requestId, setRequestId] = usePersistedState("request id", undefined);
   const [isDefault, setIsDefault] = usePersistedState("default map", true);
   const [isHelping, setIsHelping] = usePersistedState("helping other", false);
-  const [requestedHelp, setRequestedHelp] = usePersistedState("requested help",false);
-  const [cancelledHelp, setCancelledHelp] = usePersistedState("cancelled help",false);
-  const [cancelledRequest, setCancelledRequest] = usePersistedState("cancelled request",false);
-  const [helpedSuccessfully, setHelpedSuccessfully] = usePersistedState("helped successfully",false);
-  const [requestFulfilled, setRequestFulfilled] = usePersistedState("request fulfilled",false);
+  const [requestedHelp, setRequestedHelp] = usePersistedState(
+    "requested help",
+    false
+  );
+  const [cancelledHelp, setCancelledHelp] = usePersistedState(
+    "cancelled help",
+    false
+  );
+  const [cancelledRequest, setCancelledRequest] = usePersistedState(
+    "cancelled request",
+    false
+  );
+  const [helpedSuccessfully, setHelpedSuccessfully] = usePersistedState(
+    "helped successfully",
+    false
+  );
+  const [requestFulfilled, setRequestFulfilled] = usePersistedState(
+    "request fulfilled",
+    false
+  );
 
   useEffect(() => {
     console.log("map 1");

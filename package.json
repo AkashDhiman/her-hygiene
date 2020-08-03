@@ -53,14 +53,15 @@
     "video-react": "^0.14.1"
   },
   "devDependencies": {
-    "prettier": "2.0.5",
+    "prettier": "^2.0.5",
     "serve": "^11.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "pretty": "prettier --write \"./**/*.{js,jsx,json,html}\""
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -21,19 +21,18 @@ const ViewCalendar = () => {
       let id = 0;
       const currDate = Date.now();
       s.forEach((doc) => {
-        console.log(doc.data())
-        if(doc.data().startDate)
-        {
-        let selection = {
-          key: `selection${startOfMonth(doc.data().endDate.toDate())}`,
-          num: id,
-          startDate: doc.data().startDate.toDate(),
-          endDate: doc.data().endDate.toDate(),
-          showDateDisplay: false,
-          disabled: true,
-        };
-        arr.push(selection);
-      }
+        console.log(doc.data());
+        if (doc.data().startDate) {
+          let selection = {
+            key: `selection${startOfMonth(doc.data().endDate.toDate())}`,
+            num: id,
+            startDate: doc.data().startDate.toDate(),
+            endDate: doc.data().endDate.toDate(),
+            showDateDisplay: false,
+            disabled: true,
+          };
+          arr.push(selection);
+        }
         id++;
       });
       // const selectionPredicted = {

@@ -20,13 +20,15 @@ const Bar = () => {
       const logRef = await db
         .collection("users")
         .doc(`${user.data.uid}`)
-        .collection("log").orderBy('endDate')
+        .collection("log")
+        .orderBy("endDate")
         .get();
       let data = [];
-      logRef.forEach((doc) => { // need to write a sort by 
+      logRef.forEach((doc) => {
+        // need to write a sort by
         const t = {
           periodLength: Math.abs(doc.data().periodLength || 5),
-          cycleLength: doc.data().cycleLength ,
+          cycleLength: doc.data().cycleLength,
           month: format(startOfMonth(doc.data().endDate.toDate()), "MMM yy"),
           weight: 10,
           height: 20,

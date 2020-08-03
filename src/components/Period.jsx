@@ -201,8 +201,6 @@ const RegForm = ({ user, handleRegister }) => {
   );
 };
 
-
-
 const DashBoard = (props) => {
   const { user, start, end } = props;
   const [cal, setCalDate] = useState({
@@ -210,23 +208,23 @@ const DashBoard = (props) => {
     futureDay: 0,
   });
 
-  const [fields,setFields]=useState({
-          weight:0,
-          height:0,
-          pcos:0,
-          pulseRate:0,
-          rr:0,
-          regularity:0,
-          hip:0,
-          waist:0,
-          weightGain:0,
-          skinDarkening:0,
-          pimples:0,
-          fastFood:0,
-          regExercise:0,
-          bpSystolic:0,
-          bpDiastolic:0,       
-  })
+  const [fields, setFields] = useState({
+    weight: 0,
+    height: 0,
+    pcos: 0,
+    pulseRate: 0,
+    rr: 0,
+    regularity: 0,
+    hip: 0,
+    waist: 0,
+    weightGain: 0,
+    skinDarkening: 0,
+    pimples: 0,
+    fastFood: 0,
+    regExercise: 0,
+    bpSystolic: 0,
+    bpDiastolic: 0,
+  });
 
   let { predictedStartDate, predictedEndDate } = user.data;
   const predictedStart = predictedStartDate ? predictedStartDate : start;
@@ -313,22 +311,25 @@ const DashBoard = (props) => {
       alignItems: "center",
     },
     form: {
-      '& > *': {
-        margin: theme.spacing(1,2),
-        width: '25ch',
+      "& > *": {
+        margin: theme.spacing(1, 2),
+        width: "25ch",
       },
     },
   }));
 
   const classes = useStyles();
   const [{ x, y }, set] = useSpring(() => ({ x: 0, y: 0 }));
-  const bind = useDrag(({ down, movement: [mx, my] }) => {set({ x: down ? mx : 0, y: down ? my : 0 });});
-  const bind2 = useDrag(({ down, movement: [mx, my] }) => {set({ x: down ? mx : 0, y: down ? my : 0 });});
-
+  const bind = useDrag(({ down, movement: [mx, my] }) => {
+    set({ x: down ? mx : 0, y: down ? my : 0 });
+  });
+  const bind2 = useDrag(({ down, movement: [mx, my] }) => {
+    set({ x: down ? mx : 0, y: down ? my : 0 });
+  });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name,value)
+    console.log(name, value);
     setFields({ ...fields, [name]: value });
   };
 
@@ -355,7 +356,6 @@ const DashBoard = (props) => {
   //     phone: "",
   //   });
   // };
-
 
   return (
     <>
@@ -416,7 +416,6 @@ const DashBoard = (props) => {
             <></>
           )} */}
 
-
                 {compareAsc(today, predictedStart.toDate()) >= 0 ? (
                   <>
                     {compareAsc(calDate, today) >= 1 ? (
@@ -460,7 +459,7 @@ const DashBoard = (props) => {
                   <>
                     <h1>In right place</h1>
                     {checkwithStart == -1 ? (
-                      <div style={{ fontSize: "30px",color:"red"}}>
+                      <div style={{ fontSize: "30px", color: "red" }}>
                         {" "}
                         period{" "}
                         {formatDistance(
@@ -473,7 +472,13 @@ const DashBoard = (props) => {
                       <></>
                     )}
                     {checkwithStart >= 0 && checkwithEnd <= 0 ? (
-                      <div style={{ fontSize: "30px",color:"green",backgroundColor:"white" }}>
+                      <div
+                        style={{
+                          fontSize: "30px",
+                          color: "green",
+                          backgroundColor: "white",
+                        }}
+                      >
                         Prediction: period
                         <br /> Day{" "}
                         {differenceInDays(
@@ -597,11 +602,10 @@ const DashBoard = (props) => {
             <Paper style={{ height: "400px", width: "100%" }}>
               <Bar />
             </Paper>
-          
           </div>
           <Paper>
-              {/* button  */}
-          {/* weight,-->numerical
+            {/* button  */}
+            {/* weight,-->numerical
           height,-->numerical
           pulseRate:null, -->numerical
           rr:null,-->numerical
@@ -620,23 +624,20 @@ const DashBoard = (props) => {
           bpSystolic:null,-->slider 
           bpDiastolic:null, -->slider        
            */}
-           <form className={classes.form} noValidate autoComplete="off">
-  <TextField id="standard-basic" label="Height" />
-  <TextField id="standard-basic" label="Weight" />
-  <TextField id="standard-basic" label="Pulse rate" />
-  <TextField id="standard-basic" label="rr" />
-  <TextField id="standard-basic" label="Hip" />
-  <TextField id="standard-basic" label="Waist" />
-</form>
-           
-            </Paper>
+            <form className={classes.form} noValidate autoComplete="off">
+              <TextField id="standard-basic" label="Height" />
+              <TextField id="standard-basic" label="Weight" />
+              <TextField id="standard-basic" label="Pulse rate" />
+              <TextField id="standard-basic" label="rr" />
+              <TextField id="standard-basic" label="Hip" />
+              <TextField id="standard-basic" label="Waist" />
+            </form>
+          </Paper>
         </Grid>
       </Grid>
     </>
   );
 };
-
-
 
 const Period = () => {
   const [user, setUser] = useContext(UserContext);
@@ -654,7 +655,7 @@ const Period = () => {
       end: firebase.firestore.Timestamp.fromDate(predictedEndDate),
     });
   };
-  
+
   if (user.data.isPeriodRegistered || isRegister.isRegistered) {
     return <DashBoard start={start} end={end} user={user} />;
   } else {
@@ -669,26 +670,6 @@ export default Period;
 {
   /* Here we write code for conditional rendering based on documentation flo */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 {
   /* 

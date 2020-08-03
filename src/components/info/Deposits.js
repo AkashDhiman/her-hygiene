@@ -47,13 +47,13 @@ const tileData = [
     img: image2,
     title: "Menstrual pain is just like a headache.",
     content:
-      "he menstrual pain is a medical condition called Dysmenorrhea. Approximately 20% of women have dysmenorrhea which is so severe that it hampers with their daily activities. Even for the remaining 80%, it is not “just like a headache”. It can affect the ability to concentrate and makes us more anxious. So if you feel like taking a day off to curl up your bed and rest until the cramps subside, listen to your body"
-     },
+      "he menstrual pain is a medical condition called Dysmenorrhea. Approximately 20% of women have dysmenorrhea which is so severe that it hampers with their daily activities. Even for the remaining 80%, it is not “just like a headache”. It can affect the ability to concentrate and makes us more anxious. So if you feel like taking a day off to curl up your bed and rest until the cramps subside, listen to your body",
+  },
   {
     img: image3,
     title: "Showering Will Cause Infertility ",
     content:
-    "t’s said (in old Afghan tradition) that during the week a woman has her period she cannot wash or shower or she will gazag. You’re probably thinking this is gross. It is. And it’s more than that--it’s a major risk for infection.  "    
+      "t’s said (in old Afghan tradition) that during the week a woman has her period she cannot wash or shower or she will gazag. You’re probably thinking this is gross. It is. And it’s more than that--it’s a major risk for infection.  ",
   },
   {
     img: image4,

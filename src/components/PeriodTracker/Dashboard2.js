@@ -280,18 +280,16 @@ export default function Dashboard() {
                   classes={textCardContentStyles}
                   overline={"March 20, 2019"}
                   heading={"Common Period Symptom"}
-                  body=
-                  {
+                  body={
                     <ul>
-                    <li>Backache</li>
-                    <li>Cramps</li>
-                    <li>Mood Swings</li>
-                    <li>Headche</li>
-                    <li>Bloating</li>
+                      <li>Backache</li>
+                      <li>Cramps</li>
+                      <li>Mood Swings</li>
+                      <li>Headche</li>
+                      <li>Bloating</li>
                     </ul>
                   }
                 />
-                  
               </CardContent>
             </Card>
           </Grid>
@@ -318,7 +316,6 @@ export default function Dashboard() {
               </CardContent>
             </Card>
           </Grid>
-
 
           <Grid item>
             <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
@@ -359,13 +356,11 @@ export default function Dashboard() {
                     </ul>
                   }
                 />
-                </CardContent>
+              </CardContent>
             </Card>
           </Grid>
-
         </Grid>
       </Grid>
-
 
       <Grid item xs={12}>
         {/* <h1 style= {{backgroundColor:"#ef5779", padding : '2%' ,color: '#ffffff'}}>Your retraining status</h1> */}

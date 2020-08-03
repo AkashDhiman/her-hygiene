@@ -1,7 +1,18 @@
-import React,{ useContext, useState, useEffect } from 'react';
-import { useTheme } from '@material-ui/core/styles';
-import { BarChart,CartesianGrid,Tooltip,Legend,Bar, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
-import Title from './Title';
+import React, { useContext, useState, useEffect } from "react";
+import { useTheme } from "@material-ui/core/styles";
+import {
+  BarChart,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  Bar,
+  Line,
+  XAxis,
+  YAxis,
+  Label,
+  ResponsiveContainer,
+} from "recharts";
+import Title from "./Title";
 import { UserContext } from "../../providers/UserProvider";
 import { db } from "../../utils/firebase";
 import { getMonth, startOfMonth, toDate } from "date-fns";
@@ -23,7 +34,6 @@ import { format } from "date-fns/esm";
 //   createData('21:00', 2400),
 //   createData('24:00', undefined),
 // ];
-
 
 // const data = [
 //   {
@@ -62,7 +72,7 @@ import { format } from "date-fns/esm";
 //     "pv": 4300
 //   }
 // ]
-  
+
 export default function Periods() {
   const theme = useTheme();
   const [user] = useContext(UserContext);
@@ -74,14 +84,19 @@ export default function Periods() {
       const logRef = await db
         .collection("users")
         .doc(`${user.data.uid}`)
-        .collection("log").orderBy('endDate')
+        .collection("log")
+        .orderBy("endDate")
         .get();
       let data = [];
-      logRef.forEach((doc) => { // need to write a sort by 
+      logRef.forEach((doc) => {
+        // need to write a sort by
         const t = {
           "period Length": Math.abs(doc.data().cycleLength || 5),
-          "cycle Length": doc.data().cycleTotal ,
-          "name": `${format(startOfMonth(doc.data().endDate.toDate()), "MMM yy")}`,
+          "cycle Length": doc.data().cycleTotal,
+          name: `${format(
+            startOfMonth(doc.data().endDate.toDate()),
+            "MMM yy"
+          )}`,
           // weight: 10,
           // height: 20,
         };
@@ -93,11 +108,9 @@ export default function Periods() {
     }
     run();
   }, []);
-  if(loading){
-    return<h1>loading</h1>
-  }
-  else{
-
+  if (loading) {
+    return <h1>loading</h1>;
+  } else {
     return (
       <React.Fragment>
         <Title>Your periods so far</Title>
@@ -124,22 +137,18 @@ export default function Periods() {
             <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={false} />
           </BarChart>
         */}
-       <BarChart width={730} height={250} data={data}>
-    <CartesianGrid strokeDasharray="3 3" />
-    <XAxis dataKey="name" />
-    <YAxis />
-    <Tooltip />
-    <Legend />
-    
-          
+          <BarChart width={730} height={250} data={data}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
 
-    <Bar dataKey="cycle Length" fill="#8884d8" />
-    <Bar dataKey="period Length" fill="#ff70e5" />
-  </BarChart>
+            <Bar dataKey="cycle Length" fill="#8884d8" />
+            <Bar dataKey="period Length" fill="#ff70e5" />
+          </BarChart>
         </ResponsiveContainer>
       </React.Fragment>
     );
   }
-
-  
 }

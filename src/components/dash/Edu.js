@@ -53,7 +53,8 @@ export const Edu = React.memo(function BlogCard() {
     <Card className={cx(styles.root, shadowStyles.root)}>
       <CardContent component={Link} to={"/edu"}>
         <h1 style={{ color: "#ffffff", margin: 0 }}>
-          Get to know <br/>more about Menstruation
+          Get to know <br />
+          more about Menstruation
         </h1>
       </CardContent>
       <img height={100} src={edu} style={{ marginTop: "5%" }} />

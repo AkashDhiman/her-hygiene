@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import { useBlogTextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/blog";
 import { useOverShadowStyles } from "@mui-treasury/styles/shadow/over";
 import cal from "./cal.svg";
-import {Link} from '@reach/router'
+import { Link } from "@reach/router";
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   root: {
     width: "100%",
@@ -49,7 +49,11 @@ export const Deposits = React.memo(function BlogCard() {
   } = useBlogTextInfoContentStyles();
   const shadowStyles = useOverShadowStyles();
   return (
-    <Card component={Link} to='/period' className={cx(styles.root, shadowStyles.root)}>
+    <Card
+      component={Link}
+      to="/period"
+      className={cx(styles.root, shadowStyles.root)}
+    >
       <CardContent>
         <h1 style={{ color: "#ffffff", margin: 0 }}>
           Go To <br /> Period Tracker

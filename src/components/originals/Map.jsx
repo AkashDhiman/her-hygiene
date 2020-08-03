@@ -20,9 +20,6 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import { InputGroup } from "reactstrap";
 // import Appbar from "./Side.js";
 
-
-
-
 const items = ["save item", "open item", "share item", "delete item", "cancel"];
 const height = items.length * 60 + 80;
 
@@ -126,7 +123,7 @@ const Helper = ({ request, location }) => {
     });
     console.log("chomu");
     return () => {
-          if(leafletref!=null)  map.removeControl(leafletref);
+      if (leafletref != null) map.removeControl(leafletref);
 
       unsubscribe();
     };
@@ -144,25 +141,28 @@ const Helper = ({ request, location }) => {
         <Marker position={helper.location} icon={othersIcon}>
           <Popup>
             hey!
-            {leafletref==null?<button
-              onClick={() => {
-        
-                let x = returnOut(helper).addTo(map);
-                setLeafletref(x);
-                
-              }}
-            >
-              Show Directions
-            </button>:<> <button
-              onClick={() => {
-                map.removeControl(leafletref);
-                setLeafletref(null)
-
-              }}
-            >
-              Hide Directions
-            </button></>}
-           
+            {leafletref == null ? (
+              <button
+                onClick={() => {
+                  let x = returnOut(helper).addTo(map);
+                  setLeafletref(x);
+                }}
+              >
+                Show Directions
+              </button>
+            ) : (
+              <>
+                {" "}
+                <button
+                  onClick={() => {
+                    map.removeControl(leafletref);
+                    setLeafletref(null);
+                  }}
+                >
+                  Hide Directions
+                </button>
+              </>
+            )}
           </Popup>
         </Marker>
       </>
@@ -188,7 +188,7 @@ const Requester = ({ request, mapRef, location }) => {
       console.log(x + " " + y);
     });
     return () => {
-      if(leafletref!=null)  map.removeControl(leafletref);
+      if (leafletref != null) map.removeControl(leafletref);
 
       unsubscribe();
     };
@@ -225,23 +225,28 @@ const Requester = ({ request, mapRef, location }) => {
       <>
         <Marker position={requester.location} icon={othersIcon}>
           <Popup>
-          {leafletref==null?<button
-              onClick={() => {
-        
-                let x = returnOut(requester).addTo(map);
-                setLeafletref(x);
-                
-              }}
-            >
-              Show Directions
-            </button>:<> <button
-              onClick={() => {
-                map.removeControl(leafletref);
-                setLeafletref(null)
-              }}
-            >
-              Hide Directions
-            </button></>}
+            {leafletref == null ? (
+              <button
+                onClick={() => {
+                  let x = returnOut(requester).addTo(map);
+                  setLeafletref(x);
+                }}
+              >
+                Show Directions
+              </button>
+            ) : (
+              <>
+                {" "}
+                <button
+                  onClick={() => {
+                    map.removeControl(leafletref);
+                    setLeafletref(null);
+                  }}
+                >
+                  Hide Directions
+                </button>
+              </>
+            )}
           </Popup>
         </Marker>
       </>
@@ -390,86 +395,87 @@ const Map = () => {
 
   return (
     <>
-    <div class="flex-container">
-    <div className= "wrapper-1">
-    {/* <Appbar/> */}
-    </div>
-    <div className= "wrapper-2">
-    <a.div className="bg" onClick={() => close()} style={bgStyle}>
-        <LeafletMap ref={mapRef} center={location} zoom={17}>
-          <TileLayer
-            url={"https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}
-          />
-          <Marker position={location} icon={userIcon} />
-          {isDefault ? (
-            <Requests
-              sendUp={(requests) => setRenderRequests(requests)}
-              onHelp={(request) => setRequest(request)}
-              toggleState={toggleState}
-              location={location}
-              user={user}
-            />
-          ) : (
-            <></>
-          )}
-          {hasRequested ? (
-            <Helper location={location} request={request} />
-          ) : (
-            <></>
-          )}
-          {isHelping ? (
-            <Requester location={location} mapRef={mapRef} request={request} />
-          ) : (
-            <></>
-          )}
-          {/* ROUTING LAYER CALL KARO YAHA PE DONO KE */}
-        </LeafletMap>
-      </a.div>
-      <div className="action-btn" onClick={open} />
-      
-      <a.div
-        className="sheet"
-        {...bind()}
-        style={{ display, bottom: `calc(-80vh + ${height - 100}px)`, y }}
-      >
-        {isDefault ? (
-          <>
-            <button className="request-help-btn" onClick={handleRequest}>
-              Request Help
-            </button>
-            <PerfectScrollbar style={{ height: "100%" }}>
-              {/* <Menu user={user} location={location} dishes={renderRequests} /> */}
-            </PerfectScrollbar>
-          </>
-        ) : (
-          <></>
-        )}
-        {hasRequested ? (
-          <>
-            {/* <button className="request-help-btn" onClick={handleCancelRequest}>
+      <div class="flex-container">
+        <div className="wrapper-1">{/* <Appbar/> */}</div>
+        <div className="wrapper-2">
+          <a.div className="bg" onClick={() => close()} style={bgStyle}>
+            <LeafletMap ref={mapRef} center={location} zoom={17}>
+              <TileLayer
+                url={"https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}
+              />
+              <Marker position={location} icon={userIcon} />
+              {isDefault ? (
+                <Requests
+                  sendUp={(requests) => setRenderRequests(requests)}
+                  onHelp={(request) => setRequest(request)}
+                  toggleState={toggleState}
+                  location={location}
+                  user={user}
+                />
+              ) : (
+                <></>
+              )}
+              {hasRequested ? (
+                <Helper location={location} request={request} />
+              ) : (
+                <></>
+              )}
+              {isHelping ? (
+                <Requester
+                  location={location}
+                  mapRef={mapRef}
+                  request={request}
+                />
+              ) : (
+                <></>
+              )}
+              {/* ROUTING LAYER CALL KARO YAHA PE DONO KE */}
+            </LeafletMap>
+          </a.div>
+          <div className="action-btn" onClick={open} />
+
+          <a.div
+            className="sheet"
+            {...bind()}
+            style={{ display, bottom: `calc(-80vh + ${height - 100}px)`, y }}
+          >
+            {isDefault ? (
+              <>
+                <button className="request-help-btn" onClick={handleRequest}>
+                  Request Help
+                </button>
+                <PerfectScrollbar style={{ height: "100%" }}>
+                  {/* <Menu user={user} location={location} dishes={renderRequests} /> */}
+                </PerfectScrollbar>
+              </>
+            ) : (
+              <></>
+            )}
+            {hasRequested ? (
+              <>
+                {/* <button className="request-help-btn" onClick={handleCancelRequest}>
               Cancel Request
             </button>
             <button className="request-help-btn" onClick={handleHelpReceived}>
               Help Received
             </button> */}
-          </>
-        ) : (
-          <></>
-        )}
-        {isHelping ? (
-          <>
-            {/* <button className="request-help-btn" onClick={handleCancelHelp}>
+              </>
+            ) : (
+              <></>
+            )}
+            {isHelping ? (
+              <>
+                {/* <button className="request-help-btn" onClick={handleCancelHelp}>
               Cancel Help (Doesn't work)
             </button> */}
-            
-          </>
-        ) : (
-          <></>
-        )}
-      </a.div>
-    </div>
-    </div>
-          </>
+              </>
+            ) : (
+              <></>
+            )}
+          </a.div>
+        </div>
+      </div>
+    </>
   );
 };
 

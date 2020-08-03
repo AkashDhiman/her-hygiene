@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import Rating from '@material-ui/lab/Rating';
+import Rating from "@material-ui/lab/Rating";
 
 import {
   Map as LeafletMap,
@@ -21,8 +21,8 @@ import {
 } from "@material-ui/core";
 import { auth } from "../../utils/firebase";
 import { Link } from "@reach/router";
-import 'leaflet-offline';
-import localforage from 'localforage';
+import "leaflet-offline";
+import localforage from "localforage";
 
 import L from "leaflet";
 import "leaflet-routing-machine";
@@ -61,7 +61,7 @@ import WorkOutlineIcon from "@material-ui/icons/WorkOutline";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import HomeIcon from "@material-ui/icons/Home";
 import LocationSearchingIcon from "@material-ui/icons/LocationSearching";
-import HelpIcon from '@material-ui/icons/Help';
+import HelpIcon from "@material-ui/icons/Help";
 // import CancelHelp from "./cancelHelp";
 // import CancelRequest from "./cancelrequest";
 import Menu2 from "./help2";
@@ -273,10 +273,7 @@ const RequestMarkers = ({
     const leafletElement = L.Routing.control({
       waypoints: [
         L.latLng(location[0], location[1]),
-        L.latLng(
-          dummy.location[0],
-          dummy.location[1]
-        ),
+        L.latLng(dummy.location[0], dummy.location[1]),
       ],
       router: L.Routing.mapbox(
         "pk.eyJ1Ijoia2FuaXNoa2d1cHRhMjAwMCIsImEiOiJjazdpdmd5aG8wMDYwM2ZvN2U5eWs0Mm55In0.svdKVHGfRl4873N_UZBoaA"
@@ -346,29 +343,28 @@ const RequestMarkers = ({
               </CardContent>
             </CardActionArea>
             <CardActions>
-            {leafletref == null ? (
-            <Button
-              onClick={() => {
-                let x = returnOut(dummy).addTo(map);
-                setLeafletref(x);
-              }}
-            >
-              Show Directions
-            </Button>
-          ) : (
-            <>
-              {" "}
-              <Button
-                onClick={() => {
-                  map.removeControl(leafletref);
-                  setLeafletref(null);
-                }}
-              >
-                Hide Directions
-              </Button>
-            </>
-          )}
-
+              {leafletref == null ? (
+                <Button
+                  onClick={() => {
+                    let x = returnOut(dummy).addTo(map);
+                    setLeafletref(x);
+                  }}
+                >
+                  Show Directions
+                </Button>
+              ) : (
+                <>
+                  {" "}
+                  <Button
+                    onClick={() => {
+                      map.removeControl(leafletref);
+                      setLeafletref(null);
+                    }}
+                  >
+                    Hide Directions
+                  </Button>
+                </>
+              )}
 
               {/* <Button
             onClick={() => handleHelpingOthers(requestDoc, user, location)}
@@ -384,75 +380,79 @@ const RequestMarkers = ({
         </Marker>
       ))}
 
-
-      {requests.map((requestDoc) =>{ 
-        let xIcon=null
-        if(requestDoc.data().requester.detail.photoURL){
+      {requests.map((requestDoc) => {
+        let xIcon = null;
+        if (requestDoc.data().requester.detail.photoURL) {
           xIcon = new L.icon({
-          iconUrl: requestDoc.data().requester.detail.photoURL,
-          iconRetinaUrl:requestDoc.data().requester.detail.photoURL,
-          iconAnchor: [10,10],
-          popupAnchor: [10,10],
-          shadowUrl: null,
-          shadowSize: null,
-          shadowAnchor: null,
-          iconSize: new L.Point(50, 50),
-          className: "marker",
-        });
-      }
-        return (<>
-        <Marker
-          key={requestDoc.data().id}
-          position={requestDoc.data().requester.location}
-          icon={xIcon||othersIcon}
-        >
-          <Popup
-            style={{
-              width: "50px",
-              color: "black",
-              fontWeight: "bold",
-              textAlign: "center",
-              fontSize: "1.5rem",
-            }}
-          >
-            <CardActionArea>
-              <CardContent>
-                <Typography
-                  variant="h4"
-                  component="h2"
-                  className={classes.heading}
-                >
-                  {requestDoc.data().requester.detail.name}
-                </Typography>
-                <Typography
-                  variant="body1"
-                  component="h2"
-                  className={classes.name}
-                >
-                  {requestDoc.data().requester.detail.msg}
-                </Typography>
-                <Typography
-                  variant="body1"
-                  color="text "
-                  component="h2"
-                  style={{ fontSize: "1.25rem", textAlign: "center" }}
-                ></Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Button
-                onClick={() => handleHelpingOthers(requestDoc, user, location)}
-                variant="contained"
-                size="large"
-                color="secondary"
-                className={classes.button}
+            iconUrl: requestDoc.data().requester.detail.photoURL,
+            iconRetinaUrl: requestDoc.data().requester.detail.photoURL,
+            iconAnchor: [10, 10],
+            popupAnchor: [10, 10],
+            shadowUrl: null,
+            shadowSize: null,
+            shadowAnchor: null,
+            iconSize: new L.Point(50, 50),
+            className: "marker",
+          });
+        }
+        return (
+          <>
+            <Marker
+              key={requestDoc.data().id}
+              position={requestDoc.data().requester.location}
+              icon={xIcon || othersIcon}
+            >
+              <Popup
+                style={{
+                  width: "50px",
+                  color: "black",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  fontSize: "1.5rem",
+                }}
               >
-                Help them
-              </Button>
-            </CardActions>
-          </Popup>
-        </Marker>
-      </>)})}
+                <CardActionArea>
+                  <CardContent>
+                    <Typography
+                      variant="h4"
+                      component="h2"
+                      className={classes.heading}
+                    >
+                      {requestDoc.data().requester.detail.name}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      component="h2"
+                      className={classes.name}
+                    >
+                      {requestDoc.data().requester.detail.msg}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="text "
+                      component="h2"
+                      style={{ fontSize: "1.25rem", textAlign: "center" }}
+                    ></Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions>
+                  <Button
+                    onClick={() =>
+                      handleHelpingOthers(requestDoc, user, location)
+                    }
+                    variant="contained"
+                    size="large"
+                    color="secondary"
+                    className={classes.button}
+                  >
+                    Help them
+                  </Button>
+                </CardActions>
+              </Popup>
+            </Marker>
+          </>
+        );
+      })}
     </>
   );
 };
@@ -836,36 +836,54 @@ const HelperCard = ({ requestDoc }) => {
 
 const Map = (props) => {
   const [requestDocs, setRequestDocs] = useState([]);
-  const [dialog,setDialogOpen]=useState({
-    noHelp:false,
-    opened:false});
+  const [dialog, setDialogOpen] = useState({
+    noHelp: false,
+    opened: false,
+  });
   const [scroll, setScroll] = React.useState("paper");
 
-  const{noHelp,opened}=dialog
-  
+  const { noHelp, opened } = dialog;
+
   const [user] = useContext(UserContext);
   const [location, setLocation] = usePersistedState("location", [0, 0]);
-  const [geohash, setGeohash] = usePersistedState("geohash",encode(location[0], location[1], 8));
+  const [geohash, setGeohash] = usePersistedState(
+    "geohash",
+    encode(location[0], location[1], 8)
+  );
   const [request, setRequest] = useState(null); // cyclic object error
   const [requestId, setRequestId] = usePersistedState("request id", undefined);
   const [isDefault, setIsDefault] = usePersistedState("default map", true);
   const [isHelping, setIsHelping] = usePersistedState("helping other", false);
-  const [requestedHelp, setRequestedHelp] = usePersistedState("requested help",false);
-  const [cancelledHelp, setCancelledHelp] = usePersistedState("cancelled help",false);
-  const [cancelledRequest, setCancelledRequest] = usePersistedState("cancelled request",false);
-  const [helpedSuccessfully, setHelpedSuccessfully] = usePersistedState("helped successfully",false);
-  const [requestFulfilled, setRequestFulfilled] = usePersistedState("request fulfilled",false);
+  const [requestedHelp, setRequestedHelp] = usePersistedState(
+    "requested help",
+    false
+  );
+  const [cancelledHelp, setCancelledHelp] = usePersistedState(
+    "cancelled help",
+    false
+  );
+  const [cancelledRequest, setCancelledRequest] = usePersistedState(
+    "cancelled request",
+    false
+  );
+  const [helpedSuccessfully, setHelpedSuccessfully] = usePersistedState(
+    "helped successfully",
+    false
+  );
+  const [requestFulfilled, setRequestFulfilled] = usePersistedState(
+    "request fulfilled",
+    false
+  );
   const [isOnline, setIsOnline] = useState(true);
   const [value, setValue] = React.useState(2);
-
 
   const mapRef = useRef();
 
   const handlePopup = () => {
     console.log("after a long time");
-    setDialogOpen({  
-    noHelp: true,
-    opened:true
+    setDialogOpen({
+      noHelp: true,
+      opened: true,
     });
     // Add displayPopup code here
   };
@@ -905,16 +923,19 @@ const Map = (props) => {
   }, [requestedHelp]);
 
   useEffect(() => {
-      const map = L.map("map-id");
-      const offlineLayer = L.tileLayer.offline("https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2FuaXNoa2d1cHRhMjAwMCIsImEiOiJjazdpdmd5aG8wMDYwM2ZvN2U5eWs0Mm55In0.svdKVHGfRl4873N_UZBoaA", localforage, {
-      subdomains: "abc",
-      minZoom: 13,
-      maxZoom: 19,
-      crossOrigin: true
-      });
-      offlineLayer.addTo(map);
-      
-  }, [])
+    const map = L.map("map-id");
+    const offlineLayer = L.tileLayer.offline(
+      "https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2FuaXNoa2d1cHRhMjAwMCIsImEiOiJjazdpdmd5aG8wMDYwM2ZvN2U5eWs0Mm55In0.svdKVHGfRl4873N_UZBoaA",
+      localforage,
+      {
+        subdomains: "abc",
+        minZoom: 13,
+        maxZoom: 19,
+        crossOrigin: true,
+      }
+    );
+    offlineLayer.addTo(map);
+  }, []);
   useEffect(() => {
     console.log("map 1");
     const watcher = navigator.geolocation.watchPosition(
@@ -1144,8 +1165,8 @@ const Map = (props) => {
           </ListItemIcon>
           <ListItemText>
             <Button
-            component={Link}
-            to='/period'
+              component={Link}
+              to="/period"
               color="black"
               style={{ fontSize: "1.2rem", textTrandform: "none" }}
             >
@@ -1160,8 +1181,8 @@ const Map = (props) => {
           </ListItemIcon>
           <ListItemText>
             <Button
-            component={Link}
-            to='/portal'
+              component={Link}
+              to="/portal"
               color="black"
               style={{ fontSize: "1.2rem", textTrandform: "none" }}
             >
@@ -1192,7 +1213,7 @@ const Map = (props) => {
             <Button
               color="black"
               component={Link}
-              to='/'
+              to="/"
               style={{ fontSize: "1.2rem", textTrandform: "none" }}
             >
               Homepage
@@ -1307,9 +1328,11 @@ const Map = (props) => {
           }}
           color="inherit"
           edge="start"
-          onClick={() => {setDialogOpen({opened:true})}}
+          onClick={() => {
+            setDialogOpen({ opened: true });
+          }}
         >
-          <HelpIcon fontSize="large"/> 
+          <HelpIcon fontSize="large" />
         </IconButton>
       ) : (
         <></>
@@ -1351,47 +1374,47 @@ const Map = (props) => {
         <main className={classes.content}>
           {/* <div className={classes.toolbar} /> */}
           <div id="map-id">
-          <LeafletMap ref={mapRef} center={location} zoom={17}>
-            <TileLayer
-              url={
-                "https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2FuaXNoa2d1cHRhMjAwMCIsImEiOiJjazdpdmd5aG8wMDYwM2ZvN2U5eWs0Mm55In0.svdKVHGfRl4873N_UZBoaA"
-              }
-            />
-            <Marker position={location} icon={userIcon}>
-              <Popup
-                style={{
-                  width: "50px",
-                  color: "black",
-                  fontWeight: "bold",
-                  textAlign: "center",
-                  fontSize: "1.5rem",
-                }}
-              >
-                You
-              </Popup>
-            </Marker>
-            {isDefault ? (
-              <RequestMarkers
-                requestDocs={requestDocs}
-                dummyRequests={dummyRequests}
-                handleHelpingOthers={handleHelpingOthers}
-                user={user}
-                location={location}
+            <LeafletMap ref={mapRef} center={location} zoom={17}>
+              <TileLayer
+                url={
+                  "https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2FuaXNoa2d1cHRhMjAwMCIsImEiOiJjazdpdmd5aG8wMDYwM2ZvN2U5eWs0Mm55In0.svdKVHGfRl4873N_UZBoaA"
+                }
               />
-            ) : (
-              <></>
-            )}
-            {isHelping ? (
-              <RequesterMarker userLocation={location} requestDoc={request} />
-            ) : (
-              <></>
-            )}
-            {requestedHelp ? (
-              <HelperMarker userLocation={location} requestDoc={request} />
-            ) : (
-              <></>
-            )}
-          </LeafletMap>
+              <Marker position={location} icon={userIcon}>
+                <Popup
+                  style={{
+                    width: "50px",
+                    color: "black",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    fontSize: "1.5rem",
+                  }}
+                >
+                  You
+                </Popup>
+              </Marker>
+              {isDefault ? (
+                <RequestMarkers
+                  requestDocs={requestDocs}
+                  dummyRequests={dummyRequests}
+                  handleHelpingOthers={handleHelpingOthers}
+                  user={user}
+                  location={location}
+                />
+              ) : (
+                <></>
+              )}
+              {isHelping ? (
+                <RequesterMarker userLocation={location} requestDoc={request} />
+              ) : (
+                <></>
+              )}
+              {requestedHelp ? (
+                <HelperMarker userLocation={location} requestDoc={request} />
+              ) : (
+                <></>
+              )}
+            </LeafletMap>
           </div>
           <IconButton
             color="inherit"
@@ -1556,17 +1579,21 @@ const Map = (props) => {
                         }}
                       >
                         Rating of our service <br />
-                        <Box component="fieldset" mb={3} borderColor="transparent">
-        {/* <Typography component="legend">Controlled</Typography> */}
-        <Rating
-        size="large"
-          name="simple-controlled"
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-        />
-      </Box>
+                        <Box
+                          component="fieldset"
+                          mb={3}
+                          borderColor="transparent"
+                        >
+                          {/* <Typography component="legend">Controlled</Typography> */}
+                          <Rating
+                            size="large"
+                            name="simple-controlled"
+                            value={value}
+                            onChange={(event, newValue) => {
+                              setValue(newValue);
+                            }}
+                          />
+                        </Box>
                       </Typography>
                     </CardContent>
                   </CardActionArea>
@@ -1648,17 +1675,21 @@ const Map = (props) => {
                       >
                         Your rating <br />
                       </Typography>
-                      <Box component="fieldset" mb={3} borderColor="transparent">
-        {/* <Typography component="legend">Controlled</Typography> */}
-        <Rating
-        size="large"
-          name="simple-controlled"
-          value={value}
-          // onChange={(event, newValue) => {
-          //   setValue(newValue);
-          // }}
-        />
-      </Box>
+                      <Box
+                        component="fieldset"
+                        mb={3}
+                        borderColor="transparent"
+                      >
+                        {/* <Typography component="legend">Controlled</Typography> */}
+                        <Rating
+                          size="large"
+                          name="simple-controlled"
+                          value={value}
+                          // onChange={(event, newValue) => {
+                          //   setValue(newValue);
+                          // }}
+                        />
+                      </Box>
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
@@ -1765,176 +1796,192 @@ const Map = (props) => {
           )}
           {/* </div> */}
           <Dialog
-                    open={opened}
-                    onClose={()=>{setDialogOpen({opened:false,noHelp:true})}}
-                    scroll={scroll}
-                    aria-labelledby="scroll-dialog-title"
-                    aria-describedby="scroll-dialog-description"
-                  >
-                    <DialogContent dividers={scroll === "paper"}>
-                      <DialogContentText
-                        id="scroll-dialog-description"
-                        tabIndex={-1}
+            open={opened}
+            onClose={() => {
+              setDialogOpen({ opened: false, noHelp: true });
+            }}
+            scroll={scroll}
+            aria-labelledby="scroll-dialog-title"
+            aria-describedby="scroll-dialog-description"
+          >
+            <DialogContent dividers={scroll === "paper"}>
+              <DialogContentText id="scroll-dialog-description" tabIndex={-1}>
+                <Typography gutterBottom variant="h2" component="h2">
+                  Looks like we do not have any volunteers nearby!
+                </Typography>
+                <Typography variant="h5" color="textSecondary" component="p">
+                  Don't worry, here are a few tricks and tips that might be of
+                  use!
+                </Typography>
+                <br />
+                <Typography variant="h5" color="textSecondary" component="p">
+                  Disclaimer: We do not promote these guidelines as the first
+                  preference over using menstrual hygiene products,we simply
+                  want to help the user if they are in grave emergency and no
+                  other options are available nearby.
+                </Typography>
+                <br />
+                {/* <Button size="small" color="primary">
+          Share
+        </Button>
+        <Button size="small" color="primary">
+          Learn More
+        </Button> */}
+
+                {/* Card1 */}
+                <Card className={classes.root}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="Cotton"
+                      height="200"
+                      image={require("./assets/cotton.jpeg")}
+                      title="Cotton"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h2" component="h2">
+                        Cotton
+                      </Typography>
+                      <Typography
+                        variant="h5"
+                        color="textSecondary"
+                        component="p"
                       >
-  
-
-      
-          <Typography gutterBottom variant="h2" component="h2">
-            Looks like we do not have any volunteers nearby!
-          </Typography>
-          <Typography variant="h5" color="textSecondary" component="p">
-            Don't worry, here are a few tricks and tips that might be of use!
-          </Typography>
-          <br/>
-          <Typography variant="h5" color="textSecondary" component="p">
-            Disclaimer: We do not promote these guidelines as the first preference over using menstrual hygiene products,we simply want to help the user if they are in grave emergency and no other options are available nearby.
-          </Typography>
-          <br/>
-        {/* <Button size="small" color="primary">
+                        1. Use cotton wool to make a rectangular pad like shape
+                        <br />
+                        2. Wrap it with toilet paper or tissue paper to keep it
+                        secure <br />
+                        3. Remember, this can last upto 2 hours so use
+                        accordingly. <br />
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    {/* <Button size="small" color="primary">
           Share
         </Button>
         <Button size="small" color="primary">
           Learn More
         </Button> */}
-      
-  
-    {/* Card1 */}
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Cotton"
-         
-          height="200"
-          image= {require('./assets/cotton.jpeg')}
-          title="Cotton"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h2" component="h2">
-          Cotton
-          </Typography>
-          <Typography variant="h5" color="textSecondary" component="p">
-1. Use cotton wool to make a rectangular pad like shape<br/>
-2. Wrap it with toilet paper or tissue paper to keep it secure <br/>
-3. Remember, this can last upto 2 hours so use accordingly. <br/>
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        {/* <Button size="small" color="primary">
+                  </CardActions>
+                </Card>
+
+                {/* Card2 */}
+
+                <Card className={classes.root}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="Toilet Paper"
+                      height="200"
+                      image={require("./assets/toiletpaper.jpeg")}
+                      title="Toilet Paper"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h2" component="h2">
+                        Toilet paper
+                      </Typography>
+                      <Typography
+                        variant="h5"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        1. Make multiple layers of toilet paper to avoid leakage
+                        <br />
+                        2. Wrap the layers formed around your underwear to make
+                        it more secure
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    {/* <Button size="small" color="primary">
           Share
         </Button>
         <Button size="small" color="primary">
           Learn More
         </Button> */}
-      </CardActions>
-    </Card>
-      
-        {/* Card2 */}
-   
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Toilet Paper"
-          height="200"
-          image= {require('./assets/toiletpaper.jpeg')}
-          title="Toilet Paper"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h2" component="h2">
-          Toilet paper
-          </Typography>
-          <Typography variant="h5" color="textSecondary" component="p">
-1. Make multiple layers of toilet paper to avoid leakage
-<br/>
-2. Wrap the layers formed around your underwear to make it more secure
+                  </CardActions>
+                </Card>
+                {/* Card3 */}
 
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        {/* <Button size="small" color="primary">
+                <Card className={classes.root}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="Cloth"
+                      height="200"
+                      image={require("./assets/towel.jpeg")}
+                      title="Cloth"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h2" component="h2">
+                        Using Cloth
+                      </Typography>
+                      <Typography
+                        variant="h5"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        1. Check if the rags are liquid absorbent or not. <br />
+                        2. Fold the rag into a rectangular shape.
+                        <br />
+                        3. Remember, this is a temporary solution and can lead
+                        to health risks if used frequently.
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    {/* <Button size="small" color="primary">
           Share
         </Button>
         <Button size="small" color="primary">
           Learn More
         </Button> */}
-      </CardActions>
-    </Card>
-        {/* Card3 */}
+                  </CardActions>
+                </Card>
 
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Cloth"
-          height="200"
-          image= {require('./assets/towel.jpeg')}
-          title="Cloth"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h2" component="h2">
-          Using Cloth
-          </Typography>
-          <Typography variant="h5" color="textSecondary" component="p">
-1. Check if the rags are liquid absorbent or not. <br/>
-2. Fold the rag into a rectangular shape.<br/>
-3. Remember, this is a temporary solution and can lead to health risks if used frequently.
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        {/* <Button size="small" color="primary">
+                <Card className={classes.root}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="Socks"
+                      height="200"
+                      image={require("./assets/sock.jpeg")}
+                      title="Socks"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h2" component="h2">
+                        Socks
+                      </Typography>
+                      <Typography
+                        variant="h5"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        1. Socks are highly absorbent and can work in an
+                        emergency situation
+                        <br />
+                        2. Wrap toilet paper around your underwear to keep it
+                        secure
+                        <br />
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    {/* <Button size="small" color="primary">
           Share
         </Button>
         <Button size="small" color="primary">
           Learn More
         </Button> */}
-      </CardActions>
-    </Card>
-   
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Socks"
-          height="200"
-          image={require('./assets/sock.jpeg')}
-          title="Socks"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h2" component="h2">
-          Socks
-          </Typography>
-          <Typography variant="h5" color="textSecondary" component="p">
-1. Socks are highly absorbent and can work in an emergency situation<br/>
-2. Wrap toilet paper around your underwear to keep it secure<br/>
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        {/* <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button> */}
-      </CardActions>
-    </Card>
-              
-
-
-
-                      </DialogContentText>
-                    </DialogContent>
-                    {/* <DialogActions>
+                  </CardActions>
+                </Card>
+              </DialogContentText>
+            </DialogContent>
+            {/* <DialogActions>
                      
                     </DialogActions> */}
-                  </Dialog>
-                 
-
-
+          </Dialog>
         </main>
       </div>
     </>

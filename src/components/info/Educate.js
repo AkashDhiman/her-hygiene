@@ -15,7 +15,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 // import Link from "@material-ui/core/Link";
-import {Link} from '@reach/router'
+import { Link } from "@reach/router";
 import Deposits from "./Deposits";
 import BlogCardDemo from "./articles_1";
 import BlogCardDemo2 from "./articles_2";
@@ -158,7 +158,7 @@ export default function Edu() {
             // color="inherit"
             // noWrap
             component={Link}
-            to='/'
+            to="/"
             style={{ fontSize: "1.25rem", color: "white" }}
 
             // className={classes.title}
@@ -209,7 +209,7 @@ export default function Edu() {
                   padding: "1%",
                   color: "#ffffff",
                   marginBottom: "3%",
-                  fontSize: '3.5rem'
+                  fontSize: "3.5rem",
                 }}
               >
                 Govt. Schemes and Initiatives

@@ -33,7 +33,7 @@
 //       paddingTop: spacing(2),
 //     },
 //   },
- 
+
 //   content: {
 //     padding: 24,
 //   },
@@ -80,27 +80,27 @@ import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 700
+    maxWidth: 700,
   },
   media: {
     height: 0,
-    paddingTop: "56.25%" // 16:9
+    paddingTop: "56.25%", // 16:9
   },
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
     transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    })
+      duration: theme.transitions.duration.shortest,
+    }),
   },
   expandOpen: {
-    transform: "rotate(180deg)"
+    transform: "rotate(180deg)",
   },
   avatar: {
-    backgroundColor: red[500]
-  }
+    backgroundColor: red[500],
+  },
 }));
 
 export default function Map1() {
@@ -120,14 +120,22 @@ export default function Map1() {
         title="Paella dish"
       />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p" style={{fontSize: '1.25rem'}}>
-          Source : <a href= "https://nhm.gov.in/index1.php?lang=1&level=3&sublinkid=1021&lid=391">nhm.gov.in</a>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          style={{ fontSize: "1.25rem" }}
+        >
+          Source :{" "}
+          <a href="https://nhm.gov.in/index1.php?lang=1&level=3&sublinkid=1021&lid=391">
+            nhm.gov.in
+          </a>
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton
           className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded
+            [classes.expandOpen]: expanded,
           })}
           onClick={handleExpandClick}
           aria-expanded={expanded}
@@ -138,20 +146,26 @@ export default function Map1() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph style={{fontSize: '2rem'}}>Menstrual Hygiene Scheme by Govt.</Typography>
-          <Typography paragraph style={{fontSize: '1.5rem'}}>
-          According to the plan, in 107 districts, sanitary napkins were to be supplied by the government and 
-          in the remaining 45 districts, self-help groups were to make and sell them. Procurement of sanitary napkins, 
-          by either of the above methods, must be at a fixed price of Rs7.50 per pack of six sanitary napkins.
-          These sanitary pads are procured by the govt by setting up a bid for various manufacturers to compete and sell pads at 
-          the cost of 6-7 rupees a pack containing 6 pads. Govt has established ASHA workers in rural areas who will be responsible for 
-          distribution , they will make a 1 rupee profit on it.
-          A range of IEC material has been developed around MHS, using a 360 degree approach to create awareness among 
-          adolescent girls about safe and hygienic menstrual health practices which includes audio, video and reading materials for 
-          adolescent girls and job-aids for ASHAs and other field level functionaries for communicating with adolescent girls.
-
+          <Typography paragraph style={{ fontSize: "2rem" }}>
+            Menstrual Hygiene Scheme by Govt.
           </Typography>
-          
+          <Typography paragraph style={{ fontSize: "1.5rem" }}>
+            According to the plan, in 107 districts, sanitary napkins were to be
+            supplied by the government and in the remaining 45 districts,
+            self-help groups were to make and sell them. Procurement of sanitary
+            napkins, by either of the above methods, must be at a fixed price of
+            Rs7.50 per pack of six sanitary napkins. These sanitary pads are
+            procured by the govt by setting up a bid for various manufacturers
+            to compete and sell pads at the cost of 6-7 rupees a pack containing
+            6 pads. Govt has established ASHA workers in rural areas who will be
+            responsible for distribution , they will make a 1 rupee profit on
+            it. A range of IEC material has been developed around MHS, using a
+            360 degree approach to create awareness among adolescent girls about
+            safe and hygienic menstrual health practices which includes audio,
+            video and reading materials for adolescent girls and job-aids for
+            ASHAs and other field level functionaries for communicating with
+            adolescent girls.
+          </Typography>
         </CardContent>
       </Collapse>
     </Card>

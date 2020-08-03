@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import clsx from "clsx";
 import { Link } from "@reach/router";
-import CircleLoader from 'react-spinners/CircleLoader'
+import CircleLoader from "react-spinners/CircleLoader";
 
 import { auth } from "../../utils/firebase";
 import { makeStyles } from "@material-ui/core/styles";
@@ -467,7 +467,18 @@ export default function Portal() {
   };
 
   if (loading) {
-    return <CircleLoader css={{position: 'absolute', left: '50%', top: '50%',transform: 'translate(-50%, -50%)'}} size="400px"color="pink"/>;
+    return (
+      <CircleLoader
+        css={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+        size="400px"
+        color="pink"
+      />
+    );
   } else {
     return (
       <div className={classes.root}>
@@ -479,9 +490,9 @@ export default function Portal() {
         >
           <Toolbar className={classes.toolbar}>
             <Button
-            component={Link}
-            to='/'
-            style={{color: '#ffffff', fontSize: '1.5rem'}}
+              component={Link}
+              to="/"
+              style={{ color: "#ffffff", fontSize: "1.5rem" }}
               // component="h1"
               // variant="h6"
               // color="inherit"
@@ -490,11 +501,20 @@ export default function Portal() {
             >
               Dashboard
             </Button>
-            <Button component={Link} to={"/eportal"} style={{color: '#ffffff', fontSize: '1.5rem'}}>
+            <Button
+              component={Link}
+              to={"/eportal"}
+              style={{ color: "#ffffff", fontSize: "1.5rem" }}
+            >
               {" "}
               Opportunity creator{" "}
             </Button>
-            <Button onClick={logout} style={{color: '#ffffff', fontSize: '1.5rem'}}>LogOut</Button>
+            <Button
+              onClick={logout}
+              style={{ color: "#ffffff", fontSize: "1.5rem" }}
+            >
+              LogOut
+            </Button>
           </Toolbar>
         </AppBar>
         <main className={classes.content}>

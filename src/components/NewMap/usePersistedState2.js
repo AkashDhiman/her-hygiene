@@ -10,10 +10,6 @@ const usePersistedState = (key, defaultValue) => {
   return [state, setState];
 };
 
-
-
-
-
 const useStoredState = (key, defaultValue) => {
   const [state, setState] = useState(defaultValue);
 

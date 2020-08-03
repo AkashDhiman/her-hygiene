@@ -1,4 +1,3 @@
-
 import { UserContext } from "../../providers/UserProvider";
 import {
   addPeriodRegister,
@@ -758,7 +757,7 @@ const DashBoard = (props) => {
                 width: "100%",
                 backgroundImage: whichBackgroundColor(),
                 color: "white",
-                paddingBottom: 35
+                paddingBottom: 35,
               }}
             >
               <div style={{ textAlign: "center" }}>
@@ -1006,19 +1005,19 @@ const DashBoard = (props) => {
         
       </Button> */}
               <Grid container direction="row" justify="center" spacing={3}>
-              <Grid item xs={12} style={{paddingTop:0}}>
-          <h1
-            style={{
-              backgroundColor: "#ff4081",
-              padding: "1%",
-              color: "#ffffff",
-              textAlign: 'center',
-              fontSize: '2rem',
-            }}
-          >
-            Additional Parameters
-          </h1>
-        </Grid>
+                <Grid item xs={12} style={{ paddingTop: 0 }}>
+                  <h1
+                    style={{
+                      backgroundColor: "#ff4081",
+                      padding: "1%",
+                      color: "#ffffff",
+                      textAlign: "center",
+                      fontSize: "2rem",
+                    }}
+                  >
+                    Additional Parameters
+                  </h1>
+                </Grid>
                 <Dialog
                   open={isOpen}
                   onClose={handleClose}
@@ -1246,7 +1245,7 @@ const DashBoard = (props) => {
                   justify="center"
                   alignItems="center"
                   spacing={4}
-                  style={{paddingBottom :'50px'}}
+                  style={{ paddingBottom: "50px" }}
                 >
                   <Grid item>
                     <AwesomeButton
@@ -1275,7 +1274,7 @@ const DashBoard = (props) => {
                       aria-label="add an alarm"
                     >
                       {" "}
-                      Weight{" "}                       {/*Changed from rr temporarily*/}
+                      Weight {/*Changed from rr temporarily*/}
                     </AwesomeButton>
                   </Grid>
                   <Grid item>
@@ -1285,7 +1284,8 @@ const DashBoard = (props) => {
                       aria-label="add an alarm"
                     >
                       {" "}
-                      Physical Activity{" "}           {/*Changed from bp Diastolic temporarily*/}
+                      Physical Activity{" "}
+                      {/*Changed from bp Diastolic temporarily*/}
                     </AwesomeButton>
                   </Grid>
                   <Grid item>
@@ -1295,7 +1295,7 @@ const DashBoard = (props) => {
                       aria-label="add an alarm"
                     >
                       {" "}
-                      Waist{" "}                  {/*Changed temporarily from BP Systolic */}
+                      Waist {/*Changed temporarily from BP Systolic */}
                     </AwesomeButton>
                   </Grid>
                   <Grid item>
@@ -1313,7 +1313,7 @@ const DashBoard = (props) => {
                       onPress={handleClickOpen("paper", "More")}
                       size="Xlarge"
                       aria-label="add an alarm"
-                      style={{width: '300px'}}
+                      style={{ width: "300px" }}
                     >
                       {" "}
                       Input More Information{" "}

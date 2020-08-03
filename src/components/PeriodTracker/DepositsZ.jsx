@@ -8,7 +8,7 @@ import { useBlogTextInfoContentStyles } from "@mui-treasury/styles/textInfoConte
 import { useOverShadowStyles } from "@mui-treasury/styles/shadow/over";
 import cal from "./cal.svg";
 //Vishesh
-import {Link} from '@reach/router'
+import { Link } from "@reach/router";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 
@@ -55,7 +55,11 @@ export const Deposits = React.memo(function BlogCard() {
   } = useBlogTextInfoContentStyles();
   const shadowStyles = useOverShadowStyles();
   return (
-    <Card component={Link} to='/' className={cx(styles.root, shadowStyles.root)}>
+    <Card
+      component={Link}
+      to="/"
+      className={cx(styles.root, shadowStyles.root)}
+    >
       <CardContent>
         <h1 style={{ color: "#ffffff", margin: 0 }}>
           Go To <br /> Dashboard

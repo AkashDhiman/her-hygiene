@@ -25,10 +25,9 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Divider from "@material-ui/core/Divider";
 import SimpleTable from "./table";
-import SignProvider from './Signprovider'
+import SignProvider from "./Signprovider";
 
-import EmployerDashboard from './Employer/EmployerDashboard'
-
+import EmployerDashboard from "./Employer/EmployerDashboard";
 
 import "./styles.css";
 
@@ -143,37 +142,37 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     backgroundColor: "#f9cbd3",
   },
-  formQues :{
+  formQues: {
     // marginTop: '3%',
-    marginLeft: '5%',
-      marginBottom: 10,
+    marginLeft: "5%",
+    marginBottom: 10,
     maxWidth: 380,
-    fontSize: '2.5rem',
+    fontSize: "2.5rem",
     [theme.breakpoints.up("sm")]: {
-      marginLeft: '10%',
-      marginRight: '2%'
-    }
+      marginLeft: "10%",
+      marginRight: "2%",
+    },
     // width: 320,
     // marginBottom: '5%',
   },
   formInput: {
-    marginRight: '5px', 
-    marginLeft: '5px',
-    padding: '7%',
-    marginTop: '3%',
-    fontSize: '1.5rem', 
-    borderWidth: '0 0 3px',
-    borderColor: '#f50057'
+    marginRight: "5px",
+    marginLeft: "5px",
+    padding: "7%",
+    marginTop: "3%",
+    fontSize: "1.5rem",
+    borderWidth: "0 0 3px",
+    borderColor: "#f50057",
   },
-  formButton:{
-    marginLeft: '10px',
-    border: 'none',
-    padding: '0 4%',
-    borderRadius: 10, 
-    backgroundColor: '#f50057',
-    color: 'white',
-    fontSize: '1.5rem'
-  }
+  formButton: {
+    marginLeft: "10px",
+    border: "none",
+    padding: "0 4%",
+    borderRadius: 10,
+    backgroundColor: "#f50057",
+    color: "white",
+    fontSize: "1.5rem",
+  },
 }));
 
 const RegForm = ({ setIsEmployerRegistered }) => {
@@ -248,7 +247,9 @@ const RegForm = ({ setIsEmployerRegistered }) => {
                 </div>
               </Grid>
               <Grid item xs={12} md={6}>
-              <SignProvider setIsEmployerRegistered={setIsEmployerRegistered}/>
+                <SignProvider
+                  setIsEmployerRegistered={setIsEmployerRegistered}
+                />
               </Grid>
 
               <Grid item xs={12} md={6}>
@@ -267,12 +268,18 @@ export default function PortalH() {
   const [isEmployerRegistered, setIsEmployerRegistered] = useState(false);
   console.log(user.data);
 
-  if (user.data.isEmployerRegistered === true || isEmployerRegistered === true) {
-  return  <EmployerDashboard/>//here we will have employer dashboard
+  if (
+    user.data.isEmployerRegistered === true ||
+    isEmployerRegistered === true
+  ) {
+    return <EmployerDashboard />; //here we will have employer dashboard
   } else {
     return (
       <>
-        <RegForm user={user} setIsEmployerRegistered={setIsEmployerRegistered} />
+        <RegForm
+          user={user}
+          setIsEmployerRegistered={setIsEmployerRegistered}
+        />
       </>
     );
   }

@@ -2,10 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../providers/UserProvider";
 import { updateCurrentUseDocument } from "../../utils/firebase";
 
-
-
-
-const RegForm = ({ user ,setIsRegistered}) => {
+const RegForm = ({ user, setIsRegistered }) => {
   const [entity, setEntity] = useState(0);
   const [step, setStep] = useState(1);
 
@@ -54,9 +51,9 @@ const RegForm = ({ user ,setIsRegistered}) => {
       isjobRegistered,
     });
     setIsRegistered({
-        isjobRegistered:true,
-        isJobSeeker:true,
-    })
+      isjobRegistered: true,
+      isJobSeeker: true,
+    });
     // handleRegister(predictedStartDate, predictedEndDate);
   };
   const handleChangeSeeker = (event) => {
@@ -98,18 +95,18 @@ const RegForm = ({ user ,setIsRegistered}) => {
     const isEmployer = true;
     const isjobRegistered = true;
 
-    const { orgName, location,numOfEmployees } = employerfields;
+    const { orgName, location, numOfEmployees } = employerfields;
     await updateCurrentUseDocument(user, {
       orgName,
       location,
       numOfEmployees,
       isEmployer,
-      isjobRegistered
+      isjobRegistered,
     });
     setIsRegistered({
-        isjobRegistered:true,
-        isEmployer:true,
-    })
+      isjobRegistered: true,
+      isEmployer: true,
+    });
     // handleRegister(predictedStartDate, predictedEndDate);
   };
   const handleChangeEmployer = (event) => {
@@ -122,8 +119,20 @@ const RegForm = ({ user ,setIsRegistered}) => {
     return (
       <>
         <h1>What do you want to do</h1>
-        <button onClick={()=>{setEntity(1)}}>Seek Opportunity</button>
-        <button onClick={()=>{setEntity(2)}}>Create Opportunity</button>
+        <button
+          onClick={() => {
+            setEntity(1);
+          }}
+        >
+          Seek Opportunity
+        </button>
+        <button
+          onClick={() => {
+            setEntity(2);
+          }}
+        >
+          Create Opportunity
+        </button>
       </>
     );
   } else if (entity == 1) {
@@ -166,7 +175,13 @@ const RegForm = ({ user ,setIsRegistered}) => {
           )}
           {step == 3 ? (
             <>
-              <button onClick={()=>{setSeekerFields({ isSHG: true })}}>Yes</button>
+              <button
+                onClick={() => {
+                  setSeekerFields({ isSHG: true });
+                }}
+              >
+                Yes
+              </button>
               <input type="submit" value="SignUp" />
             </>
           ) : (
@@ -226,30 +241,29 @@ const RegForm = ({ user ,setIsRegistered}) => {
 
 const Job = () => {
   const [user, setUser] = useContext(UserContext);
-  const[isRegistered,setIsRegistered]=useState({
-      isjobRegistered:false,
-      isJobSeeker:false,
-      isEmployer:false,
-      isAdmin:false,
-  })
-  console.log(user.data)
-  const {isjobRegistered,isJobSeeker,isEmployer,isAdmin}=isRegistered
- 
-  if(user.data.isjobRegistered===true||isjobRegistered===true){
-    if (isJobSeeker||user.data.isJobSeeker) {
-        return <h1> I am Seeker Ridam Dashboard !</h1>;
+  const [isRegistered, setIsRegistered] = useState({
+    isjobRegistered: false,
+    isJobSeeker: false,
+    isEmployer: false,
+    isAdmin: false,
+  });
+  console.log(user.data);
+  const { isjobRegistered, isJobSeeker, isEmployer, isAdmin } = isRegistered;
 
-    } else if (isEmployer||user.data.isEmployer) {
-        return <h1> I am Employer To create</h1>;
-
-    } else if (isAdmin||user.data.isAdmin) {
+  if (user.data.isjobRegistered === true || isjobRegistered === true) {
+    if (isJobSeeker || user.data.isJobSeeker) {
+      return <h1> I am Seeker Ridam Dashboard !</h1>;
+    } else if (isEmployer || user.data.isEmployer) {
+      return <h1> I am Employer To create</h1>;
+    } else if (isAdmin || user.data.isAdmin) {
       return <h1> I am Gov</h1>;
     }
-  }
-  else{    
-        return(<> 
+  } else {
+    return (
+      <>
         <RegForm user={user} setIsRegistered={setIsRegistered} />
-        </>) 
+      </>
+    );
   }
 };
 
