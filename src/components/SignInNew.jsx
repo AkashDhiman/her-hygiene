@@ -150,13 +150,13 @@ export default function SignInNew() {
             </Grid> */}
           </Grid>
           <Grid>
-            Use Gmail to signIn instead
-            <button
-              className="icon"
-              onClick={() => {
-                signInWithGoogle();
-              }}
-            ></button>
+            <p onClick={() => signInWithGoogle()}>
+              <button
+                className="icon"
+                style={{ margin: "10px", display: "inline" }}
+              ></button>
+              Use Gmail to signIn instead{" "}
+            </p>
           </Grid>
         </form>
       </div>
