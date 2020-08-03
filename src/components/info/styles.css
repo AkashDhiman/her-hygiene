@@ -38,7 +38,7 @@
   margin-left: 45%;
     margin-top: 2%;
   }
-  @media only screen and (max-width){
+  @media only screen and (max-width: 600px){
     .video-react-big-play-button, .video-react-big-play-button-left{
       margin-left: 35%;
     }
@@ -52,5 +52,11 @@
   } */
   .video-react-control-bar .video-react-control-bar-auto-hide{
     display: none !important;
+  }
+
+  @media only screen and (max-width: 600px){
+    iframe{
+      width: 100%;
+    }
   }
   

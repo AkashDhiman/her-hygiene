@@ -26,6 +26,7 @@ import Regular from "./Regular";
 import Exercise from "./Exercise";
 import Periods from "./Periods";
 import Opp from "./Opp";
+import Edu from "./Edu";
 import Button from "@material-ui/core/Button";
 import { UserContext } from "../../providers/UserProvider";
 import work from "./images/work.svg";
@@ -208,18 +209,15 @@ export default function Dashboard() {
               </Paper>
             </Grid>
 
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <div className={classes.heading}>
-                  <h2>Start Building Your Own Career Now</h2>
-                </div>
-                <img src={work} style={{ height: 150, float: "right" }} />
-              </Paper>
-            </Grid>
-
-            <Grid item xs={12} md={4} lg={3}>
+            <Grid item xs={12} sm={6}>
               <Opp />
             </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <Edu />
+            </Grid>
+
+            
 
             <Grid item xs={12} md={6}>
               <BlogCardDemo />
