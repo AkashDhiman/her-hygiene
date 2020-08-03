@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { createUserProfileDocument, auth } from "../utils/firebase";
 import { isWithinInterval } from "date-fns";
+import Image from "./landing/components/elements/Image";
 
 function Copyright() {
   return (
@@ -97,9 +98,19 @@ export default function SignUp1() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
+        <Image
+          // className={classes.avatar}
+          src={require("./landing/assets/images/logo.svg")}
+          alt="Open"
+          width={32}
+          height={32}
+          style={{
+            display: "inline",
+            borderRadius: "50%",
+            width: "45px",
+            height: "45px",
+          }}
+        />
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
@@ -170,9 +181,10 @@ export default function SignUp1() {
             type="submit"
             fullWidth
             variant="contained"
+            size="large"
             className={classes.button}
           >
-            Sign Up
+            <strong style={{ fontSize: "1.2em" }}>Sign Up</strong>
           </Button>
           <Grid container justify="flex-end">
             {/* <Grid item>

@@ -26,7 +26,7 @@
   --loading-transition-speed: 6s;
   --loading-transition-end-speed: 0.3s;
   --transform-speed: 0.175s;
-  --button-primary-color: #ff93ac;
+  --button-primary-color: #ff4081;
   --button-primary-color-dark: #d37289;
   --button-primary-color-light: white;
   --button-primary-color-hover: #ff93ac;
@@ -1249,4 +1249,9 @@ span.aws-btn__bubble {
 .aws-btn--progress.aws-btn--secondary .aws-btn__progress:before,
 .aws-btn--progress.aws-btn--secondary .aws-btn__progress:after {
   color: #1e88e5;
+}
+
+.MuiGrid-root, .MuiGrid-item, .MuiGrid-grid-xs-12, .MuiGrid-grid-sm-12, .MuiGrid-grid-md-5, .MuiGrid-grid-lg-5
+{
+  margin-top: 30px;
 }

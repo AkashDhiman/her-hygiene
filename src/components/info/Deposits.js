@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     maxWidth: 1200,
-    height: 650,
+    height: 850,
   },
   icon: {
     color: "rgba(255, 255, 255, 0.54)",
@@ -45,15 +45,15 @@ const tileData = [
   },
   {
     img: image2,
-    title: "Myth2",
+    title: "Menstrual pain is just like a headache.",
     content:
-      "The blood discharged during menses is not impure or defiled and is very much normal. The altered assumption may be due to the fact that menstrual blood comes out of the vagina mixed with the uterine lining tissue which appears to be slightly different from blood that is not mixed with any tissue.",
-  },
+      "he menstrual pain is a medical condition called Dysmenorrhea. Approximately 20% of women have dysmenorrhea which is so severe that it hampers with their daily activities. Even for the remaining 80%, it is not “just like a headache”. It can affect the ability to concentrate and makes us more anxious. So if you feel like taking a day off to curl up your bed and rest until the cramps subside, listen to your body"
+     },
   {
     img: image3,
-    title: "Myth3",
+    title: "Showering Will Cause Infertility ",
     content:
-      "On attaining puberty, the female uterus starts forming a cushioning layer of tissues to receive and nourish the foetus on a periodic basis. When the baby isn’t conceived, the body flushes out the cushioning tissue and consequently some blood, which we observe during our period. If the female body is revered as the chalice of the divine, it should be so at all times. Why should those five days be an exception?",
+    "t’s said (in old Afghan tradition) that during the week a woman has her period she cannot wash or shower or she will gazag. You’re probably thinking this is gross. It is. And it’s more than that--it’s a major risk for infection.  "    
   },
   {
     img: image4,
@@ -95,7 +95,7 @@ export default function Deposits() {
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={270} className={classes.gridList}>
+      <GridList cellHeight={374} className={classes.gridList}>
         <GridListTile
           key="Subheader"
           cols={2}
@@ -107,10 +107,10 @@ export default function Deposits() {
           <ListSubheader
             component="div"
             style={{
-              fontSize: "2rem",
+              fontSize: "3.5rem",
               fontWeight: "bold",
               textAlign: "center",
-              marginTop: "2%",
+              marginTop: "1%",
               color: "white",
             }}
           >

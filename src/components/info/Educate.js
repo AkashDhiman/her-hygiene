@@ -204,6 +204,7 @@ export default function Edu() {
                   padding: "1%",
                   color: "#ffffff",
                   marginBottom: "3%",
+                  fontSize: '3.5rem'
                 }}
               >
                 Govt. Schemes and Initiatives

@@ -25,6 +25,9 @@ import { useWideCardMediaStyles } from "@mui-treasury/styles/cardMedia/wide";
 import { useN01TextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/n01";
 import { useBouncyShadowStyles } from "@mui-treasury/styles/shadow/bouncy";
 import edu8 from "./edu8.jpg";
+import edu9 from "./edu9.jpg";
+import edu10 from "./edu10.jpg";
+import edu11 from "./edu11.jpg";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -270,176 +273,99 @@ export default function Dashboard() {
           alignItems="flex-start"
         >
           <Grid item>
-            <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
+            <Card className={shadowStyles.root} style={{ maxWidth: 300 }}>
               <CardMedia classes={mediaStyles} image={edu8} />
               <CardContent>
                 <TextInfoContent
                   classes={textCardContentStyles}
                   overline={"March 20, 2019"}
-                  heading={"What happened in Thailand?"}
-                  body={
-                    "Kayaks crowd Three Sisters Springs, where people and manatees maintain controversial coexistence."
+                  heading={"Common Period Symptom"}
+                  body=
+                  {
+                    <ul>
+                    <li>Backache</li>
+                    <li>Cramps</li>
+                    <li>Mood Swings</li>
+                    <li>Headche</li>
+                    <li>Bloating</li>
+                    </ul>
                   }
                 />
-                <Button color={"primary"} fullWidth className={classes.cta}>
-                  Find Out More <ChevronRightRounded />
-                </Button>
+                  
               </CardContent>
             </Card>
           </Grid>
 
           <Grid item>
             <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
-              <CardMedia classes={mediaStyles} image={edu8} />
+              <CardMedia classes={mediaStyles} image={edu9} />
               <CardContent>
                 <TextInfoContent
                   classes={textCardContentStyles}
                   overline={"March 20, 2019"}
-                  heading={"What happened in Thailand?"}
+                  heading={"How to combat cramps"}
                   body={
-                    "Kayaks crowd Three Sisters Springs, where people and manatees maintain controversial coexistence."
+                    <ul>
+                      <li>Exercise</li>
+                      <li>Well Balanced Diet</li>
+                      <li>Reduce Stress</li>
+                      <li>Dark Chocolate</li>
+                      <li>Vitamins</li>
+                      <li>Check for menstrual disorders</li>
+                    </ul>
                   }
                 />
-                <Button color={"primary"} fullWidth className={classes.cta}>
-                  Find Out More <ChevronRightRounded />
-                </Button>
+              </CardContent>
+            </Card>
+          </Grid>
+
+
+          <Grid item>
+            <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
+              <CardMedia classes={mediaStyles} image={edu10} />
+              <CardContent>
+                <TextInfoContent
+                  classes={textCardContentStyles}
+                  overline={"March 20, 2019"}
+                  heading={"Common Sanitary Products"}
+                  body={
+                    <ul>
+                      <li>Sanitary Napkins</li>
+                      <li>Tampons</li>
+                      <li>Menstrual Cups</li>
+                      <li>Period Panties</li>
+                    </ul>
+                  }
+                />
               </CardContent>
             </Card>
           </Grid>
 
           <Grid item>
             <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
-              <CardMedia classes={mediaStyles} image={edu8} />
+              <CardMedia classes={mediaStyles} image={edu11} />
               <CardContent>
                 <TextInfoContent
                   classes={textCardContentStyles}
                   overline={"March 20, 2019"}
-                  heading={"What happened in Thailand?"}
+                  heading={"Period Disorders"}
                   body={
-                    "Kayaks crowd Three Sisters Springs, where people and manatees maintain controversial coexistence."
+                    <ul>
+                      <li>Premenstrual syndrome (PMS)</li>
+                      <li>Premenstrual dysphonic disorder</li>
+                      <li>Amenorrhea</li>
+                      <li>Oligomenorrhea</li>
+                      <li>Period Panties</li>
+                    </ul>
                   }
                 />
-                <Button color={"primary"} fullWidth className={classes.cta}>
-                  Find Out More <ChevronRightRounded />
-                </Button>
-              </CardContent>
+                </CardContent>
             </Card>
           </Grid>
 
-          <Grid item>
-            <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
-              <CardMedia classes={mediaStyles} image={edu8} />
-              <CardContent>
-                <TextInfoContent
-                  classes={textCardContentStyles}
-                  overline={"March 20, 2019"}
-                  heading={"What happened in Thailand?"}
-                  body={
-                    "Kayaks crowd Three Sisters Springs, where people and manatees maintain controversial coexistence."
-                  }
-                />
-                <Button color={"primary"} fullWidth className={classes.cta}>
-                  Find Out More <ChevronRightRounded />
-                </Button>
-              </CardContent>
-            </Card>
-          </Grid>
         </Grid>
       </Grid>
 
-      {/* <Grid item xs={12} sm={6} md={4}
-            container
-            spacing={3}
-            justify={"space-around"}
-            alignItems="flex-start"
-          >
-            <Grid item>
-            <Card className={clsx(classes.root, shadowStyles.root)}>
-      <CardMedia
-        classes={mediaStyles}
-        image={edu8}
-      />
-      <CardContent className={classes.content}>
-        <TextInfoContent
-          classes={textCardContentStyles}
-          overline={'March 20, 2019'}
-          heading={'What happened in Thailand?'}
-          body={
-            'Kayaks crowd Three Sisters Springs, where people and manatees maintain controversial coexistence.'
-          }
-        />
-        <Button color={'primary'} fullWidth className={classes.cta}>
-          Find Out More <ChevronRightRounded />
-        </Button>
-      </CardContent>
-    </Card>
-    </Grid>
-            </Grid> */}
-
-      {/* <Grid item xs="12">
-            <Grid container spacing="2" xs="12">
-              <Grid item xs={12} lg={4}>
-              <Paper elevation={3} className={fixedHeightPaper2} style={{backgroundImage: 'linear-gradient(147deg, #ff9897 0%, #f650a0 74%)', color:'white'}}>
-                    <Typography variant="h1" style={{fontSize: '3.5rem', marginBottom: '3%'}}>Fact 1</Typography>
-                  <Typography variant="h4">
-                    {" "}
-                    A rare period disorder can cause bleeding of the eyes.
-                  </Typography>
-                  </Paper>
-              </Grid>
-              <Grid item xs={12} lg={4}>
-                <Paper elevation={3} className={fixedHeightPaper2} style={{backgroundImage: 'linear-gradient(147deg, #ff9897 0%, #f650a0 74%)', color:'white'}}>
-                    <Typography variant="h1"style={{fontSize: '3.5rem', marginBottom: '3%'}} >Fact 2</Typography>
-                  <Typography variant="h4">
-                    {" "}
-                    Getting your period can worsen asthma symptoms.
-                  </Typography>
-                </Paper>
-              </Grid>
-              <Grid item xs={12} lg={4}>
-                <Paper elevation={3} className={fixedHeightPaper2} style={{backgroundImage: 'linear-gradient(147deg, #ff9897 0%, #f650a0 74%)', color:'white'}}>
-                    <Typography variant="h1" style={{fontSize: '3.5rem', marginBottom: '3%'}}>Fact 3</Typography>
-                  <Typography variant="h4">
-                    {" "}
-                    Sleeping with a nightlight can help regulate your cycle.
-                  </Typography>
-                </Paper>
-              </Grid>
-            </Grid>
-        </Grid> */}
-      {/* <Grid container spacing={4}>
-          <Grid item xs={4}>
-            <Paper className={cardyboi}>
-              <Typography variant="h1">Fact 1</Typography>
-              <Typography variant="h4">
-                {" "}
-                A rare period disorder can cause bleeding of the eyes.
-              </Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={4}>
-            <Paper className={cardyboi}>
-              <Typography variant="h1">Fact 1</Typography>
-              <Typography variant="h4">
-                {" "}
-                A rare period disorder can cause bleeding of the eyes.
-              </Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={4}>
-            <Paper className={cardyboi}>
-              <Typography variant="h1">Fact 1</Typography>
-              <Typography variant="h4">
-                {" "}
-                A rare period disorder can cause bleeding of the eyes.
-              </Typography>
-            </Paper>
-          </Grid>
-        </Grid> */}
-
-      {/* <Grid item xs={12} md={12} lg={9}>
-              <BlogCardDemo2/>
-            </Grid> */}
 
       <Grid item xs={12}>
         {/* <h1 style= {{backgroundColor:"#ef5779", padding : '2%' ,color: '#ffffff'}}>Your retraining status</h1> */}
