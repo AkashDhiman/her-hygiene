@@ -116,7 +116,7 @@ const FeaturesTiles = ({
                   </div>
                 </div>
                 <div className="features-tiles-item-content">
-                  <h4 className="mt-0 mb-8">Offline Accesss</h4>
+                  <h4 className="mt-0 mb-8">Offline Access</h4>
                   <p className="m-0 text-sm">
                     Access local vendors even when offline!
                   </p>
