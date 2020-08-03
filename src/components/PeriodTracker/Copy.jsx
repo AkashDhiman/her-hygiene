@@ -2239,7 +2239,7 @@ const DashBoard = (props) => {
                   <Grid item>
                     <AwesomeButton
                       size="large"
-                      onPress={handleClickOpen("paper", "bpSystolic")}
+                      onPress={handleClickOpen("paper", "bp Systolic")}
                       aria-label="add an alarm"
                     >
                       {" "}

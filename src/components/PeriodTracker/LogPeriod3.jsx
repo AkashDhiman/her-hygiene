@@ -8,6 +8,7 @@ import {
   addDays,
   startOfMonth,
   compareAsc,
+  subMonths,
   toDate
 } from "date-fns";
 
@@ -30,7 +31,8 @@ import { DateRange } from "react-date-range";
 const LogPeriod3 = () => {
   const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(true);
-  const currDate = Date.now();
+  // const currDate = Date.now();
+  const currDate = subMonths(Date.now(),1);
   const [state, setState] = useState([]);
   const fetchLogMonth = async (date) => {
     setLoading(true);

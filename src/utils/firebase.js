@@ -247,6 +247,7 @@ if(ans.exists)
   },{merge:true})
 }
 else{
+  console.log("New Log")
   ans.set({
     weight:null,
     height:null,
