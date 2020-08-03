@@ -42,13 +42,15 @@ export default function Map1() {
           image={img}
           title="Contemplative Reptile"
         /> */}
-         <LeafletMap center={[28.6469351,77.1130001]} zoom={17}>
+        <div id="map-id2">
+         <LeafletMap center={[28.6469351,77.1130001]} zoom={10}>
           <TileLayer
-            url={"https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}
+            url={"https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2FuaXNoa2d1cHRhMjAwMCIsImEiOiJjazdpdmd5aG8wMDYwM2ZvN2U5eWs0Mm55In0.svdKVHGfRl4873N_UZBoaA"}
           />
           <Marker position={[28.6469351,77.1130001]} icon={userIcon} />
           {/* ROUTING LAYER CALL KARO YAHA PE DONO KE */}
         </LeafletMap>
+        </div>
 
       {/* </CardActionArea> */}
     </Card>

@@ -51,7 +51,7 @@ export const Edu = React.memo(function BlogCard() {
   const shadowStyles = useOverShadowStyles();
   return (
     <Card className={cx(styles.root, shadowStyles.root)}>
-      <CardContent component={Link} to={"/portal"}>
+      <CardContent component={Link} to={"/edu"}>
         <h1 style={{ color: "#ffffff", margin: 0 }}>
           Get to know <br/>more about Menstruation
         </h1>

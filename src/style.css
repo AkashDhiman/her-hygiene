@@ -24,6 +24,9 @@ body {
   /* position: absolute; */
 }
 
+#map-id2{
+  height: 50vh;
+}
 .header {
   margin: 0;
   padding: 10px;
