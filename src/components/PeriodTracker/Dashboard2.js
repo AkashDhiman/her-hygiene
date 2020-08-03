@@ -17,14 +17,14 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Cardy from "./cards";
 import Button from "@material-ui/core/Button";
-import axios from 'axios'
-import { useOverShadowStyles } from '@mui-treasury/styles/shadow/over';
-import ChevronRightRounded from '@material-ui/icons/ChevronRightRounded';
-import TextInfoContent from '@mui-treasury/components/content/textInfo';
-import { useWideCardMediaStyles } from '@mui-treasury/styles/cardMedia/wide';
-import { useN01TextInfoContentStyles } from '@mui-treasury/styles/textInfoContent/n01';
-import { useBouncyShadowStyles } from '@mui-treasury/styles/shadow/bouncy';
-import edu8 from './edu8.jpg'
+import axios from "axios";
+import { useOverShadowStyles } from "@mui-treasury/styles/shadow/over";
+import ChevronRightRounded from "@material-ui/icons/ChevronRightRounded";
+import TextInfoContent from "@mui-treasury/components/content/textInfo";
+import { useWideCardMediaStyles } from "@mui-treasury/styles/cardMedia/wide";
+import { useN01TextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/n01";
+import { useBouncyShadowStyles } from "@mui-treasury/styles/shadow/bouncy";
+import edu8 from "./edu8.jpg";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -158,13 +158,13 @@ const useStyles = makeStyles((theme) => ({
     },
     cardroot: {
       maxWidth: 304,
-      margin: 'auto',
-      boxShadow: 'none',
+      margin: "auto",
+      boxShadow: "none",
       borderRadius: 0,
     },
     cta: {
       marginTop: 24,
-      textTransform: 'initial',
+      textTransform: "initial",
     },
   },
 }));
@@ -188,17 +188,21 @@ export default function Dashboard() {
 
   const handleRetrain = async () => {
     const config = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     };
     const send = {
       id: user.data.uid,
     };
-    const res = await axios.post("https://herhygiene.herokuapp.com/retrain", send, config);
-    console.log(res)
-    window.location.reload()
+    const res = await axios.post(
+      "https://herhygiene.herokuapp.com/retrain",
+      send,
+      config
+    );
+    console.log(res);
+    window.location.reload();
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const fixedHeightPaper2 = clsx(classes.paper, classes.fixedHeight2);
@@ -225,16 +229,21 @@ export default function Dashboard() {
         </Grid>
         <Grid item xs={12} md={8} lg={9}>
           <Paper className={fixedHeightPaper} elevation={3}>
-            <Periods/>
+            <Periods />
           </Paper>
         </Grid>
         <Grid item lg={9}>
           <Paper className={fixedHeightPaper} elevation={3}>
-          <Chart />
+            <Chart />
           </Paper>
         </Grid>
         <Grid item lg={3}>
-          <Button onClick={handleRetrain} variant="contained" size="large" className={classes.button2}>
+          <Button
+            onClick={handleRetrain}
+            variant="contained"
+            size="large"
+            className={classes.button2}
+          >
             Retrain
           </Button>
         </Grid>
@@ -242,19 +251,103 @@ export default function Dashboard() {
 
         {/* Do you knowww */}
 
-          <Grid item xs={12}>
-            <h1
-              style={{
-                backgroundColor: "#ffa8bd",
-                padding: "1%",
-                color: "#ffffff",
-                marginBottom: "3%",
-              }}
-            >
-              Your Menstruation Guide
-            </h1>
+        <Grid item xs={12}>
+          <h1
+            style={{
+              backgroundColor: "#ffa8bd",
+              padding: "1%",
+              color: "#ffffff",
+              marginBottom: "3%",
+            }}
+          >
+            Your Menstruation Guide
+          </h1>
+        </Grid>
+        <Grid
+          container
+          spacing={3}
+          justify={"space-around"}
+          alignItems="flex-start"
+        >
+          <Grid item>
+            <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
+              <CardMedia classes={mediaStyles} image={edu8} />
+              <CardContent>
+                <TextInfoContent
+                  classes={textCardContentStyles}
+                  overline={"March 20, 2019"}
+                  heading={"What happened in Thailand?"}
+                  body={
+                    "Kayaks crowd Three Sisters Springs, where people and manatees maintain controversial coexistence."
+                  }
+                />
+                <Button color={"primary"} fullWidth className={classes.cta}>
+                  Find Out More <ChevronRightRounded />
+                </Button>
+              </CardContent>
+            </Card>
           </Grid>
-          <Grid item xs={12} sm={6} md={4}
+
+          <Grid item>
+            <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
+              <CardMedia classes={mediaStyles} image={edu8} />
+              <CardContent>
+                <TextInfoContent
+                  classes={textCardContentStyles}
+                  overline={"March 20, 2019"}
+                  heading={"What happened in Thailand?"}
+                  body={
+                    "Kayaks crowd Three Sisters Springs, where people and manatees maintain controversial coexistence."
+                  }
+                />
+                <Button color={"primary"} fullWidth className={classes.cta}>
+                  Find Out More <ChevronRightRounded />
+                </Button>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item>
+            <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
+              <CardMedia classes={mediaStyles} image={edu8} />
+              <CardContent>
+                <TextInfoContent
+                  classes={textCardContentStyles}
+                  overline={"March 20, 2019"}
+                  heading={"What happened in Thailand?"}
+                  body={
+                    "Kayaks crowd Three Sisters Springs, where people and manatees maintain controversial coexistence."
+                  }
+                />
+                <Button color={"primary"} fullWidth className={classes.cta}>
+                  Find Out More <ChevronRightRounded />
+                </Button>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item>
+            <Card className={shadowStyles.root} style={{ maxWidth: 280 }}>
+              <CardMedia classes={mediaStyles} image={edu8} />
+              <CardContent>
+                <TextInfoContent
+                  classes={textCardContentStyles}
+                  overline={"March 20, 2019"}
+                  heading={"What happened in Thailand?"}
+                  body={
+                    "Kayaks crowd Three Sisters Springs, where people and manatees maintain controversial coexistence."
+                  }
+                />
+                <Button color={"primary"} fullWidth className={classes.cta}>
+                  Find Out More <ChevronRightRounded />
+                </Button>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </Grid>
+
+      {/* <Grid item xs={12} sm={6} md={4}
             container
             spacing={3}
             justify={"space-around"}
@@ -281,10 +374,9 @@ export default function Dashboard() {
       </CardContent>
     </Card>
     </Grid>
-            </Grid>
-  
+            </Grid> */}
 
-        {/* <Grid item xs="12">
+      {/* <Grid item xs="12">
             <Grid container spacing="2" xs="12">
               <Grid item xs={12} lg={4}>
               <Paper elevation={3} className={fixedHeightPaper2} style={{backgroundImage: 'linear-gradient(147deg, #ff9897 0%, #f650a0 74%)', color:'white'}}>
@@ -315,7 +407,7 @@ export default function Dashboard() {
               </Grid>
             </Grid>
         </Grid> */}
-        {/* <Grid container spacing={4}>
+      {/* <Grid container spacing={4}>
           <Grid item xs={4}>
             <Paper className={cardyboi}>
               <Typography variant="h1">Fact 1</Typography>
@@ -345,26 +437,25 @@ export default function Dashboard() {
           </Grid>
         </Grid> */}
 
-        {/* <Grid item xs={12} md={12} lg={9}>
+      {/* <Grid item xs={12} md={12} lg={9}>
               <BlogCardDemo2/>
             </Grid> */}
 
-        <Grid item xs={12}>
-          {/* <h1 style= {{backgroundColor:"#ef5779", padding : '2%' ,color: '#ffffff'}}>Your retraining status</h1> */}
-        </Grid>
-        <Grid item xs={12} md={6}>
-          {/* <Regular/> */}
-        </Grid>
-        <Grid item xs={12} md={6}>
-          {/* <Exercise/> */}
-        </Grid>
-        {/* <Grid item xs={12} md={6}>
+      <Grid item xs={12}>
+        {/* <h1 style= {{backgroundColor:"#ef5779", padding : '2%' ,color: '#ffffff'}}>Your retraining status</h1> */}
+      </Grid>
+      <Grid item xs={12} md={6}>
+        {/* <Regular/> */}
+      </Grid>
+      <Grid item xs={12} md={6}>
+        {/* <Exercise/> */}
+      </Grid>
+      {/* <Grid item xs={12} md={6}>
           <Mens1/>
           </Grid> */}
-        {/* <Grid item xs={12} md={6}>
+      {/* <Grid item xs={12} md={6}>
           <Mens2/>
           </Grid> */}
-      </Grid>
 
       {/* </Container> */}
       {/* </main> */}
