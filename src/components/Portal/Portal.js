@@ -208,7 +208,6 @@ export default function Portal() {
         aData,
       });
       setLoading(false);
-      window.adata = aData;
     };
     run();
   }, []);
