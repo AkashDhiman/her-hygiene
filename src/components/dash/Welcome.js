@@ -19,10 +19,10 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
     fontSize: "1.5rem",
   },
   image: {
-    height: "40px",
+    height: "55px",
     marginTop: "15%",
     [breakpoints.up("sm")]: {
-      height: "150px",
+      height: "130px",
       marginTop: "12%",
     },
   },

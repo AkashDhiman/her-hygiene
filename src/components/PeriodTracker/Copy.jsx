@@ -1009,7 +1009,7 @@ const DashBoard = (props) => {
               <Grid item xs={12} style={{paddingTop:0}}>
           <h1
             style={{
-              backgroundColor: "#ffa8bd",
+              backgroundColor: "#ff4081",
               padding: "1%",
               color: "#ffffff",
               textAlign: 'center',
