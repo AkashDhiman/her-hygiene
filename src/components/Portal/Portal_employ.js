@@ -520,9 +520,11 @@ else{
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)} style={{backgroundColor:'#f9cbd3', width:'100%'}}>
         <Toolbar className={classes.toolbar}>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+          {/* <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Dashboard
-          </Typography>
+          </Typography> */}
+          <Button component={Link} to="/" style={{color: '#ffffff', fontSize: '1.5rem'}}>Dashboard</Button>
+
           <Button onClick={logout} style={{color: '#ffffff', fontSize: '1.5rem'}}>LogOut</Button>
         </Toolbar>
       </AppBar>

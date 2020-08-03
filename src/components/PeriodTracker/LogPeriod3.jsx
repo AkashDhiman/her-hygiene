@@ -26,11 +26,12 @@ import "../../calender.scss";
 import axios from 'axios'
 
 import { DateRange } from "react-date-range";
+import { subMonths } from "date-fns/esm";
 
 const LogPeriod3 = () => {
   const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(true);
-  const currDate = Date.now();
+  const currDate = subMonths(Date.now(),1);
   const [state, setState] = useState([]);
   const fetchLogMonth = async (date) => {
     setLoading(true);
