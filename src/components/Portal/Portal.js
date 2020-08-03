@@ -478,20 +478,23 @@ export default function Portal() {
           style={{ backgroundColor: "#f9cbd3", width: "100%" }}
         >
           <Toolbar className={classes.toolbar}>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              className={classes.title}
+            <Button
+            component={Link}
+            to='/'
+            style={{color: '#ffffff', fontSize: '1.5rem'}}
+              // component="h1"
+              // variant="h6"
+              // color="inherit"
+              // noWrap
+              // className={classes.title}
             >
               Dashboard
-            </Typography>
-            <Button onClick={logout} style={{color: '#ffffff', fontSize: '1.5rem'}}>LogOut</Button>
+            </Button>
             <Button component={Link} to={"/eportal"} style={{color: '#ffffff', fontSize: '1.5rem'}}>
               {" "}
               Opportunity creator{" "}
             </Button>
+            <Button onClick={logout} style={{color: '#ffffff', fontSize: '1.5rem'}}>LogOut</Button>
           </Toolbar>
         </AppBar>
         <main className={classes.content}>

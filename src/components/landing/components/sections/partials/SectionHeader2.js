@@ -27,12 +27,6 @@ const SectionHeader = ({ className, data, children, tag, ...props }) => {
     <>
       {(data.title || data.paragraph) && (
         <div {...props} className={classes}>
-          <Image
-            src={require("./SIH.png")}
-            alt="Features split 01"
-            width={264}
-            height={198}
-          />
           <div style={divStyle}></div>
           <div className="container-xs">
             {children}

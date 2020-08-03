@@ -8,7 +8,6 @@ import {
   addDays,
   startOfMonth,
   compareAsc,
-  subMonths,
   toDate
 } from "date-fns";
 
@@ -27,6 +26,7 @@ import "../../calender.scss";
 import axios from 'axios'
 
 import { DateRange } from "react-date-range";
+import { subMonths } from "date-fns/esm";
 
 const LogPeriod3 = () => {
   const [user] = useContext(UserContext);
