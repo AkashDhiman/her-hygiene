@@ -14,7 +14,8 @@ import Badge from "@material-ui/core/Badge";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Link from "@material-ui/core/Link";
+// import Link from "@material-ui/core/Link";
+import {Link} from '@reach/router'
 import Deposits from "./Deposits";
 import BlogCardDemo from "./articles_1";
 import BlogCardDemo2 from "./articles_2";
@@ -151,15 +152,19 @@ export default function Edu() {
         style={{ backgroundColor: "#f8c9d4", width: "100%" }}
       >
         <Toolbar className={classes.toolbar}>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
+          <Button
+            // component="h1"
+            // variant="h6"
+            // color="inherit"
+            // noWrap
+            component={Link}
+            to='/'
+            style={{ fontSize: "1.25rem", color: "white" }}
+
+            // className={classes.title}
           >
             Dashboard
-          </Typography>
+          </Button>
           <Button
             onClick={logout}
             style={{ fontSize: "1.25rem", color: "white" }}
