@@ -49,9 +49,9 @@ const FeaturesSplit = ({
   );
 
   const sectionHeader = {
-    title: "Workflow that just works",
+    title: "An Initiative of SIH 2020",
     paragraph:
-      "We provide a comprehensive solution to all things period. Join us to put an end to all your menstrual needs through our three components shown below.",
+      "We provide a comprehensive solution to all things period.  Join us to put an end to all your menstrual needs through our three components shown below.",
   };
 
   return (
@@ -170,7 +170,7 @@ const FeaturesSplit = ({
                   Lightning fast workflow
                   </div> */}
                   <h3 className="mt-0 mb-12">Awareness Portal Portal</h3>
-                  <p className="m-0">
+                  <p className="m-1">
                     Learn more about the menstrual cycle and help eradicate the
                     preconcived notions and stigmas surrounding the issues. As
                     they say, education is the best weapon in the face of
