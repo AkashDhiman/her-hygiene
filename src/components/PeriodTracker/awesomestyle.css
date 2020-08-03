@@ -1250,3 +1250,8 @@ span.aws-btn__bubble {
 .aws-btn--progress.aws-btn--secondary .aws-btn__progress:after {
   color: #1e88e5;
 }
+
+.MuiGrid-root, .MuiGrid-item, .MuiGrid-grid-xs-12, .MuiGrid-grid-sm-12, .MuiGrid-grid-md-5, .MuiGrid-grid-lg-5
+{
+  margin-top: 30px;
+}
